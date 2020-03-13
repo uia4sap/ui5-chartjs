@@ -1,0 +1,40 @@
+{
+	"uia.chartjs": {
+		"icon": "sap-icon://chart",
+		"name": "Chart.js for UI5",
+		"description": "Chart.js for UI5",
+		"source" : "https://github.com/uia4w/uia-chartjs",
+		"documentation": "https://github.com/uia4w/uia-chartjs/blob/master/README.md",
+		"demo" : "https://github.com/uia4w/uia-chartjs/index.html",
+		"license": "Apache 2.0",
+		"version": "1.0.0",
+		"content": {
+			"BarChart": {
+				"id": "BarChart",
+				"name": "BarChart",
+				"type": "control",
+				"description": "Samples of the BarChart",
+				"samples": [
+					{
+						"id": "ScoreBarChart",
+						"name": "Score Report",
+						"description": null
+					}
+				]
+			},
+			"LineChart": {
+				"id": "LineChart",
+				"name": "LineChart",
+				"type": "control",
+				"description": "Samples of the LineChart",
+				"samples": [
+					{
+						"id": "AQILineChart",
+						"name": "Air Quality Index",
+						"description": null
+					}
+				]
+			}
+		}
+	}
+}

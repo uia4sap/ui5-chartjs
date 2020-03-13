@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Testpage - uia-chartjs.BarChart</title>
+
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-libs="uia.chartjs"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+			var oModel = new sap.ui.model.json.JSONModel({
+				width: 600,
+				height: 400
+			});
+			sap.ui.getCore().setModel(oModel);
+
+			// chart
+			var oBarChart = new uia.chartjs.BarChart({
+				width: "{/width}",
+				height: "{/height}",
+				labels: [ "Chinese", "Math", "English", "Science", "Society"]
+			});
+
+			// options.scales
+			var oGradeAxis = new uia.chartjs.axes.LinearAxis({
+				axisID: "grade",
+				position: "left",
+				title: "Grade",
+				suggestedMax: 100.0,
+				suggestedMin: 60.0
+			});
+			oBarChart.addAggregation("scales", oGradeAxis);
+
+			// data 1
+			var male = oBarChart.createDataset("Male", [81, 76, 83, 85, 90], "rgba(255, 0, 0, 0.3)");
+			male.yAxisID = "grade";
+			// data 2
+			var female = oBarChart.createDataset("Female", [82, 73, 88, 83, 91], "rgba(0, 255, 0, 0.3)");
+			female.yAxisID = "grade";
+			// add to chart
+			oBarChart.setDatasets([ male, female]);
+
+			oBarChart.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>uia-chartjs - LineChart</title>
+
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-libs="uia.chartjs"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+			var oModel = new sap.ui.model.json.JSONModel({
+				width: 600,
+				height: 400,
+			});
+			sap.ui.getCore().setModel(oModel);
+
+			// chart
+			var oLineChart = new uia.chartjs.LineChart({
+				width: "{/width}",
+				height: "{/height}"
+			});
+
+			// options.title
+			var oTitle = new uia.chartjs.options.Title({
+				"text": "Air Quality Index",
+				"fontSize": 16
+			});
+			oLineChart.addAggregation("options", oTitle);
+
+			// options.tooltips
+			var oTooltips = new uia.chartjs.options.Tooltips({
+				// "mode": "interpolate",
+				"intersect": false,
+				"backgroundColor": "rgba(128,128,255,0.8)"
+			});
+			oLineChart.addAggregation("options", oTooltips);
+
+			// options.scales: x
+			var oXAxis = new uia.chartjs.axes.LinearAxis({
+				axisID: "hour",
+				position: "bottom",
+				title: "hours",
+				titleDisplay: true,
+				beginAtZero: true
+			});
+			oLineChart.addAggregation("scales", oXAxis);
+
+			// options.scales: y1
+			var oPpmAxis = new uia.chartjs.axes.LinearAxis({
+				axisID: "ppm",
+				position: "left",
+				title: "ppm",
+				titleDisplay: true
+			});
+			oLineChart.addAggregation("scales", oPpmAxis);
+
+			// options.scales: y2
+			var oPctAxis = new uia.chartjs.axes.LinearAxis({
+				axisID: "percent",
+				position: "right",
+				title: "Percent (%)",
+				titleDisplay: true,
+				suggestedMax: 100.0,
+				beginAtZero: true
+			});
+			oLineChart.addAggregation("scales", oPctAxis);
+
+			// plugin
+			var oCrosshair = new uia.chartjs.plugins.Crosshair({
+				name: "crosshair"
+			});
+			oCrosshair.addAggregation("attrs", new uia.chartjs.plugins.PluginAttr({
+				key: "sync",
+				value: true
+			}));
+			oCrosshair.addAggregation("attrs", new uia.chartjs.plugins.PluginAttr({
+				key: "line",
+				value: {
+					color: "rgba(0,0,255,0.6)",
+					width: 1
+				}
+			}));
+			oLineChart.addAggregation("plugins", oCrosshair);
+			
+			// data 1
+			var co2 = oLineChart.createDataset(
+				"CO2", 
+				[
+					{ x: 0, y: 96},
+					{ x: 1, y: 87},
+					{ x: 2, y: 70},
+					{ x: 3, y: 71},
+					{ x: 4, y: 65},
+					{ x: 5, y: 72},
+					{ x: 6, y: 80},
+					{ x: 7, y: 99},
+					{ x: 8, y: 101},
+					{ x: 9, y: 146},
+					{ x: 10, y: 185},
+					{ x: 11, y: 183},
+					{ x: 12, y: 195}
+				], 
+				"rgba(255, 0, 0, 0.6)");
+			co2.yAxisID = "ppm";
+			// data 2
+			var humidity = oLineChart.createDataset(
+				"Humidity", 		
+				[
+					{ x: 0, y: 30},
+					{ x: 1, y: 31},
+					{ x: 2, y: 40},
+					{ x: 3, y: 42},
+					{ x: 4, y: 37},
+					{ x: 5, y: 50},
+					{ x: 6, y: 67},
+					{ x: 7, y: 68},
+					{ x: 8, y: 64},
+					{ x: 9, y: 51},
+					{ x: 10, y: 49},
+					{ x: 11, y: 54},
+					{ x: 12, y: 53}
+				], 
+
+				"rgba(0, 0, 255, 0.6)");
+				humidity.yAxisID = "percent";
+			// add to chart
+			oLineChart.setDatasets([ co2, humidity]);
+			oLineChart.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

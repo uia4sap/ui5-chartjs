@@ -1,0 +1,38 @@
+{
+  "name": "uia-chartjs",
+  "version": "0.1.0",
+  "description": "Chart.js controls for OpenUI 5",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uia4w/uia-chartjs.git"
+  },
+  "homepage": "https://github.com/uia4w/uia-chartjs",
+  "ui5lab": {
+    "namespace": "uia.chartjs",
+    "icon": "chart",
+    "displayName": "uia-chartjs"
+  },
+  "license": "Apache-2.0",
+  "private": false,
+  "scripts": {
+    "test": "echo \"Error: no test specified. Please add some.\" && exit 1",
+    "prepare": "node prepare.js",
+    "start": "ui5 serve --open ./test-resources/ui5lab/browser/index.html",
+    "build": "ui5 build"
+  },
+  "dependencies": {
+    "@openui5/sap.f": "^1.58.4",
+    "@openui5/sap.m": "^1.58.4",
+    "@openui5/sap.ui.core": "^1.58.4",
+    "@openui5/sap.ui.layout": "^1.58.4",
+    "@openui5/themelib_sap_belize": "^1.58.4",
+    "chart.js": "^2.9.3",
+    "chartjs-plugin-crosshair": "1.1.4"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^1.14.0",
+    "eslint": "^5.2.0",
+    "fs-extra": "^3.0.0",
+    "ui5lab-browser": "^1.0.0"
+  }
+}
