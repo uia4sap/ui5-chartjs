@@ -3,11 +3,13 @@ Chart.js for OpenUI 5
 ## Description
 The target of the poject is to create a chart library which the model is same as [Chart.js](https://www.chartjs.org/).
 
-The reaons of the design strategy are:
-* You can reference documents of Chart.js to understand the library.
-* You can modify easily to meet the new update of Chart.js.
+The main reasons to make the model as same as Chart.is are:
 
-The useful documents of Chart.js
+* You can reference documents of Chart.js to understand this library.
+* You can modify this library easily to be compatible with the last update of Chart.js version 2.
+
+The documents of Chart.js
+
 * [Chart.js Documents](https://www.chartjs.org/docs/latest/)
 * [Chart.js Samples](https://www.chartjs.org/samples/latest/)
 
@@ -57,9 +59,8 @@ The useful documents of Chart.js
   </mvc:View>
 ```
 
-
 ## Main Design Concept
-The main model of Chart.js is
+The core model of Chart.js is
 ```js
 {
     type: "bar",    // bar, line ...
@@ -79,6 +80,7 @@ The main model of Chart.js is
     plugins: []
 }
 ```
+
 1. The `type` of attribute maps to `uia.chartjs` namespace.
 
     * __line__ - uia.chartjs.LineChart
@@ -107,13 +109,12 @@ The main model of Chart.js is
 
 ### options
 #### options.layout
-
 The implementation is `uia.chartjs.options.Layout`
 
-    * paddingLeft
-    * paddingRight
-    * paddingTop
-    * paddingBottom
+  * paddingLeft
+  * paddingRight
+  * paddingTop
+  * paddingBottom
 
 #### options.legend
 The implementation is `uia.chartjs.options.Legend`.
@@ -158,11 +159,13 @@ There are 4 types of axis implementation for `options.scales`. All axes have fol
 
 #### CategoryAxis
 The implementation is `uia.chartjs.axes.CategoryAxis`.
+
 * max
 * min
 
 #### LinearAxis
 The implementation is `uia.chartjs.axes.LinearAxis`.
+
 * beginAtZero
 * maxTicksLimit
 * precision
@@ -177,6 +180,7 @@ TBD
 
 #### TimeAxis
 The implementation is `uia.chartjs.axes.TimeAxis`.
+
 * displayFormat
 * isoWeekday
 * parser
@@ -201,6 +205,7 @@ XML sample:
 ## Samples
 ### BarChart
 ![AQI](images/ScoreReport.png)
+
 ``` xml
 <chartjs:BarChart>
     <options:Title text="Grade" />
@@ -220,6 +225,7 @@ XML sample:
 
 ### LineChart
 ![AQI](images/AQI.png)
+
 ```xml
 <chartjs:LineChart>
     <options:Title
