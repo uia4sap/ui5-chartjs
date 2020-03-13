@@ -1,12 +1,14 @@
 Chart.js for OpenUI 5
 ===
 ## Description
-The target of the poject is to create a [Chart.js](https://www.chartjs.org/) based UI5 library which the model is same as Chart.js.
+The goal of this poject is to create a UI5 library based on [Chart.js](https://www.chartjs.org/), which has the same model as Chart.js.
 
 The main reasons to make the model as same as Chart.js are:
 
-* You can reference documents of Chart.js to understand this library.
-* You can modify this library easily to be compatible with the last update of Chart.js version 2.
+* You can use this library by referring to the Chart.js documentation.
+* You can modify this library easily to make it compatible with the last update of Chart.js version 2.
+
+The current implementation includes only BarChart and LineChart.
 
 The resources of Chart.js
 
@@ -82,7 +84,6 @@ The core model of Chart.js is
     plugins: []
 }
 ```
-
 1. The `type` of attribute maps to `uia.chartjs` namespace.
 
     * __line__ - uia.chartjs.LineChart
@@ -108,6 +109,10 @@ The core model of Chart.js is
 3. The values of `options.plugins` are configurtion of plugins which map to `uia.chartjs.plugins` namespace.
 
     * __Crosshair__ - [chartjs-plugin-crosshair](https://www.npmjs.com/package/chartjs-plugin-crosshair) UI5 version
+
+Based on the concept above, the class diagram is
+
+![AQI](images/UML.png)
 
 ### options
 #### options.layout

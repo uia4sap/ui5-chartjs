@@ -42,11 +42,6 @@ sap.ui.define([
                 hoverMode: { type: "string", group: "Appearance", defaultValue: "label" },
             },
 
-            aggregations: {
-
-                scales: { type: "uia.chartjs.axes.CartesianAxis", multiple: true, aggregation: "scales" }
-            },
-
             events: {}
         },
 

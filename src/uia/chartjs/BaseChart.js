@@ -88,18 +88,6 @@ sap.ui.define([
             return this.__chart;
         },
 
-        /**
-         * @abstract
-         * 
-         */
-        getChartType: function() {
-            return "line";
-        },
-
-        /**
-         * @override
-         * 
-         */
         getOptions: function() {
             var result = {
                 scales: this.getScalesOption(),
@@ -121,6 +109,14 @@ sap.ui.define([
             }
 
             return this.applyOptionsEx(result);
+        },
+
+        /**
+         * @abstract
+         * 
+         */
+        getChartType: function() {
+            return "line";
         },
 
         /**
