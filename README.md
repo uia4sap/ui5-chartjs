@@ -1,9 +1,9 @@
 Chart.js for OpenUI 5
 ===
 ## Description
-The target of the poject is to create a chart library which the model is same as [Chart.js](https://www.chartjs.org/).
+The target of the poject is to create a [Chart.js](https://www.chartjs.org/) based UI5 library which the model is same as Chart.js.
 
-The main reasons to make the model as same as Chart.is are:
+The main reasons to make the model as same as Chart.js are:
 
 * You can reference documents of Chart.js to understand this library.
 * You can modify this library easily to be compatible with the last update of Chart.js version 2.
