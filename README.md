@@ -11,6 +11,53 @@ The useful documents of Chart.js
 * [Chart.js Documents](https://www.chartjs.org/docs/latest/)
 * [Chart.js Samples](https://www.chartjs.org/samples/latest/)
 
+## How to Use
+### Build
+1. __npm install__
+
+2. __npm start__ - demo the samples.
+
+3. __npm run build__ - build and output to `dist` folder.
+
+### Integrated in the Poject
+1. __index.html__ - add the libray.
+  ```html
+  <script
+      data-sap-ui-resourceroots='{
+          ...,
+          "uia.chartjs": "./js/uia-chartjs/resource/uia/chartjs/"
+      }'>
+  </script>
+  ```
+
+2. __view.xml__ - use the chart control.
+  ```xml
+  <mvc:View
+          controllerName="your.ControllerName"
+          xmlns:mvc="sap.ui.core.mvc"
+          xmlns:chartjs="uia.chartjs"
+          xmlns:options="uia.chartjs.options"
+          xmlns:axes="uia.chartjs.axes">
+      ...
+      <chartjs:LineChart>
+          <options:Title
+                text="history" />
+          <chartjs:scales>
+              <axes:CategoryAxis
+                      axisID="x"
+                      position="bottom"
+                      title="time" />
+              <axes:LinearAxis
+                      axisID="y1"
+                      position="left"
+                      title="values" />
+          </chartjs:scales>
+      </chartjs:LineChart>
+      ...
+  </mvc:View>
+```
+
+
 ## Main Design Concept
 The main model of Chart.js is
 ```js
