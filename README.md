@@ -8,10 +8,12 @@ The main reasons to make the model as same as Chart.js are:
 * You can reference documents of Chart.js to understand this library.
 * You can modify this library easily to be compatible with the last update of Chart.js version 2.
 
-The documents of Chart.js
+The resources of Chart.js
 
-* [Chart.js Documents](https://www.chartjs.org/docs/latest/)
-* [Chart.js Samples](https://www.chartjs.org/samples/latest/)
+* [Documents](https://www.chartjs.org/docs/latest/)
+* [Samples](https://www.chartjs.org/samples/latest/)
+* [Popular Extensions](https://www.chartjs.org/docs/2.7.2/notes/extensions.html)
+
 
 ## How to Use
 ### Build
@@ -267,3 +269,22 @@ XML sample:
     </chartjs:scales>
 </chartjs:LineChart>
 ```
+
+## References
+
+* [Chart.js](https://www.chartjs.org/)
+* [UI5 Custom Library Template](https://github.com/UI5Lab/UI5Lab-library-simple)
+
+## Copyright and License
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
