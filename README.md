@@ -200,6 +200,7 @@ XML sample:
 
 ## Samples
 ### BarChart
+![AQI](images/ScoreReport.png)
 ``` xml
 <chartjs:BarChart>
     <options:Title text="Grade" />
@@ -218,6 +219,7 @@ XML sample:
 ```
 
 ### LineChart
+![AQI](images/AQI.png)
 ```xml
 <chartjs:LineChart>
     <options:Title
