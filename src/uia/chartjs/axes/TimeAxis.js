@@ -47,7 +47,7 @@ sap.ui.define([
             return "time";
         },
 
-        applyOptionEx: function(oAxis) {
+        applyScaleEx: function(oAxis) {
             oAxis["ticks"] = {
                 source: this.getSource(),
             };

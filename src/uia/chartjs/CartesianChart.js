@@ -50,7 +50,7 @@ sap.ui.define([
             var scales = this.getAggregation("scales");
             if(scales) {
                 scales.forEach(s => {
-                    var option = s.toOption();
+                    var option = s.toScale();
                     if(option.position == "left" || option.position == "right") {
                         result.yAxes.push(option);
                     } else {

@@ -42,8 +42,6 @@ sap.ui.define([
 
                 key: { type: "string", group: "common", defaultValue: undefined },
 
-                datasource: { type: "object", group: "common", defaultValue: null },
-
                 height: { type: "int", group: "appearance", defaultValue: 400 },
 
                 width: { type: "int", group: "appearance", defaultValue: 300 },
@@ -51,9 +49,16 @@ sap.ui.define([
                 labels: { type: "string[]", group: "appearance", defaultValue: [] }
             },
 
-            "defaultAggregation": "options",
+            "defaultAggregation": "datasets",
 
             "aggregations": {
+
+                datasets: {
+                    type: "uia.chartjs.data.Dataset",
+                    multiple: true,
+                    singularName: "dataset",
+                    bindable: "bindable",
+                },
 
                 options: { type: "uia.chartjs.options.BaseOption", multiple: true, aggregation: "options" },
 
@@ -62,7 +67,7 @@ sap.ui.define([
 
             "events": {
 
-                sourceChanged: {
+                keyChanged: {
 
                     parameters: {
 
@@ -74,14 +79,6 @@ sap.ui.define([
 
         constructor: function(sId, mSettings) {
             Element.apply(this, arguments);
-        },
-
-        plugins: function(oPlugins) {
-            this.__plugins = oPlugins
-        },
-
-        tooltips: function(oTooltips) {
-            this.__tooltips = oTooltips
         },
 
         getChartJS: function() {
@@ -139,31 +136,51 @@ sap.ui.define([
             return oOptions;
         },
 
-        setDatasets: function(oDatasets) {
-            this.__datasets = oDatasets;
-            if(this.__chart) {
-                this.__chart.data.datasets = oDatasets;
-            }
-            this.updateChart();
-        },
-
         /**
          * @override
          * 
          */
-        setDatasource: function(oDatasource) {
-            if(oDatasource) {
-                this.setProperty("datasource", oDatasource, true);
-                this.fireSourceChanged({ "datasource": oDatasource });
+        setKey: function(oKey) {
+            if(oKey) {
+                this.setProperty("key", oKey, true);
+                this.fireKeyChanged({ "value": oKey });
             } else {
-                this.setProperty("datasource", null, true);
-                this.fireSourceChanged({ "datasource": null });
+                this.setProperty("key", null, true);
+                this.fireKeyChanged({ "value": null });
             }
             return this;
         },
 
+        /**
+         * 
+         * @param {uia.chartjs.data.Dataset} oDataset 
+         */
+        addDataset: function(oDataset) {
+            this.addAggregation("datasets", oDataset);
+
+            var oDatasets = [];
+            var items = this.getAggregation("datasets");
+            items.forEach(item => oDatasets.push(item.toDataset()));
+            this.__datasets = oDatasets;
+
+            this.updateChart();
+        },
+
+        updateDatasets: function(sReason) {
+            this.destroyDatasets();
+            this.updateAggregation("datasets");
+
+            var oDatasets = [];
+            var items = this.getAggregation("datasets") || [];
+            items.forEach(item => oDatasets.push(item.toDataset()));
+            this.__datasets = oDatasets;
+
+            this.updateChart();
+        },
+
         updateChart: function(iDuration, bLazy, sEasing) {
             if(this.__chart) {
+                this.__chart.data.datasets = this.__datasets;
                 this.__chart.options = this.getOptions();
                 this.__chart.update({
                     duration: iDuration,

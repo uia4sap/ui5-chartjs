@@ -42,7 +42,9 @@ sap.ui.define([
                 hoverMode: { type: "string", group: "Appearance", defaultValue: "label" },
             },
 
-            events: {}
+            events: {
+
+            }
         },
 
         onBeforeRendering: function() {
@@ -76,8 +78,7 @@ sap.ui.define([
                 oOptions.scales.yAxes[0]["stacked"] = true;
             }
             return oOptions;
-        },
-
+        }
     });
 
     return BarChart;

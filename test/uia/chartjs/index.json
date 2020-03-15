@@ -16,9 +16,19 @@
 				"description": "Samples of the BarChart",
 				"samples": [
 					{
-						"id": "ScoreBarChart",
-						"name": "Score Report",
+						"id": "ScoreBarChart1",
+						"name": "Score Report #1",
 						"description": null
+					},
+					{
+						"id": "ScoreBarChart2",
+						"name": "Score Report #2",
+						"description": "score with average line."
+					},
+					{
+						"id": "ScoreBarChart3",
+						"name": "Score Report #3",
+						"description": "using binding."
 					}
 				]
 			},

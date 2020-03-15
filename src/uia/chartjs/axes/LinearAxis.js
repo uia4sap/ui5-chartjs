@@ -36,7 +36,7 @@ sap.ui.define([
             return "linear";
         },
 
-        applyOptionEx: function(oAxis) {
+        applyScaleEx: function(oAxis) {
             oAxis["ticks"] = {
                 beginAtZero: this.getBeginAtZero(),
                 maxTicksLimit: this.getMaxTicksLimit(),

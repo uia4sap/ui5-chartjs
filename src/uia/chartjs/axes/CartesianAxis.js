@@ -139,7 +139,7 @@ sap.ui.define([
             return undefined;
         },
 
-        toOption: function() {
+        toScale: function() {
             var result = {
                 id: this.getAxisID(),
                 type: this.getName(),
@@ -163,7 +163,7 @@ sap.ui.define([
                 result["gridLines"] = gridLines.toOption();
             }
 
-            return this.applyOptionEx(result);
+            return this.applyScaleEx(result);
         },
         
         /**
@@ -171,7 +171,7 @@ sap.ui.define([
          * 
          * @param {*} oAxis 
          */
-        applyOptionEx: function(oAxis) {
+        applyScaleEx: function(oAxis) {
             return oAxis;
         },
     });

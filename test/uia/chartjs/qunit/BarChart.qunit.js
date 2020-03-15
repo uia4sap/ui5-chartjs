@@ -1,11 +1,11 @@
 sap.ui.require([
-	"uia/chartjs/BarChart"
+    "uia/chartjs/BarChart"
 ], function(
-	BarChart
+    BarChart
 ) {
-	"use strict";
+    "use strict";
 
-	QUnit.test("Should instantiate the control with defaults", function (assert) {
-		var BarChart = new BarChart();
-	});
+    QUnit.test("Should instantiate the control with defaults", function(assert) {
+        var BarChart = new BarChart();
+    });
 });

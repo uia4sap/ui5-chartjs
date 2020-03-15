@@ -24,7 +24,7 @@ sap.ui.define([
             return "category";
         },
 
-        applyOptionEx: function(oAxis) {
+        applyScaleEx: function(oAxis) {
             oAxis["ticks"] = {
                 min: this.getMin(),
                 max: this.getMax()

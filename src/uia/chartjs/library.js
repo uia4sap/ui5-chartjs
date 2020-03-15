@@ -47,6 +47,8 @@ sap.ui.define([
 			"uia.chartjs.axes.LinearAxis",
 			"uia.chartjs.axes.TimeAxis",
 			"uia.chartjs.axes.GridLines",
+			"uia.chartjs.data.Bar",
+			"uia.chartjs.data.Line",
 			"uia.chartjs.plugins.Plugin",
 			"uia.chartjs.plugins.PluginAttr",
 			"uia.chartjs.plugins.Crosshair",
