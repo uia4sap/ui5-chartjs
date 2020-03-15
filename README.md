@@ -52,7 +52,7 @@ The resources of Chart.js
       </chartjs:LineChart>
       ...
     </mvc:View>
-  ```
+    ```
 
 ## Main Design Concept
 The core model of Chart.js is
