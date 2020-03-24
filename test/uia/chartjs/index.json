@@ -18,17 +18,17 @@
 					{
 						"id": "ScoreBarChart1",
 						"name": "Score Report #1",
-						"description": null
+						"description": "simple barchart"
 					},
 					{
 						"id": "ScoreBarChart2",
 						"name": "Score Report #2",
-						"description": "score with average line."
+						"description": "with average line."
 					},
 					{
 						"id": "ScoreBarChart3",
 						"name": "Score Report #3",
-						"description": "using binding."
+						"description": "using databinding."
 					}
 				]
 			},
@@ -41,7 +41,7 @@
 					{
 						"id": "AQILineChart",
 						"name": "Air Quality Index",
-						"description": null
+						"description": "simple linechart"
 					}
 				]
 			}

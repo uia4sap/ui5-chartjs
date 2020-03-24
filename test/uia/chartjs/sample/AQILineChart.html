@@ -4,9 +4,7 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>uia-chartjs - LineChart</title>
-
+	<title>TestPage - LineChart</title>
 	<base href="../../../../">
 	<!--[if lte IE 9]><script>
 	(function() {
@@ -17,6 +15,7 @@
 
 	<script id="sap-ui-bootstrap"
 		src="resources/sap-ui-core.js"
+		data-sap-ui-async="true"
 		data-sap-ui-libs="uia.chartjs"
 		data-sap-ui-theme="sap_belize">
 	</script>
@@ -73,9 +72,7 @@
 			oLineChart.addAggregation("scales", oPctAxis);
 
 			// plugin
-			var oCrosshair = new uia.chartjs.plugins.Crosshair({
-				name: "crosshair"
-			});
+			var oCrosshair = new uia.chartjs.plugins.Crosshair();
 			oCrosshair.addAggregation("attrs", new uia.chartjs.plugins.PluginAttr({
 				key: "sync",
 				value: true

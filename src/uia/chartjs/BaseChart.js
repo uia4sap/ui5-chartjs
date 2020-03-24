@@ -1,7 +1,7 @@
+/* global Chart:true */
 sap.ui.define([
     "sap/ui/core/Control",
-    "sap/ui/core/Element",
-    "./options/BaseOption"
+    "sap/ui/core/Element"
 ], function(
     Control,
     Element,

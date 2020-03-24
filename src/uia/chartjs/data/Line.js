@@ -30,7 +30,7 @@ sap.ui.define([
 
                 cubicInterpolationMode: { type: "string", group: "data", defaultValue: "default" },
 
-                clip: { type: "number", group: "data", defaultValue: 1 },
+                clip: { type: "float", group: "data", defaultValue: 1 },
 
                 fill: { type: "boolean", group: "data", defaultValue: false },
 
@@ -48,7 +48,7 @@ sap.ui.define([
 
                 hoverBorderWidth: { type: "int", group: "data", defaultValue: undefined },
 
-                lineTension: { type: "number", group: "data", defaultValue: 0 },
+                lineTension: { type: "float", group: "data", defaultValue: 0 },
 
                 pointBackgroundColor: { type: "string", group: "data", defaultValue: "rgba(0,0,0,0.1)" },
 

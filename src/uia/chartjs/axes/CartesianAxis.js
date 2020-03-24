@@ -16,8 +16,14 @@ sap.ui.define([
 
                 display: { type: "boolean", group: "gridLines", defaultValue: true },
 
+                /**
+                 * Position of the axis in the chart. Possible values are: 'top', 'left', 'bottom', 'right'
+                 */
                 position: { type: "string", group: "gridLines", defaultValue: 'left' },
 
+                /**
+                 * If true, extra space is added to the both edges and the axis is scaled to fit into the chart area. 
+                 */
                 offset: { type: "boolean", group: "gridLines", defaultValue: false },
 
                 weight: { type: "int", group: "gridLines", defaultValue: 0 },
@@ -26,7 +32,7 @@ sap.ui.define([
 
                 titleDisplay: { type: "boolean", group: "gridLines", defaultValue: true },
 
-                titleLineHeight: { type: "float", group: "gridLines", defaultValue: 1.2 },
+                titleLineHeight: { type: "string", group: "gridLines", defaultValue: "1.2" },
 
                 titleFontColor: { type: "string", group: "gridLines", defaultValue: "rgba(0,0,0,1.0)" },
 

@@ -84,6 +84,10 @@ sap.ui.define([
 		Line: "line"
 	};
 
+	jQuery.sap.includeStyleSheet("resources/uia/chartjs/3rdparty/chartjs/Chart.css");	
+
+	Chart.platform.disableCSSInjection = true;
+
 	return uia.chartjs;
 
 });

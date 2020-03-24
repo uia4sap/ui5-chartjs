@@ -108,7 +108,7 @@ The core model of Chart.js is
 
 5. The values of `options.plugins` are configurtion of plugins which map to `uia.chartjs.plugins` namespace.
 
-  * __Crosshair__ - [chartjs-plugin-crosshair](https://www.npmjs.com/package/chartjs-plugin-crosshair) UI5 version
+    * __Crosshair__ - [chartjs-plugin-crosshair](https://www.npmjs.com/package/chartjs-plugin-crosshair) UI5 version
 
 Based on the concept above, the class diagram is
 
