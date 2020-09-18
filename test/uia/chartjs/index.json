@@ -49,9 +49,14 @@
 						"description": "the simplest line chart"
 					},
 					{
-						"id": "AQILineChart",
+						"id": "AQILineChart1",
 						"name": "AQI chart #1",
 						"description": "AQI using line chart"
+					},
+					{
+						"id": "AQILineChart2",
+						"name": "AQI chart #2",
+						"description": "using data binding."
 					}
 				]
 			},

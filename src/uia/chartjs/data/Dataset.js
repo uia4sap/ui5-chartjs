@@ -7,12 +7,14 @@ sap.ui.define([
 
     var Dataset = Element.extend("uia.chartjs.data.Dataset", {
         metadata: {
+
+            "abstract": true,
             
-            library: "uia.chartjs.data",
+            "library": "uia.chartjs.data",
 
-            properties: {
+            "properties": {
 
-                data: { type: "array", group: "data" },
+                data: { type: "any", group: "data" },
 
                 label: { type: "string", group: "data", defaultValue: "top" },
 

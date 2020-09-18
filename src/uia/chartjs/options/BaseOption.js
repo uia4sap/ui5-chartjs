@@ -7,7 +7,9 @@ sap.ui.define([
 
     var BaseOption = Element.extend("uia.chartjs.options.BaseOption", {
         metadata: {
+
             library: "uia.chartjs.options",
+
         },
 
         getName: function() {

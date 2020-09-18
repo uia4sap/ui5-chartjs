@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TestPage - LineChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-async="true"
+		data-sap-ui-libs="sap.m,uia.chartjs"
+        data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+			var oModel = new sap.ui.model.json.JSONModel({
+				title: "Air Quality Index",
+				x: "ppm",
+				co2: {
+					data: [
+						{ x: 0, y: 96, key: 10},
+						{ x: 1, y: 87, key: 10},
+						{ x: 2, y: 70, key: 4},
+						{ x: 3, y: 71, key: 10},
+						{ x: 4, y: 65, key: 10},
+						{ x: 5, y: 72, key: 10},
+						{ x: 6, y: 80, key: 10},
+						{ x: 7, y: 99, key: 10},
+						{ x: 8, y: 101, key: 10},
+						{ x: 9, y: 146, key: 10},
+						{ x: 10, y: 185, key: 10},
+						{ x: 11, y: 183, key: 4},
+						{ x: 12, y: 195, key: 10}
+					]
+				}
+			});
+			sap.ui.getCore().setModel(oModel);
+
+			// chart
+			var oLineChart = new uia.chartjs.LineChart({
+			});
+
+			// options.title
+			var oTitle = new uia.chartjs.options.Title({
+				"text": "{/title}",
+				"fontSize": 16
+			});
+			oLineChart.addAggregation("options", oTitle);
+
+			// options.scales: y1
+			var oPpmAxis = new uia.chartjs.axes.LinearAxis({
+				axisID: "ppm",
+				position: "left",
+				title: "ppm",
+				titleDisplay: true
+			});
+			oLineChart.addAggregation("scales", oPpmAxis);
+
+			// data 1
+			var toColor = function() {
+				return "rgba(0,0,255,1)";
+			}
+			var co2 = new uia.chartjs.data.Line({
+				label: "CO2",
+				data: "{/co2/data}", 
+				yAxisID: "{/x}",
+				borderColor: "rgba(255, 0, 0, 0.6)"
+			});
+			oLineChart.addDataset(co2);
+            // oLineChart.addAggregation("datasets", co2);
+
+			oLineChart.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

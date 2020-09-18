@@ -59,16 +59,14 @@ sap.ui.define([
                 datasets: {
                     type: "uia.chartjs.data.Dataset",
                     multiple: true,
-                    singularName: "dataset",
-                    aggregation: "dataset",
-                    bindable: "bindable",
+                    singularName: "datasets",
+                    bindable: "bindable"
                 },
 
                 options: {
                     type: "uia.chartjs.options.BaseOption",
                     multiple: true,
                     singularName: "options",
-                    aggregation: "options",
                     bindable: "bindable"
                 },
 
@@ -76,7 +74,6 @@ sap.ui.define([
                     type: "uia.chartjs.plugins.Plugin",
                     multiple: true,
                     singularName: "plugins",
-                    aggregation: "plugins",
                     bindable: "bindable"
                 }
             },
@@ -245,6 +242,13 @@ sap.ui.define([
                     plugins.push(chartjsImpl);
                 }
             });
+
+            var oDatasets = [];
+            var items = this.getAggregation("datasets") || [];
+            items.forEach(function(item) {
+                oDatasets.push(item.toDataset());
+            });
+            this.__datasets = oDatasets;
 
             this.__ctx = document.getElementById(this.getId()).getContext("2d");
             this.__chart = new Chart(this.__ctx, {
