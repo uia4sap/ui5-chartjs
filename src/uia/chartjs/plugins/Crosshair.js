@@ -8,6 +8,9 @@ sap.ui.define([
 ) {
     "use strict";
 
+    /**
+     * Crosshair plugin OpenUI5 wrapper
+     */
     var Crosshair = Plugin.extend("uia.chartjs.plugins.Crosshair", {
 
         metadata: {

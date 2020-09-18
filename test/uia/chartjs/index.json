@@ -16,9 +16,14 @@
 				"description": "Samples of the BarChart",
 				"samples": [
 					{
+						"id": "SimpleBarChart",
+						"name": "The simplest",
+						"description": "the simplest bar chart"
+					},
+					{
 						"id": "ScoreBarChart1",
 						"name": "Score Report #1",
-						"description": "simple barchart"
+						"description": "score using bar chart"
 					},
 					{
 						"id": "ScoreBarChart2",
@@ -28,7 +33,7 @@
 					{
 						"id": "ScoreBarChart3",
 						"name": "Score Report #3",
-						"description": "using databinding."
+						"description": "using data binding."
 					}
 				]
 			},
@@ -39,9 +44,50 @@
 				"description": "Samples of the LineChart",
 				"samples": [
 					{
+						"id": "SimpleLineChart",
+						"name": "The simplest",
+						"description": "the simplest line chart"
+					},
+					{
 						"id": "AQILineChart",
-						"name": "Air Quality Index",
-						"description": "simple linechart"
+						"name": "AQI chart #1",
+						"description": "AQI using line chart"
+					}
+				]
+			},
+			"Tooltip": {
+				"id": "Tooltip",
+				"name": "Tooltip",
+				"type": "control",
+				"description": "Samples of custom tooltip",
+				"samples": [
+					{
+						"id": "Tooltip1",
+						"name": "Custom",
+						"description": "tooltip call custom function"
+					},
+					{
+						"id": "Tooltip2",
+						"name": "Callbacks",
+						"description": "tooltip with callback"
+					}
+				]
+			},
+			"Plugins": {
+				"id": "Plugins",
+				"name": "Plugins",
+				"type": "control",
+				"description": "Samples of plugins",
+				"samples": [
+					{
+						"id": "PluginSpecLine",
+						"name": "Spec Lines",
+						"description": "draw spec lines"
+					},
+					{
+						"id": "PluginCrosshair",
+						"name": "Crosshair",
+						"description": "draw crosshair"
 					}
 				]
 			}

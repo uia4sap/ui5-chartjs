@@ -15,7 +15,7 @@
 
 	<script id="sap-ui-bootstrap"
 		src="resources/sap-ui-core.js"
-		data-sap-ui-libs="uia.chartjs"
+		data-sap-ui-libs="sap.m,uia.chartjs"
 		data-sap-ui-theme="sap_belize">
 	</script>
 
@@ -29,15 +29,29 @@
 					{
 						label: "Male",
 						y: "score",
-						scores: [81, 76, 83, 85, 90],
-						color: "rgba(255,128,0,0.3"
+						scores: [ {
+							"x:": "Chinese",
+							"y": 81,
+							"pass": "y"
+						 },{
+							"x:": "Math",
+							"y": 67,
+							"pass": "n"
+						 },{
+							"x:": "English",
+							"y": 89,
+							"pass": "y"
+						 },{
+							"x:": "Science",
+							"y": 78,
+							"pass": "y"
+						 },{
+							"x:": "Society",
+							"y": 70,
+							"pass": "y"
+						 }],
+						color: "rgba(255,0,0,0.3"
 					},
-					{
-						label: "Female",
-						y: "score",
-						scores: [85, 73, 86, 81, 92],
-						color: "rgba(0,0,255,0.3"
-					}
 				]
 			});
 			sap.ui.getCore().setModel(oModel);
@@ -61,15 +75,21 @@
 				}
 			});
 
+			var oTooltip = new uia.chartjs.options.Tooltips();
+			oTooltip.attachLabel(function(oEvent) {
+				var chart = oEvent.getParameters("chart");
+			});
+			oBarChart.addAggregation("options", oTooltip);
+
 			// options.scales
-			var oAxis = new uia.chartjs.axes.LinearAxis({
+			var oGradeAxis = new uia.chartjs.axes.LinearAxis({
 				axisID: "score",
 				position: "left",
 				title: "Score",
 				suggestedMax: 100.0,
 				suggestedMin: 60.0
 			});
-			oBarChart.addAggregation("scales", oAxis);
+			oBarChart.addAggregation("scales", oGradeAxis);
 
 			oBarChart.placeAt("content");
 		});

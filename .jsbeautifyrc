@@ -17,7 +17,7 @@
     "max_preserve_newlines": 10,
     "preserve_newlines": true,
     "space_after_anon_function": false,
-    "space_before_conditional": false,
+    "space_before_conditional": true,
     "space_in_paren": false,
     "wrap_attributes": "auto",
     "wrap_attributes_indent_size": 4,

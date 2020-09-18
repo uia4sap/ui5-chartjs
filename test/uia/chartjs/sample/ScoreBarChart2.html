@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Testpage - BarChart mix Line</title>
+	<title>Test Page - BarChart mix Line</title>
 	<base href="../../../../">
 	<!--[if lte IE 9]><script>
 	(function() {
@@ -15,7 +15,7 @@
 
 	<script id="sap-ui-bootstrap"
 		src="resources/sap-ui-core.js"
-		data-sap-ui-libs="uia.chartjs"
+		data-sap-ui-libs="sap.m,uia.chartjs"
 		data-sap-ui-theme="sap_belize">
 	</script>
 
@@ -23,18 +23,24 @@
 		sap.ui.getCore().attachInit(function () {
 			// chart
 			var oBarChart = new uia.chartjs.BarChart({
-				labels: [ "Chinese", "Math", "English", "Science", "Society"]
+				labels: [ "Chinese", "Math", "English", "Science", "Society"],
+				pointClick: function(oEvent) {
+					var points = oEvent.getParameter("points");
+					sap.m.MessageToast.show(
+						"points count:" + points.length, 
+						{ at: "center center" });
+				}
 			});
 
 			// options.scales
-			var oScoreAxis = new uia.chartjs.axes.LinearAxis({
+			var oAxis = new uia.chartjs.axes.LinearAxis({
 				axisID: "score",
 				position: "left",
 				title: "Score",
 				suggestedMax: 100.0,
 				suggestedMin: 60.0
 			});
-			oBarChart.addAggregation("scales", oScoreAxis);
+			oBarChart.addAggregation("scales", oAxis);
 
 			// data 1
 			var data1 = new uia.chartjs.data.Bar({
@@ -56,7 +62,7 @@
 			});
 			oBarChart.addDataset(data2);
 
-			// data 3
+			// data 3: average line
 			var data3 = new uia.chartjs.data.Line({
 				label: "Average",
 				data:  [81.5, 74.5, 85.5, 84, 90.5],

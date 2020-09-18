@@ -14,13 +14,13 @@ sap.ui.define([
 
             properties: {
 
-                backgroundColor: { type: "string", group: "data", defaultValue: "rgba(0,0,0,0.1)" },
+                backgroundColor: { type: "any", group: "data", defaultValue: "rgba(0,0,0,0.1)" },
 
-                borderColor: { type: "string", group: "data", defaultValue: undefined },
+                borderColor: { type: "any", group: "data", defaultValue: undefined },
 
-                borderSkip: { type: "string", group: "data", defaultValue: "bottom" },
+                borderSkip: { type: "any", group: "data", defaultValue: "bottom" },
                 
-                borderWidth: { type: "int", group: "data", defaultValue: 1 },
+                borderWidth: { type: "any", group: "data", defaultValue: 1 },
 
                 hoverBackgroundColor: { type: "string", group: "data", defaultValue: "rgba(0,0,255,0.1)" },
 

@@ -1,10 +1,14 @@
 sap.ui.define([
     "./BaseChart",
     "./axes/CartesianAxis",
+    "./axes/CategoryAxis",
+    "./axes/LinearAxis",
     "./library"
 ], function(
     BaseChart,
     CartesianAxis,
+    CategoryAxis,
+    LinearAxis,
     library
 ) {
     "use strict";
@@ -47,11 +51,11 @@ sap.ui.define([
                 yAxes: []
             }
 
-            var scales = this.getAggregation("scales");
-            if(scales) {
-                scales.forEach(s => {
+            var scales = this.getAggregation("scales") || [];
+            if (scales) {
+                scales.forEach(function(s) {
                     var option = s.toScale();
-                    if(option.position == "left" || option.position == "right") {
+                    if (option.position == "left" || option.position == "right") {
                         result.yAxes.push(option);
                     } else {
                         result.xAxes.push(option);
@@ -59,11 +63,19 @@ sap.ui.define([
                 });
             }
 
-            if(result.xAxes.length == 0) {
-                result.xAxes.push({});
+            if (result.xAxes.length == 0) {
+                if (this.getChartType() === ChartType.Line) {
+                    result.xAxes.push(new LinearAxis({
+                        axisID: "x"
+                    }).toScale());
+                } else {
+                    result.xAxes.push({});
+                }
             }
-            if(result.yAxes.length == 0) {
-                result.yAxes.push({});
+            if (result.yAxes.length == 0) {
+                result.yAxes.push(new LinearAxis({
+                    axisID: "y"
+                }).toScale());
             }
 
             return result;

@@ -16,7 +16,7 @@ sap.ui.define([
      * Adds control specific class
      *
      * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
-     * @param {sap.ui.core.Control} oControl an object representation of the control that should be rendered
+     * @param {sap.ui.core.Control} oChart an object representation of the control that should be rendered
      */
     LineChartRenderer.addOuterClasses = function(oRm, oChart) {
         oRm.addClass("opeui5-line-chartjs");

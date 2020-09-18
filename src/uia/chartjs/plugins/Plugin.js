@@ -26,11 +26,11 @@ sap.ui.define([
             Element.apply(this, arguments);
         },
 
-        /**
-         * @abstract
-         * 
-         */
         getName: function() {
+            return undefined;
+        },
+
+        implement: function() {
             return undefined;
         },
 
@@ -38,8 +38,8 @@ sap.ui.define([
             var attrs = this.getAggregation("attrs");
 
             var optionsPlugin = {};
-            if(attrs) {
-                attrs.forEach(a => {
+            if (attrs) {
+                attrs.forEach(function(a) {
                     optionsPlugin[a.getKey()] = a.getValue();
                 });
             }

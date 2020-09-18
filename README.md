@@ -1,7 +1,7 @@
 Chart.js for OpenUI 5
 ===
 ## Description
-The goal of this poject is to create a UI5 library based on [Chart.js](https://www.chartjs.org/), which has the same model as Chart.js.
+The goal of this project is to create a UI5 library based on [Chart.js](https://www.chartjs.org/), which has the same model as Chart.js.
 
 The main reasons to make the model as same as Chart.js are:
 
@@ -17,16 +17,20 @@ The resources of Chart.js
 * [Popular Extensions](https://www.chartjs.org/docs/2.7.2/notes/extensions.html)
 
 
-## How to Use
-### Build
+## How to Build
 1. __npm install__
 
 2. __npm start__ - demo the samples.
 
 3. __npm run build__ - build and output to `dist` folder.
 
-### Integrated in the Poject
-1. __index.html__ - add the libray.
+
+## How to Use
+
+1. Copy library to the a folder, for example: {WORK_DIR}/js/uia-chartjs.
+
+2. setup __index.html__ where the library is.
+   
     ```html
     <script
       data-sap-ui-resourceroots='{
@@ -36,212 +40,69 @@ The resources of Chart.js
     </script>
     ```
 
-2. __view.xml__ - use the chart control.
+3. add a line chart.
     ```xml
     <mvc:View
-        controllerName="your.ControllerName"
-        xmlns:mvc="sap.ui.core.mvc"
-        xmlns:chartjs="uia.chartjs"
-        xmlns:data="uia.chartjs.data">
-      ...
-      <chartjs:LineChart
-          datasets="{/result}">
-        <data:Line
-            label="{name}"
-            data="{points}" />
-      </chartjs:LineChart>
-      ...
-    </mvc:View>
+            controllerName="your.controller.Name"
+            xmlns:m="sap.m"
+            xmlns:mvc="sap.ui.core.mvc"
+            xmlns:l="sap.ui.layout"
+            xmlns:chartjs="uia.chartjs"
+            xmlns:data="uia.chartjs.data">
+        <m:Page showHeader="false">
+            <chartjs:LineChart datasets="{/result}">
+                <data:Line
+                        label="{name}"
+                        data="{points}"
+                        borderColor="{color}" />
+            </chartjs:LineChart>
+        </m:Page>
+    </mvc:View>   
     ```
 
-## Main Design Concept
-The core model of Chart.js is
-```js
-{
-  type: "bar",    // bar, line ...
-  data: {
-    labels: [],
-    datasets: [],
-  },
-  options: {
-    animation: {},
-    layout: {},
-    legend: {},
-    plugins: {},
-    title: {},
-    tooltips: {},
-    scales: []
-  },
-  plugins: []
-}
-```
-1. The `type` of attribute maps to `uia.chartjs` namespace.
+4. prepare datasets to display.
+    ```json
+    var result = [
+      {
+        "name": "name1",
+        "points": [
+          { x: 1, y: 10.3 },
+          { x: 2, y: 10.9 },
+          { x: 3, y: 11.1 },
+          { x: 4, y: 10.7 }],
+        "color": "rgba(255, 255, 0, 0.6)"
+      },
+      {
+        "name": "name2",
+        "points": [
+          { x: 1, y: 32.9 },
+          { x: 2, y: 31.1 },
+          { x: 3, y: 30.8 },
+          { x: 4, y: 31.4 }],
+        "color": "rgba(255, 0, 255, 0.6)"
+      }
+    ]
+    ```
 
-    * __line__ - uia.chartjs.LineChart
-    * __bar__ - uia.chartjs.BarChart
+More detail, please reference [Step by Step](SBS.md).
 
+## Develop
 
-2. The values of `data.datasets` are objects of dataset which maps to `uia.chartjs.data` namespace.
-
-    * __line__ - uia.chartjs.data.Line
-    * __bar__ - uia.chartjs.data.Bar
+Reference [Design](DESIGN.md) document.
 
 
-3. The `options` of attribute maps to `uia.chartjs.options` namespace.
-
-    * animation - TBD
-    * __layout__ - uia.chartjs.options.Layout
-    * __legend__ - uia.chartjs.options.Legend
-    * __plugins__ - _uia.chartjs.plugins.*_
-    * __title__ - uia.chartjs.options.Title
-    * __tooltips__ - uia.chartjs.options.Tooltips
-    * __scales__ - _uia.chartjs.axes.*_
-
-
-4. The values of `options.scales` are objects of axis which map to `uia.chartjs.axes` namespace.
-
-    * __Category__ - uia.chartjs.axes.CategoryAxis
-    * __Linear__ - uia.chartjs.axes.LinearAxis
-    * Logarithmic - TBD
-    * __Time__ - uia.chartjs.axes.TimeAxis
-
-
-5. The values of `options.plugins` are configurtion of plugins which map to `uia.chartjs.plugins` namespace.
-
-    * __Crosshair__ - [chartjs-plugin-crosshair](https://www.npmjs.com/package/chartjs-plugin-crosshair) UI5 version
-
-Based on the concept above, the class diagram is
-
-![AQI](images/UML.png)
-
-### data.datasets
-All datasets have following common attributes:
-
-* label
-* data
-* xAxisID
-* yAxisID
-
-#### Bar
-The implementation is `uia.chartjs.data.Bar`
-
-#### Line
-The implementation is `uia.chartjs.data.Line`
-
-### options
-#### options.layout
-The implementation is `uia.chartjs.options.Layout`
-
-* paddingLeft
-* paddingRight
-* paddingTop
-* paddingBottom
-
-#### options.legend
-The implementation is `uia.chartjs.options.Legend`.
-
-* display
-* position
-* fullWidth
-* align
-* reserve
-* right2Left
-
-#### options.title
-The implementation is `uia.chartjs.options.Title`.
-
-* display
-* position
-* fontSize
-* fontFamily
-* fontColor
-* fontStyle
-* padding
-* lineHeight
-* text
-
-#### options.Tooltips
-The implementation is `uia.chartjs.options.Tooltips`.
-
-### options.scales
-There are 4 types of axis implementation for `options.scales`. All axes have following common attributes:
-
-* axisID
-* display
-* position
-* offset
-* weight
-* title
-* titleDisplay
-* titleLineHeight
-* titleFontColor
-* titleFontFamily
-* titleFontStyle
-
-#### CategoryAxis
-The implementation is `uia.chartjs.axes.CategoryAxis`.
-
-* max
-* min
-
-#### LinearAxis
-The implementation is `uia.chartjs.axes.LinearAxis`.
-
-* beginAtZero
-* maxTicksLimit
-* precision
-* stepSize
-* max
-* min
-* suggestedMax
-* suggestedMin
-
-#### Logarithmic
-TBD
-
-#### TimeAxis
-The implementation is `uia.chartjs.axes.TimeAxis`.
-
-* displayFormat
-* isoWeekday
-* parser
-* round
-* tooltipFormat
-* unit
-* minUnit
-
-### options.plugins
-
-#### Crosshair
-The plugin wraps the [chartjs-plugin-crosshair](https://www.npmjs.com/package/chartjs-plugin-crosshair).
-
-Known issue:
-1. The x-axis must be __LinearAxis__ or  __TimeAxis__, or the chart will throw the exception.
-
-XML sample:
-```xml
-<plugins:Corsshair>
-  <plugins:PluginAttr key="sync" value="true" />
-</plugins:Corsshair>
-```
-
-
-## Samples
+## Some Samples
 ### BarChart
-![AQI](images/ScoreReport.png)
+![SCORE](images/ScoreReport.png)
 
 ``` xml
 <chartjs:BarChart
       datasets="{/testResults}">
   <data:Bar
-      lebel="{label}"
+      label="{label}"
       yAxisID="score"
       data="{scores}"
       backgroundColor="{color}" />
-  <chartjs:options>
-    <options:Title text="Test Results" />
-    <options:Legend display="true" />
-  </chartjs:options>
   <chartjs:scales>
     <axes:LinearAxis
         axisID="score"

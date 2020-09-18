@@ -52,6 +52,8 @@ sap.ui.define([
 			"uia.chartjs.plugins.Plugin",
 			"uia.chartjs.plugins.PluginAttr",
 			"uia.chartjs.plugins.Crosshair",
+			"uia.chartjs.plugins.specline.SpecLine",
+			"uia.chartjs.plugins.specline.SpecInfo",
 		],
 		noLibraryCSS: false,
 		version: "${version}"

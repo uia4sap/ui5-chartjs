@@ -165,18 +165,13 @@ sap.ui.define([
             };
 
             var gridLines = this.getAggregation("gridLines");
-            if(gridLines) {
+            if (gridLines) {
                 result["gridLines"] = gridLines.toOption();
             }
 
             return this.applyScaleEx(result);
         },
         
-        /**
-         * @abstract
-         * 
-         * @param {*} oAxis 
-         */
         applyScaleEx: function(oAxis) {
             return oAxis;
         },

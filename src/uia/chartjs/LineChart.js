@@ -90,7 +90,7 @@ sap.ui.define([
         },
 
         applyOptionsEx: function(oOptions) {
-            if(this.getStacked()) {
+            if (this.getStacked()) {
                 oOptions.scales.yAxes[0]["stacked"] = true;
             }
 

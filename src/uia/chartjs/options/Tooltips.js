@@ -6,8 +6,9 @@ sap.ui.define([
     BaseOption
 ) {
     "use strict";
-
+        
     var Tooltips = BaseOption.extend("uia.chartjs.options.Tooltips", {
+
         metadata: {
 
             library: "uia.chartjs.options",
@@ -15,6 +16,8 @@ sap.ui.define([
             properties: {
 
                 enabled: { type: "boolean", group: "tooltips", defaultValue: true },
+
+                custom: { type: "function", group: "tooltips" },
 
                 mode: { type: "string", group: "tooltips", defaultValue: "nearest" },
 
@@ -83,17 +86,119 @@ sap.ui.define([
                 borderWidth: { type: "boolean", group: "tooltips", defaultValue: 0 },
 
                 right2Left: { type: "boolean", group: "tooltips", defaultValue: false }
-
             },
+
+            events: {
+
+                beforeTitle: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                title: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                afterTitle: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                beforeBody: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                beforeLabel: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                label: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                labelColor: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                labelTextColor: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                afterLabel: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                afterBody: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                beforeFooter: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                footer: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                },
+                afterFooter: {
+                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
+                }
+            }
         },
 
         getName: function() {
             return "tooltips";
         },
 
+        _callbackFire: function(fire, tooltipItem, data) {
+            fire({ 
+                "tooltipItem": tooltipItem,
+                "chart": data 
+            });
+        },
+
+        _callbackDispatch: function(fireF) {
+            var _fireF = fireF.bind(this);
+            return function(tooltipItem, data) {
+                _fireF({
+                    "tooltipItem": tooltipItem,
+                    "chart": data 
+                });
+            }
+        },
+
         toOption: function() {
+            var _callback = {};
+            if (this.hasListeners("beforeTitle")) {
+                _callback["beforeTitle"] = this._callbackDispatch(this.fireBeforeTitle);
+            }
+            if (this.hasListeners("title")) {
+                _callback["title"] = this._callbackDispatch(this.fireTitle);
+            }
+            if (this.hasListeners("afterTitle")) {
+                _callback["afterTitle"] = this._callbackDispatch(this.fireAfterTitle);
+            }
+            if (this.hasListeners("beforeBody")) {
+                _callback["beforeBody"] = this._callbackDispatch(this.fireBeforeBody);
+            }
+            if (this.hasListeners("beforeLabel")) {
+                _callback["beforeLabel"] = this._callbackDispatch(this.fireBeforeLabel);
+            }
+            if (this.hasListeners("label")) {
+                _callback["label"] = this._callbackDispatch(this.fireLabel);
+            }
+            if (this.hasListeners("labelColor")) {
+                _callback["labelColor"] = this._callbackDispatch(this.fireLabelColor);
+            }
+            if (this.hasListeners("labelTextColor")) {
+                _callback["labelTextColor"] = this._callbackDispatch(this.fireLabelTextColor);
+            }
+            if (this.hasListeners("afterLabel")) {
+                _callback["afterLabel"] = this._callbackDispatch(this.fireAfterLabel);
+            }
+            if (this.hasListeners("afterBody")) {
+                _callback["afterBody"] = this._callbackDispatch(this.fireAfterBody);
+            }
+            if (this.hasListeners("beforeFooter")) {
+                _callback["beforeFooter"] = this._callbackDispatch(this.fireBeforeFooter);
+            }
+            if (this.hasListeners("footer")) {
+                _callback["footer"] = this._callbackDispatch(this.fireFooter);
+            }
+            if (this.hasListeners("afterFooter")) {
+                _callback["afterFooter"] = this._callbackDispatch(this.fireAfterFooter);
+            }
+
+            var customFunc = this.getCustom() ? this.getCustom().bind(this) : undefined;
             return {
-                enabled: this.getEnabled(),
+                enabled: customFunc ? false : this.getEnabled(),
+                custom: customFunc,
                 mode: this.getMode(),
                 intersect: this.getIntersect(),
                 position: this.getPosition(),
@@ -127,7 +232,8 @@ sap.ui.define([
                 displayColors: this.getDisplayColors(),
                 borderColor: this.getBorderColor(),
                 borderWidth: this.getBorderWidth(),
-                rtl: this.getRight2Left()
+                rtl: this.getRight2Left(),
+                callbacks: _callback
             }
         }
     });

@@ -17,7 +17,7 @@ sap.ui.define([
      * Renders the HTML for the given control, using the provided {@link sap.ui.core.RenderManager}.
      *
      * @param {sap.ui.core.RenderManager} oRm The RenderManager that can be used for writing to the render output buffer.
-     * @param {sap.ui.core.Control} oControl An object representation of the control that should be rendered.
+     * @param {sap.ui.core.Control} oChart An object representation of the control that should be rendered.
      */
     BaseChartRenderer.render = function(oRm, oChart) {
         oRm.write("<canvas");
@@ -27,10 +27,10 @@ sap.ui.define([
         oRm.writeClasses();
         oRm.write(">");
 
-        if(oChart.getHeight() !== undefined && oChart.getHeight() !== null) {
+        if (oChart.getHeight() !== undefined && oChart.getHeight() !== null) {
             oRm.addStyle("height", oChart.getHeight());
         }
-        if(oChart.getWidth() !== undefined && oChart.getWidth() !== null) {
+        if (oChart.getWidth() !== undefined && oChart.getWidth() !== null) {
             oRm.addStyle("width", oChart.getWidth());
         }
         oRm.writeStyles();

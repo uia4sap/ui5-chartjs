@@ -16,12 +16,12 @@ sap.ui.define([
      * Adds control specific class
      *
      * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
-     * @param {sap.ui.core.Control} oControl an object representation of the control that should be rendered
+     * @param {sap.ui.core.Control} oChart an object representation of the control that should be rendered
      */
     BarChartRenderer.addOuterClasses = function(oRm, oChart) {
-        oRm.addClass("opeui5-bar-chartjs");
-        if(oChart.getHorizontal()) {
-            oRm.addClass("opeui5-bar-horizontal-chartjs");
+        oRm.addClass("openui5-bar-chartjs");
+        if (oChart.getHorizontal()) {
+            oRm.addClass("openui5-bar-horizontal-chartjs");
         }
     };
 
