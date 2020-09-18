@@ -7,27 +7,27 @@ The XML structure will likes
 
 ```xml
 <chartjs:LineChart />
-    <chartjs:dataset>
+    <chartjs:datasets>
         <data:Line />
         <data:Bar />
-    </chartjs:dataset>
-    <charts:options>
+    </chartjs:datasets>
+    <chartjs:options>
         <opts:Animation />
         <opts:Layout />
         <opts:Legend />
         <opts:Title />
         <opts:Tooltips />
-    </charts:options>
+    </chartjs:options>
     <chartjs:scales>
         <axes:CategoryAxis />
         <axes:LinearAxis />
         <axes:TimeAxis />
     </chartjs:scales>
     <chartjs:plugins>
-        <plugin:StepLine />
-        <plugin:Crosshair />
+        <plugins:Crosshair />
+        <stepline:StepLine />
     </chartjs:plugins>
-<chartjs:BarChart />
+</chartjs:LineChart />
 ```
 
 
