@@ -166,10 +166,7 @@ sap.ui.define([
         },
 
         getScalesOption: function() {
-            return {
-                xAxes: [{}],
-                yAxes: [{}]
-            };
+            return undefined;
         },
 
         applyOptionsEx: function(oOptions) {
@@ -197,28 +194,14 @@ sap.ui.define([
          */
         addDataset: function(oDataset) {
             this.addAggregation("datasets", oDataset);
-
-            var oDatasets = [];
-            var items = this.getAggregation("datasets");
-            items.forEach(function(item) {
-                oDatasets.push(item.toDataset())
-            });
-            this.__datasets = oDatasets;
-
+            this.__datasets = this.__prepareDatasets();
             this.updateChart();
         },
 
         updateDatasets: function(sReason) {
             this.destroyDatasets();
             this.updateAggregation("datasets");
-
-            var oDatasets = [];
-            var items = this.getAggregation("datasets") || [];
-            items.forEach(function(item) {
-                oDatasets.push(item.toDataset());
-            });
-            this.__datasets = oDatasets;
-
+            this.__datasets = this.__prepareDatasets();
             this.updateChart();
         },
 
@@ -235,6 +218,9 @@ sap.ui.define([
         },
 
         onAfterRendering: function() {
+            //
+            this.__datasets = this.__prepareDatasets();
+            //
             var plugins = [];
             (this.getAggregation("plugins") || []).forEach(function(p) {
                 var chartjsImpl = p.implement();
@@ -242,14 +228,9 @@ sap.ui.define([
                     plugins.push(chartjsImpl);
                 }
             });
-
-            var oDatasets = [];
-            var items = this.getAggregation("datasets") || [];
-            items.forEach(function(item) {
-                oDatasets.push(item.toDataset());
-            });
-            this.__datasets = oDatasets;
-
+            //
+            var options = this.getOptions();
+            //
             this.__ctx = document.getElementById(this.getId()).getContext("2d");
             this.__chart = new Chart(this.__ctx, {
                 type: this.getChartType(),
@@ -258,7 +239,7 @@ sap.ui.define([
                     datasets: this.__datasets
                 },
                 plugins: plugins,
-                options: this.getOptions()
+                options: options
             });
         },
 
@@ -395,19 +376,28 @@ sap.ui.define([
             var points = [];
             if (this.__chart) {
                 var elements = this.__chart.getElementsAtEvent(oEvent) || [];
-                for (var i = 0; i<elements.length; i++) {
+                for (var i = 0; i < elements.length; i++) {
                     var e = elements[i];
                     var point = {
-                        datasetIndex:e._datasetIndex,
+                        datasetIndex: e._datasetIndex,
                         datasetLabel: this.__chart.data.datasets[e._datasetIndex].label,
-                        index:e._index,
+                        index: e._index,
                         value: this.__chart.data.datasets[e._datasetIndex].data[e._index]
-                        };
+                    };
                     points.push(point);
                 }
             }
             return points;
         },
+
+        __prepareDatasets: function() {
+            var result = [];
+            var datasets = this.getAggregation("datasets");
+            for (var i = 0; i < datasets.length; i++) {
+                result.push(datasets[i].toDataset(this));
+            }
+            return result;
+        }
     });
 
     return BaseChart;

@@ -24,13 +24,40 @@
 			// chart
 			var oBarChart = new uia.chartjs.BarChart({
 				labels: [ "Chinese", "Math", "English", "Science", "Society"],
+				pointClick: function(oEvent) {
+					var points = oEvent.getParameter("points");
+					sap.m.MessageToast.show(
+						"points count:" + points.length, 
+						{ at: "center center" });
+				}
 			});
+
+			// x & y all need to be configured
+			// options.scales: x
+			var xAxis = new uia.chartjs.axes.CategoryAxis({
+				axisID: "subject",
+				position: "bottom",
+				title: "Subject",
+				stacked: true		// stacked
+			});
+			oBarChart.addAggregation("scales", xAxis);
+
+			// options.scales: y
+			var yAxis = new uia.chartjs.axes.LinearAxis({
+				axisID: "score",
+				position: "left",
+				title: "Level A",
+				suggestedMax: 100.0,
+				suggestedMin: 60.0,
+				stacked: true		// stacked
+			});
+			oBarChart.addAggregation("scales", yAxis);
 
 			// data 1
 			var data1 = new uia.chartjs.data.Bar({
 				label: "Male",
 				data: [81, 76, 83, 85, 90],
-				backgroundColor:  uia.chartjs.Palette.pick(0, 192)
+				backgroundColor:  "rgba(255, 0, 0, 0.3)"
 			});
 			oBarChart.addDataset(data1);
 
@@ -38,7 +65,7 @@
 			var data2 = new uia.chartjs.data.Bar({
 				label: "Female",
 				data: [82, 73, 88, 83, 91],
-				backgroundColor:  uia.chartjs.Palette.pick(2, 192)
+				backgroundColor: "rgba(0, 255, 0, 0.3)"
 			});
 			oBarChart.addDataset(data2);
 

@@ -22,27 +22,26 @@
 	<script>
 		sap.ui.getCore().attachInit(function () {
 			// chart
-			var oBarChart = new uia.chartjs.BarChart({
-				labels: [ "Chinese", "Math", "English", "Science", "Society"],
+			var oPolarAreaChart = new uia.chartjs.PolarAreaChart({
+				labels: [ "A", "B", "C", "D", "E", "F", "G"]
 			});
 
 			// data 1
-			var data1 = new uia.chartjs.data.Bar({
-				label: "Male",
-				data: [81, 76, 83, 85, 90],
-				backgroundColor:  uia.chartjs.Palette.pick(0, 192)
+			var data1 = new uia.chartjs.data.PolarArea({
+				label: "C201",
+				data: [20, 3, 20, 10, 34, 5, 12],
+				backgroundColor:  [
+					uia.chartjs.Palette.pick(0),
+					uia.chartjs.Palette.pick(1),
+					uia.chartjs.Palette.pick(2),
+					uia.chartjs.Palette.pick(3),
+					uia.chartjs.Palette.pick(4),
+					uia.chartjs.Palette.pick(5),
+					uia.chartjs.Palette.pick(6)]
 			});
-			oBarChart.addDataset(data1);
+			oPolarAreaChart.addDataset(data1);
 
-			// data 2
-			var data2 = new uia.chartjs.data.Bar({
-				label: "Female",
-				data: [82, 73, 88, 83, 91],
-				backgroundColor:  uia.chartjs.Palette.pick(2, 192)
-			});
-			oBarChart.addDataset(data2);
-
-			oBarChart.placeAt("content");
+			oPolarAreaChart.placeAt("content");
 		});
 	</script>
 </head>

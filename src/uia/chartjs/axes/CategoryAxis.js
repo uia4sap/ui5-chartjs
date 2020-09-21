@@ -8,15 +8,25 @@ sap.ui.define([
     "use strict";
 
     var CategoryAxis = CartesianAxis.extend("uia.chartjs.axes.CategoryAxis", {
+        
         metadata: {
 
             library: "uia.chartjs.axes",
 
             properties: {
 
+                stacked: { type: "boolean", group: "Appearance", defaultValue: false },
+
                 min: { type: "string", group: "scale", defaultValue: undefined },
 
                 max: { type: "string", group: "scale", defaultValue: undefined }
+            }
+        },
+
+        constructor: function(mSettings) {
+            Element.apply(this, arguments);
+            if (mSettings.offset == undefined) {
+                this.setOffset(true);
             }
         },
 
@@ -25,6 +35,7 @@ sap.ui.define([
         },
 
         applyScaleEx: function(oAxis) {
+            oAxis["stacked"] = this.getStacked();
             oAxis["ticks"] = {
                 min: this.getMin(),
                 max: this.getMax()

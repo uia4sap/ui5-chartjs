@@ -8,11 +8,14 @@ sap.ui.define([
     "use strict";
 
     var LinearAxis = CartesianAxis.extend("uia.chartjs.axes.LinearAxis", {
+        
         metadata: {
 
             library: "uia.chartjs.axes",
 
             properties: {
+
+                stacked: { type: "boolean", group: "Appearance", defaultValue: false },
 
                 beginAtZero: { type: "boolean", group: "scale", defaultValue: false },
 
@@ -37,6 +40,7 @@ sap.ui.define([
         },
 
         applyScaleEx: function(oAxis) {
+            oAxis["stacked"] = this.getStacked();
             oAxis["ticks"] = {
                 beginAtZero: this.getBeginAtZero(),
                 maxTicksLimit: this.getMaxTicksLimit(),

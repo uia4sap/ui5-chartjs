@@ -24,6 +24,7 @@
 			// chart
 			var oBarChart = new uia.chartjs.BarChart({
 				labels: [ "Chinese", "Math", "English", "Science", "Society"],
+				horizontal: true
 			});
 
 			// data 1
@@ -41,6 +42,10 @@
 				backgroundColor:  uia.chartjs.Palette.pick(2, 192)
 			});
 			oBarChart.addDataset(data2);
+
+			// plugin: data label
+			var oDataLabel = new uia.chartjs.plugins.DataLabel();
+			oBarChart.addAggregation("plugins", oDataLabel);
 
 			oBarChart.placeAt("content");
 		});

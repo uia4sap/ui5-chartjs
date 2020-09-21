@@ -8,6 +8,7 @@ sap.ui.define([
     "use strict";
 
     var TimeAxis = CartesianAxis.extend("uia.chartjs.axes.TimeAxis", {
+        
         metadata: {
 
             library: "uia.chartjs.axes",

@@ -26,6 +26,7 @@
 
 			// chart
 			var oLineChart = new uia.chartjs.LineChart({
+
 				pointClick: function(oEvent) {
 					var points = oEvent.getParameter("points");
 					sap.m.MessageToast.show(
@@ -44,7 +45,7 @@
 			// options.tooltips
 			var oTooltips = new uia.chartjs.options.Tooltips({
 				"intersect": false,
-				"backgroundColor": "rgba(128,128,255,0.8)"
+				"backgroundColor": uia.chartjs.Palette.pick(0)
 			});
 			oLineChart.addAggregation("options", oTooltips);
 
@@ -69,59 +70,124 @@
 			oLineChart.addAggregation("scales", oPctAxis);
 
 			// data 1
-			var toColor = function() {
-				return "rgba(0,0,255,1)";
-			}
-			var co2 = new uia.chartjs.data.Line({
-				label: "CO2",
-				data: [
-					{ x: 0, y: 96, key: 10},
-					{ x: 1, y: 87, key: 10},
-					{ x: 2, y: 70, key: 4},
-					{ x: 3, y: 71, key: 10},
-					{ x: 4, y: 65, key: 10},
-					{ x: 5, y: 72, key: 10},
-					{ x: 6, y: 80, key: 10},
-					{ x: 7, y: 99, key: 10},
-					{ x: 8, y: 101, key: 10},
-					{ x: 9, y: 146, key: 10},
-					{ x: 10, y: 185, key: 10},
-					{ x: 11, y: 183, key: 4},
-					{ x: 12, y: 195, key: 10}], 
-				yAxisID: "ppm",
-				borderColor: "rgba(255, 0, 0, 0.6)",
-				pointBackgroundColor: function(oChart) {
-					var point = oChart.dataset.data[oChart.dataIndex];
-	                return point.key == 4 ? "rgba(0,0,255,1)" : "rgba(0,255,0,1)";
-				}
-			});
-			oLineChart.addDataset(co2);
-
-			// data 2
 			var humidity = new uia.chartjs.data.Line({
 				label: "Humidity",
 				data: [
 				{ x: 0, y: 30},
-					{ x: 1, y: 31, key: 4},
-					{ x: 2, y: 40, key: 10},
-					{ x: 3, y: 42, key: 10},
-					{ x: 4, y: 37, key: 10},
-					{ x: 5, y: 50, key: 10},
-					{ x: 6, y: 67, key: 10},
-					{ x: 7, y: 68, key: 10},
-					{ x: 8, y: 64, key: 10},
-					{ x: 9, y: 51, key: 4},
-					{ x: 10, y: 49, key: 10},
-					{ x: 11, y: 54, key: 10},
-					{ x: 12, y: 53, key: 10}],
+					{ x: 1, y: 31, key: 'NG'},
+					{ x: 2, y: 40, key: 'OK'},
+					{ x: 3, y: 42, key: 'OK'},
+					{ x: 4, y: 37, key: 'OK'},
+					{ x: 5, y: 50, key: 'OK'},
+					{ x: 6, y: 67, key: 'OK'},
+					{ x: 7, y: 68, key: 'OK'},
+					{ x: 8, y: 64, key: 'OK'},
+					{ x: 9, y: 51, key: 'NG'},
+					{ x: 10, y: 49, key: 'OK'},
+					{ x: 11, y: 54, key: 'OK'},
+					{ x: 12, y: 53, key: 'OK'}],
 				yAxisID: "percent",
-				borderColor: "rgba(255, 255, 0, 0.6)",
-				pointBorderColor: "rgba(0,0,0,1)",
-				pointBorderWidth: function(oChart) {
-					return 2;
-				},
+				borderColor: uia.chartjs.Palette.pick(0),
+				pointStyle: "rect",
+				pointRadius: 10
 			});
 			oLineChart.addDataset(humidity);
+
+			// data 2
+			var co2 = new uia.chartjs.data.Line({
+				label: "CO2",
+				data: [
+					{ x: 0, y: 96, key: 'OK'},
+					{ x: 1, y: 87, key: 'OK'},
+					{ x: 2, y: 70, key: 'NG'},
+					{ x: 3, y: 71, key: 'OK'},
+					{ x: 4, y: 65, key: 'NG'},
+					{ x: 5, y: 72, key: 'OK'},
+					{ x: 6, y: 80, key: 'OK'},
+					{ x: 7, y: 99, key: 'OK'},
+					{ x: 8, y: 101, key: 'OK'},
+					{ x: 9, y: 146, key: 'OK'},
+					{ x: 10, y: 185, key: 'NG'},
+					{ x: 11, y: 183, key: 'OK'},
+					{ x: 12, y: 195, key: 'NG'}], 
+				yAxisID: "ppm",
+				borderColor: uia.chartjs.Palette.pick(1),
+				pointBackgroundColor: function(oChart) {
+					var point = oChart.dataset.data[oChart.dataIndex];
+	                return point.key === 'NG' ? 'yellow' : uia.chartjs.Palette.pick(1);
+				},
+				pointHoverBackgroundColor: function(oChart) {
+					var point = oChart.dataset.data[oChart.dataIndex];
+	                return point.key === 'NG' ? 'yellow' : uia.chartjs.Palette.pick(1);
+				}
+			});
+			oLineChart.addDataset(co2);
+
+			// data 3
+			var no = new uia.chartjs.data.Line({
+				label: "NO",
+				data: [
+					{ x: 0, y: 76, key: 'OK'},
+					{ x: 1, y: 72, key: 'OK'},
+					{ x: 2, y: 63, key: 'NG'},
+					{ x: 3, y: 75, key: 'OK'},
+					{ x: 4, y: 68, key: 'OK'},
+					{ x: 5, y: 66, key: 'OK'},
+					{ x: 6, y: 73, key: 'OK'},
+					{ x: 7, y: 89, key: 'OK'},
+					{ x: 8, y: 93, key: 'OK'},
+					{ x: 9, y: 126, key: 'OK'},
+					{ x: 10, y: 133, key: 'OK'},
+					{ x: 11, y: 154, key: 'NG'},
+					{ x: 12, y: 156, key: 'OK'}], 
+				yAxisID: "ppm",
+				borderColor: uia.chartjs.Palette.pick(2)
+			});
+			oLineChart.addDataset(no);
+
+			// data 4
+			var no2 = new uia.chartjs.data.Line({
+				label: "NO2",
+				data: [
+					{ x: 0, y: 73, key: 'OK'},
+					{ x: 1, y: 71, key: 'OK'},
+					{ x: 2, y: 71, key: 'NG'},
+					{ x: 3, y: 72, key: 'OK'},
+					{ x: 4, y: 63, key: 'OK'},
+					{ x: 5, y: 61, key: 'OK'},
+					{ x: 6, y: 71, key: 'OK'},
+					{ x: 7, y: 83, key: 'OK'},
+					{ x: 8, y: 95, key: 'OK'},
+					{ x: 9, y: 116, key: 'OK'},
+					{ x: 10, y: 124, key: 'OK'},
+					{ x: 11, y: 144, key: 'NG'},
+					{ x: 12, y: 142, key: 'OK'}], 
+				yAxisID: "ppm",
+				borderColor: uia.chartjs.Palette.pick(3)
+			});
+			oLineChart.addDataset(no2);
+
+			// data 5
+			var nox = new uia.chartjs.data.Line({
+				label: "NOx",
+				data: [
+					{ x: 0, y: 79, key: 'OK'},
+					{ x: 1, y: 76, key: 'OK'},
+					{ x: 2, y: 62, key: 'NG'},
+					{ x: 3, y: 71, key: 'OK'},
+					{ x: 4, y: 62, key: 'OK'},
+					{ x: 5, y: 73, key: 'OK'},
+					{ x: 6, y: 74, key: 'OK'},
+					{ x: 7, y: 82, key: 'OK'},
+					{ x: 8, y: 103, key: 'OK'},
+					{ x: 9, y: 136, key: 'OK'},
+					{ x: 10, y: 123, key: 'OK'},
+					{ x: 11, y: 122, key: 'NG'},
+					{ x: 12, y: 133, key: 'OK'}], 
+				yAxisID: "ppm",
+				borderColor: uia.chartjs.Palette.pick(4)
+			});
+			oLineChart.addDataset(nox);
 
 			oLineChart.placeAt("content");
 		});

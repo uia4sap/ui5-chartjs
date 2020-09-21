@@ -23,7 +23,7 @@
 					{
 						"id": "ScoreBarChart1",
 						"name": "Score Report #1",
-						"description": "score using bar chart"
+						"description": "vertical with label"
 					},
 					{
 						"id": "ScoreBarChart2",
@@ -34,6 +34,16 @@
 						"id": "ScoreBarChart3",
 						"name": "Score Report #3",
 						"description": "using data binding."
+					},
+					{
+						"id": "ScoreBarChart4",
+						"name": "Score Report #4",
+						"description": "stacked"
+					},
+					{
+						"id": "ScoreBarChart5",
+						"name": "Score Report #5",
+						"description": "horizontal with label"
 					}
 				]
 			},
@@ -51,12 +61,43 @@
 					{
 						"id": "AQILineChart1",
 						"name": "AQI chart #1",
-						"description": "AQI using line chart"
+						"description": "custom color style"
 					},
 					{
 						"id": "AQILineChart2",
 						"name": "AQI chart #2",
 						"description": "using data binding."
+					}
+				]
+			},
+			"PieChart": {
+				"id": "PieChart",
+				"name": "PieChart",
+				"type": "control",
+				"description": "Samples of the PieChart",
+				"samples": [
+					{
+						"id": "SimplePieChart",
+						"name": "The simplest",
+						"description": "the simplest pie chart"
+					},
+					{
+						"id": "PieChart1",
+						"name": "donut",
+						"description": "eat the donut"
+					}
+				]
+			},
+			"PolarAreaChart": {
+				"id": "PolarAreaChart",
+				"name": "PolarAreaChart",
+				"type": "control",
+				"description": "Samples of the PolarAreaChart",
+				"samples": [
+					{
+						"id": "SimplePolarAreaChart",
+						"name": "The simplest",
+						"description": "the simplest polar area chart"
 					}
 				]
 			},
@@ -93,6 +134,11 @@
 						"id": "PluginCrosshair",
 						"name": "Crosshair",
 						"description": "draw crosshair"
+					},
+					{
+						"id": "PluginDataLabel1",
+						"name": "Data Label #1",
+						"description": "draw data label"
 					}
 				]
 			}

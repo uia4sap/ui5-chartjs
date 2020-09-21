@@ -61,7 +61,7 @@
 				label: "{label}",
 				data: "{scores}",
 				yAxisID: "{y}",
-				backgroundColor:  "{color}"
+				backgroundColor: "{color}"
 			});
 
 			// chart
@@ -77,7 +77,7 @@
 
 			var oTooltip = new uia.chartjs.options.Tooltips();
 			oTooltip.attachLabel(function(oEvent) {
-				var chart = oEvent.getParameters("chart");
+				var chart = oEvent.getParameter("chart");
 			});
 			oBarChart.addAggregation("options", oTooltip);
 

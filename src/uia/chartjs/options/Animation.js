@@ -8,6 +8,7 @@ sap.ui.define([
     "use strict";
 
     var Layout = BaseOption.extend("uia.chartjs.options.Layout", {
+
         metadata: {
 
             library: "uia.chartjs.options",
@@ -17,6 +18,7 @@ sap.ui.define([
                 duration: { type: "int", group: "layout", defaultValue: 1000 },
 
                 easing: { type: "string", group: "layout", defaultValue: "easeOutQuart" }
+                
             },
 
             events: {
@@ -29,7 +31,7 @@ sap.ui.define([
 
                 complete: {
                     parameters: {
-                        model: { type: "object" }
+                        animation: { type: "object" }
                     }
                 }
             }
@@ -53,11 +55,11 @@ sap.ui.define([
             return animation;
         },
 
-        _callbackDispatch: function(fireF) {
-            var _fireF = fireF.bind(this);
-            return function(model) {
-                _fireF({
-                    "model": model
+        _callbackDispatch: function(fireEvent) {
+            var _fireEvent = fireEvent.bind(this);
+            return function(oAnimation) {
+                _fireEvent({
+                    "animation": oAnimation
                 });
             }
         }

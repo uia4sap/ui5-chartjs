@@ -137,10 +137,6 @@ sap.ui.define([
             }
         },
 
-        constructor: function(sId, mSettings) {
-            Element.apply(this, arguments);
-        },
-
         getName: function() {
             return undefined;
         },

@@ -1,10 +1,8 @@
 sap.ui.define([
-    "./CartesianChart",
-    "./axes/CartesianAxis",
+    "./BaseChart",
     "./library"
 ], function(
-    CartesianChart,
-    CartesianAxis,
+    BaseChart,
     library
 ) {
     "use strict";
@@ -17,17 +15,16 @@ sap.ui.define([
      * @param {object} [mSettings] initial settings for the new control
      *
      * @class
-     * CartesianChart constructor
-     * @extends uia.chartjs.CartesianChart
-     * @alias uia.chartjs.LineChart
+     * PolarAreaChart constructor
+     * @alias uia.chartjs.PolarAreaChart
      * @version ${version}
      *
      * @constructor
      * @public
-     * @since 2.9.3.0
-     * @name uia.chartjs.LineChartChart
+     * @since 1.40
+     * @name uia.chartjs.BarChart
      */
-    var LineChart = CartesianChart.extend("uia.chartjs.LineChart", /** @lends uia.chartjs.LineChart.prototype */ {
+    var PolarAreaChart = BaseChart.extend("uia.chartjs.PolarAreaChart", /** @lends uia.chartjs.PolarAreaChart.prototype */ {
 
         metadata: {
 
@@ -35,7 +32,16 @@ sap.ui.define([
 
             properties: {
 
-                hoverMode: { type: "string", group: "Appearance", defaultValue: "label" },
+                cutoutPercentage: { type: "float", group: "Appearance", defaultValue: 0 },
+
+                rotation: { type: "float", group: "Appearance", defaultValue: -0.5 * Math.PI },
+
+                circumference: { type: "float", group: "Appearance", defaultValue: 2 * Math.PI },
+
+                Doughnut: { type: "boolean", group: "Appearance", defaultValue: false }
+            },
+
+            events: {
             }
         },
 
@@ -44,15 +50,14 @@ sap.ui.define([
         },
 
         getChartType: function() {
-            return ChartType.Line;
+            return ChartType.PolarArea;
         },
-
 
         applyOptionsEx: function(oOptions) {
             return oOptions;
         }
     });
 
-    return LineChart;
+    return PolarAreaChart;
 
 }, /* bExport= */ true);

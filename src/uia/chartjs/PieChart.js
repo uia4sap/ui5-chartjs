@@ -1,10 +1,8 @@
 sap.ui.define([
-    "./CartesianChart",
-    "./axes/CartesianAxis",
+    "./BaseChart",
     "./library"
 ], function(
-    CartesianChart,
-    CartesianAxis,
+    BaseChart,
     library
 ) {
     "use strict";
@@ -19,15 +17,15 @@ sap.ui.define([
      * @class
      * CartesianChart constructor
      * @extends uia.chartjs.CartesianChart
-     * @alias uia.chartjs.LineChart
+     * @alias uia.chartjs.BarChart
      * @version ${version}
      *
      * @constructor
      * @public
-     * @since 2.9.3.0
-     * @name uia.chartjs.LineChartChart
+     * @since 1.40
+     * @name uia.chartjs.BarChart
      */
-    var LineChart = CartesianChart.extend("uia.chartjs.LineChart", /** @lends uia.chartjs.LineChart.prototype */ {
+    var PieChart = BaseChart.extend("uia.chartjs.PieChart", /** @lends uia.chartjs.PieChart.prototype */ {
 
         metadata: {
 
@@ -35,7 +33,14 @@ sap.ui.define([
 
             properties: {
 
-                hoverMode: { type: "string", group: "Appearance", defaultValue: "label" },
+                cutoutPercentage: { type: "float", group: "Appearance", defaultValue: 0 },
+
+                rotation: { type: "float", group: "Appearance", defaultValue: Math.PI },
+
+                circumference: { type: "float", group: "Appearance", defaultValue: 2 * Math.PI },
+            },
+
+            events: {
             }
         },
 
@@ -44,15 +49,17 @@ sap.ui.define([
         },
 
         getChartType: function() {
-            return ChartType.Line;
+            return ChartType.Pie;
         },
 
-
         applyOptionsEx: function(oOptions) {
+            oOptions["cutoutPercentage"] = this.getCutoutPercentage();
+            oOptions["rotation"] = this.getRotation();
+            oOptions["circumference"] = this.getCircumference();
             return oOptions;
         }
     });
 
-    return LineChart;
+    return PieChart;
 
 }, /* bExport= */ true);

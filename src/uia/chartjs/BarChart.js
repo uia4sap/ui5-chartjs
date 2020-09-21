@@ -35,8 +35,6 @@ sap.ui.define([
 
             properties: {
 
-                stacked: { type: "boolean", group: "Appearance", defaultValue: false },
-
                 horizontal: { type: "boolean", group: "Appearance", defaultValue: false },
 
                 hoverMode: { type: "string", group: "Appearance", defaultValue: "label" },
@@ -51,32 +49,11 @@ sap.ui.define([
             // BaseChart.prototype.setHoverMode.call(this, this.getHoverMode());
         },
 
-        createDataset: function(label, data, backgroundColor, order) {
-            return {
-                "data": data,
-                "label": label,
-                "order": order == undefined ? 0 : order,
-                "xAxisID": undefined,
-                "yAxisID": undefined,
-                "backgroundColor": backgroundColor == undefined ? 'rgba(0, 0, 0, 0.1)' : backgroundColor,
-                "borderColor": undefined,
-                "borderSkip": 'bottom',
-                "borderWidth": 1,
-                "hoverBackgroundColor": 'rgba(0, 0, 255, 0.1)',
-                "hoverBorderColor": undefined,
-                "hoverBorderWidth": 1
-            }
-        },
-
         getChartType: function() {
             return this.getHorizontal() ? ChartType.HorizontalBar : ChartType.Bar;
         },
 
         applyOptionsEx: function(oOptions) {
-            if (this.getStacked()) {
-                oOptions.scales.xAxes[0]["stacked"] = true;
-                oOptions.scales.yAxes[0]["stacked"] = true;
-            }
             return oOptions;
         }
     });

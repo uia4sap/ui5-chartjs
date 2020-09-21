@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Test Page - BarChart</title>
+	<title>Test Page - BarChart mix Line</title>
 	<base href="../../../../">
 	<!--[if lte IE 9]><script>
 	(function() {
@@ -32,37 +32,58 @@
 				}
 			});
 
-			// options.scales
-			var oAxis = new uia.chartjs.axes.LinearAxis({
+			// plugin: data label
+			var oDataLabel = new uia.chartjs.plugins.DataLabel();
+			oBarChart.addAggregation("plugins", oDataLabel);
+
+			// options.scales: x
+			var xAxis = new uia.chartjs.axes.CategoryAxis({
+				axisID: "subject",
+				position: "bottom",
+				title: "Subject"
+			});
+			oBarChart.addAggregation("scales", xAxis);
+
+			// options.scales: y
+			var yAxis = new uia.chartjs.axes.LinearAxis({
 				axisID: "score",
 				position: "left",
 				title: "Score",
 				suggestedMax: 100.0,
 				suggestedMin: 60.0
 			});
-			oBarChart.addAggregation("scales", oAxis);
+			oBarChart.addAggregation("scales", yAxis);
 
 			// data 1
 			var data1 = new uia.chartjs.data.Bar({
 				label: "Male",
-				data: [81, 76, 83, 85, 90],
+				data:  [81, 76, 83, 85, 90],
+				xAxisID: "subject",
 				yAxisID: "score",
-				backgroundColor:  "rgba(255, 0, 0, 0.3)"
+				order: 1,
+				backgroundColor:  uia.chartjs.Palette.pick(6, 168)
 			});
 			oBarChart.addDataset(data1);
 
 			// data 2
 			var data2 = new uia.chartjs.data.Bar({
 				label: "Female",
-				data: [82, 73, 88, 83, 91],
+				data:  [82, 73, 88, 83, 91],
+				xAxisID: "subject",
 				yAxisID: "score",
-				backgroundColor: "rgba(0, 255, 0, 0.3)"
+				order: 1,
+				backgroundColor:  uia.chartjs.Palette.pick(7, 96)
 			});
 			oBarChart.addDataset(data2);
 
-			// plugin: data label
-			var oDataLabel = new uia.chartjs.plugins.DataLabel();
-			oBarChart.addAggregation("plugins", oDataLabel);
+			// data 3: average line
+			var data3 = new uia.chartjs.data.Line({
+				label: "Average",
+				data:  [81.5, 74.5, 85.5, 84, 90.5],
+				yAxisID: "score",
+				borderColor:  uia.chartjs.Palette.pick(1)
+			});
+			oBarChart.addDataset(data3);
 
 			oBarChart.placeAt("content");
 		});

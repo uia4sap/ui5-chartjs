@@ -7,7 +7,7 @@ sap.ui.define([
 ) {
     "use strict";
 
-    var Bar = Dataset.extend("uia.chartjs.data.Bar", {
+    var PolarArea = Dataset.extend("uia.chartjs.data.PolarArea", {
         
         metadata: {
             
@@ -17,35 +17,35 @@ sap.ui.define([
 
                 backgroundColor: { type: "any", group: "data", defaultValue: "rgba(0,0,0,0.1)" },
 
-                borderColor: { type: "any", group: "data", defaultValue: undefined },
+                borderAlign: { type: "any", group: "data", defaultValue: "center" },
 
-                borderSkip: { type: "any", group: "data", defaultValue: "bottom" },
+                borderColor: { type: "any", group: "data", defaultValue: undefined },
                 
                 borderWidth: { type: "any", group: "data", defaultValue: 1 },
 
-                hoverBackgroundColor: { type: "any", group: "data", defaultValue: "rgba(0,0,255,0.1)" },
+                hoverBackgroundColor: { type: "any", group: "data", defaultValue: undefined },
 
                 hoverBorderColor: { type: "any", group: "data", defaultValue: undefined },
 
-                hoverBorderWidth: { type: "any", group: "data", defaultValue: 1 },
+                hoverBorderWidth: { type: "any", group: "data", defaultValue: 1 }
 
             },
         },
 
         applyDatasetEx: function(oChart, oDataset) {
-            oDataset.type = oChart instanceof uia.chartjs.BarChart ? oChart.getChartType() : "bar";
+            oDataset.type = "polarArea";
             oDataset.backgroundColor = this.getBackgroundColor();
+            oDataset.borderAlign = this.getBorderAlign();
             oDataset.borderColor = this.getBorderColor();
-            oDataset.borderSkip = this.getBorderSkip();
             oDataset.borderWidth = this.getBorderWidth();
-            oDataset.hoverBackgroundColor = this.getHoverBackgroundColor();
-            oDataset.hoverBorderColor = this.getHoverBorderColor();
+            oDataset.hoverBackgroundColor = this.getHoverBackgroundColor() || this.getBackgroundColor();
+            oDataset.hoverBorderColor = this.getHoverBorderColor() || this.getBorderWidth();
             oDataset.hoverBorderWidth = this.getHoverBorderWidth();
             return oDataset;
         }
     });
 
 
-    return Bar;
+    return PolarArea;
 
 }, /* bExport= */ true);

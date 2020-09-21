@@ -6,6 +6,7 @@ sap.ui.define([
     "use strict";
 
     var Dataset = Element.extend("uia.chartjs.data.Dataset", {
+
         metadata: {
 
             "abstract": true,
@@ -26,19 +27,15 @@ sap.ui.define([
             }
         },
 
-        constructor: function(sId, mSettings) {
-            Element.apply(this, arguments);
-        },
-
         getName: function() {
-            return "";
+            return undefined;
         },
 
         toOption: function() {
-            return {}
+            return {};
         },
 
-        toDataset: function(label, data, backgroundColor, order) {
+        toDataset: function(oChart) {
             var oDataset = {
                 "data": this.getData(),
                 "label": this.getLabel(),
@@ -46,10 +43,10 @@ sap.ui.define([
                 "xAxisID": this.getXAxisID(),
                 "yAxisID": this.getYAxisID()
             };
-            return this.applyDatasetEx(oDataset);
+            return this.applyDatasetEx(oChart, oDataset);
         },
 
-        applyDatasetEx: function(oDataset) {
+        applyDatasetEx: function(oChart, oDataset) {
             return oDataset;
         }
     });

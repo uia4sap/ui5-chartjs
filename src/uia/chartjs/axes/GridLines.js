@@ -6,6 +6,7 @@ sap.ui.define([
     "use strict";
 
     var GridLines = Element.extend("uia.chartjs.options.GridLines", {
+        
         metadata: {
 
             library: "uia.chartjs.axes",

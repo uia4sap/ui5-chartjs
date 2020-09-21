@@ -73,9 +73,13 @@ sap.ui.define([
                 }
             }
             if (result.yAxes.length == 0) {
-                result.yAxes.push(new LinearAxis({
-                    axisID: "y"
-                }).toScale());
+                if (this.getChartType() === ChartType.Line) {
+                        result.yAxes.push(new LinearAxis({
+                        axisID: "y"
+                    }).toScale());
+                } else {
+                    result.yAxes.push({});
+                }
             }
 
             return result;

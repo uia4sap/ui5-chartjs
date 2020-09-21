@@ -36,7 +36,9 @@ sap.ui.define([
 		interfaces: [],
 		controls: [
 			"uia.chartjs.BarChart",
-			"uia.chartjs.LineChart"
+			"uia.chartjs.LineChart",
+			"uia.chartjs.PieChart",
+			"uia.chartjs.PolarAreaChart"
 		],
 		elements: [
 			"uia.chartjs.options.Layout",
@@ -49,9 +51,12 @@ sap.ui.define([
 			"uia.chartjs.axes.GridLines",
 			"uia.chartjs.data.Bar",
 			"uia.chartjs.data.Line",
+			"uia.chartjs.data.Pie",
+			"uia.chartjs.data.PolarArea",
 			"uia.chartjs.plugins.Plugin",
 			"uia.chartjs.plugins.PluginAttr",
 			"uia.chartjs.plugins.Crosshair",
+			"uia.chartjs.plugins.DataLabel",
 			"uia.chartjs.plugins.specline.SpecLine",
 			"uia.chartjs.plugins.specline.SpecInfo",
 		],
@@ -68,6 +73,13 @@ sap.ui.define([
 	uia.chartjs.ChartType = {
 
 		/**
+		 * The line chart
+		 * @public
+		 */
+		Line: "line",
+
+
+		/**
 		 * The bar chart
 		 * @public
 		 */
@@ -80,11 +92,26 @@ sap.ui.define([
 		HorizontalBar: "horizontalBar",
 
 		/**
-		 * The line chart
+		 * The pie chart
 		 * @public
 		 */
-		Line: "line"
+		Pie: "pie",
+
+		/**
+		 * The doughnut chart
+		 * @public
+		 */
+		Doughnut: "doughnut",
+
+		PolarArea: "polarArea",
+
+		Radar: "radar"
 	};
+
+	
+	sap.ui.lazyRequire("uia.chartjs.Palette", "pick");	
+
+	sap.ui.lazyRequire("uia.chartjs.Palette", "pickFore");	
 
 	jQuery.sap.includeStyleSheet("resources/uia/chartjs/3rdparty/chartjs/Chart.css");	
 

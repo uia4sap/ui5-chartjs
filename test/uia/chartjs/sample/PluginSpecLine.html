@@ -37,7 +37,7 @@
 			// options.title
 			var oTitle = new uia.chartjs.options.Title({
 				"text": "Map",
-				"fontSize": 16
+				"fontSize": 20
 			});
 			oLineChart.addAggregation("options", oTitle);
 
@@ -66,22 +66,24 @@
 
 			// plugin: specline
 			var oSpecLine = new uia.chartjs.plugins.specline.SpecLine();
+			//
 			var oSpecInfo1 = new uia.chartjs.plugins.specline.SpecInfo({
 				name: "target",
-				display: false,
+				display: true,
 				lineWidth: 1,
-				lineColor: "rgba(0,0,255,1)",
+				lineColor: uia.chartjs.Palette.pick(0),
 				value: 0.93
 			});
-
+			//
 			var oSpecInfo2 = new uia.chartjs.plugins.specline.SpecInfo({
 				name: "target",
 				display: true,
 				lineWidth: 1,
-				lineColor: "rgba(0,0,255,1)",
+				lineColor: uia.chartjs.Palette.pick(2),
 				value: 0,
 				yAxisID: "degree"
 			});
+			//
 			var oSpecInfo3 = new uia.chartjs.plugins.specline.SpecInfo({
 				name: "ucl",
 				display: true,
@@ -90,6 +92,7 @@
 				value: 10,
 				yAxisID: "degree"
 			});
+			//
 			var oSpecInfo4 = new uia.chartjs.plugins.specline.SpecInfo({
 				name: "lcl",
 				display: true,
@@ -98,6 +101,7 @@
 				value: -10,
 				yAxisID: "degree"
 			});
+			//
 			var oSpecInfo5 = new uia.chartjs.plugins.specline.SpecInfo({
 				name: "lcl",
 				display: true,
@@ -106,35 +110,37 @@
 				value: -21,
 				yAxisID: "degree"
 			});
+			//
 			oSpecLine.addAggregation("specInfos", oSpecInfo1);
 			oSpecLine.addAggregation("specInfos", oSpecInfo2);
 			oSpecLine.addAggregation("specInfos", oSpecInfo3);
 			oSpecLine.addAggregation("specInfos", oSpecInfo4);
 			oSpecLine.addAggregation("specInfos", oSpecInfo5);
+			//
 			oLineChart.addAggregation("plugins", oSpecLine);
 			
 			// data 1
 			var offsetX = new uia.chartjs.data.Line({
 				label: "OffsetX",
 				data: [
-					{ x: 0, y: 0.98, key: 'OK'},
-					{ x: 1, y: 0.83, key: 'OK'},
-					{ x: 2, y: 0.87, key: 'OK'},
-					{ x: 3, y: 0.82, key: 'NG'},
-					{ x: 4, y: 0.93, key: 'OK'},
-					{ x: 5, y: 0.92, key: 'OK'},
-					{ x: 6, y: 0.89, key: 'OK'},
-					{ x: 7, y: 0.95, key: 'NG'},
-					{ x: 8, y: 0.90, key: 'OK'},
-					{ x: 9, y: 0.88, key: 'OK'},
-					{ x: 10, y: 0.88, key: 'OK'},
-					{ x: 11, y: 0.91, key: 'OK'},
-					{ x: 12, y: 0.97, key: 'NG'}],
+					{ x: 0, y: 0.98, key: 'OK' },
+					{ x: 1, y: 0.83, key: 'OK' },
+					{ x: 2, y: 0.87, key: 'OK' },
+					{ x: 3, y: 0.82, key: 'NG' },
+					{ x: 4, y: 0.93, key: 'OK' },
+					{ x: 5, y: 0.92, key: 'OK' },
+					{ x: 6, y: 0.89, key: 'OK' },
+					{ x: 7, y: 0.95, key: 'NG' },
+					{ x: 8, y: 0.90, key: 'OK' },
+					{ x: 9, y: 0.88, key: 'OK' },
+					{ x: 10, y: 0.88, key: 'OK' },
+					{ x: 11, y: 0.91, key: 'OK' },
+					{ x: 12, y: 0.97, key: 'NG' }],
 				yAxisID: "offset",
-				borderColor: "rgba(255, 0, 0, 0.6)",
+				borderColor: uia.chartjs.Palette.pick(0),
 				pointBackgroundColor: function(oChart) {
 					var point = oChart.dataset.data[oChart.dataIndex];
-	                return point.key == "NG" ? "rgba(255,0,0,1)" : "rgba(0,255,0,1)";
+	                return point.key === 'NG' ? 'yellow' : uia.chartjs.Palette.pick(1);
 				}
 			});
 			oLineChart.addDataset(offsetX);
@@ -143,24 +149,24 @@
 			var rotationX = new uia.chartjs.data.Line({
 				label: "RotationX",
 				data: [
-					{ x: 0, y: 12.3, key: 'NG'},
-					{ x: 1, y: 9.8, key: 'OK'},
-					{ x: 2, y: -11.9, key: 'NG'},
-					{ x: 3, y: -3.3, key: 'OK'},
-					{ x: 4, y: 0, key: 'OK'},
-					{ x: 5, y: 7.7, key: 'OK'},
-					{ x: 6, y: 4.5, key: 'OK'},
-					{ x: 7, y: -11.2, key: 'NG'},
-					{ x: 8, y: 2.8, key: 'OK'},
-					{ x: 9, y: 11.0, key: 'NG'},
-					{ x: 10, y: 9.1, key: 'OK'},
-					{ x: 11, y: -1.1, key: 'OK'},
-					{ x: 12, y: -0.9, key: 'OK'}],
+					{ x: 0, y: 12.3, key: 'NG' },
+					{ x: 1, y: 9.8, key: 'OK' },
+					{ x: 2, y: -11.9, key: 'NG' },
+					{ x: 3, y: -3.3, key: 'OK' },
+					{ x: 4, y: 0, key: 'OK' },
+					{ x: 5, y: 7.7, key: 'OK' },
+					{ x: 6, y: 4.5, key: 'OK' },
+					{ x: 7, y: -11.2, key: 'NG' },
+					{ x: 8, y: 2.8, key: 'OK' },
+					{ x: 9, y: 11.0, key: 'NG' },
+					{ x: 10, y: 9.1, key: 'OK' },
+					{ x: 11, y: -1.1, key: 'OK' },
+					{ x: 12, y: -0.9, key: 'OK' }],
 				yAxisID: "degree",
-				borderColor: "rgba(255, 255, 0, 0.6)",
+				borderColor: uia.chartjs.Palette.pick(2),
 				pointBackgroundColor: function(oChart) {
 					var point = oChart.dataset.data[oChart.dataIndex];
-	                return point.key == "NG" ? "rgba(255,0,0,1)" : "rgba(0,255,0,1)";
+	                return point.key === 'NG' ? 'yellow' : uia.chartjs.Palette.pick(1);
 				}
 			});
 			oLineChart.addDataset(rotationX);

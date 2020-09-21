@@ -32,23 +32,32 @@
 				}
 			});
 
-			// options.scales
-			var oAxis = new uia.chartjs.axes.LinearAxis({
+			// options.scales: x
+			var xAxis = new uia.chartjs.axes.CategoryAxis({
+				axisID: "subject",
+				position: "bottom",
+				title: "Subject"
+			});
+			oBarChart.addAggregation("scales", xAxis);
+
+			// options.scales: y
+			var yAxis = new uia.chartjs.axes.LinearAxis({
 				axisID: "score",
 				position: "left",
 				title: "Score",
 				suggestedMax: 100.0,
 				suggestedMin: 60.0
 			});
-			oBarChart.addAggregation("scales", oAxis);
+			oBarChart.addAggregation("scales", yAxis);
 
 			// data 1
 			var data1 = new uia.chartjs.data.Bar({
 				label: "Male",
 				data:  [81, 76, 83, 85, 90],
+				xAxisID: "subject",
 				yAxisID: "score",
 				order: 1,
-				backgroundColor: "rgba(255,0,0,0.3)"
+				backgroundColor:  uia.chartjs.Palette.pick(6, 168)
 			});
 			oBarChart.addDataset(data1);
 
@@ -56,9 +65,10 @@
 			var data2 = new uia.chartjs.data.Bar({
 				label: "Female",
 				data:  [82, 73, 88, 83, 91],
+				xAxisID: "subject",
 				yAxisID: "score",
 				order: 1,
-				backgroundColor: "rgba(0,255,0,0.3)"
+				backgroundColor:  uia.chartjs.Palette.pick(7, 96)
 			});
 			oBarChart.addDataset(data2);
 
@@ -67,8 +77,7 @@
 				label: "Average",
 				data:  [81.5, 74.5, 85.5, 84, 90.5],
 				yAxisID: "score",
-				borderColor: "rgba(0,0,255,0.3)",
-				pointHoverBackgroundColor: "rgba(0,0,255,0.3)"
+				borderColor:  uia.chartjs.Palette.pick(1)
 			});
 			oBarChart.addDataset(data3);
 
