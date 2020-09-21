@@ -1,4 +1,4 @@
-Step by Step
+Line Chart
 ===
 
 ## Abstract
@@ -6,10 +6,9 @@ Step by Step
 The XML structure will likes
 
 ```xml
-<chartjs:LineChart />
+<chartjs:LineChart>
     <chartjs:datasets>
         <data:Line />
-        <data:Bar />
     </chartjs:datasets>
     <chartjs:options>
         <opts:Animation />
@@ -19,19 +18,14 @@ The XML structure will likes
         <opts:Tooltips />
     </chartjs:options>
     <chartjs:scales>
-        <axes:CategoryAxis />
         <axes:LinearAxis />
-        <axes:TimeAxis />
     </chartjs:scales>
-    <chartjs:plugins>
-        <plugins:Crosshair />
-        <stepline:StepLine />
-    </chartjs:plugins>
-</chartjs:LineChart />
+    <chartjs:plugins />
+ </chartjs:LineChart>
 ```
 
 
-## Line Chart
+## Step by Step
 ### view.xml
 1. Create a empty line chart.
     ```xml
@@ -150,16 +144,16 @@ Full XML
 
 ### JSONModel
 The datasets bind to the chart above are
-```json
+```js
 var result = [
     {
         "name": "OFFSETX",
-        "points": [ { x:1, y:24.3 }, .... ],
+        "points": [ { "x":1, "y":24.3 }, .... ],
         "color": "rgba(128,128,255,0.6)"
     },
     {
         "name": "OFFSETY",
-        "points": [ { x:1, y:25.1 }, .... ],
+        "points": [ { "x":1, "y":25.1 }, .... ],
         "color": "rgba(255,128,128,0.6)"
     }
 ]
@@ -168,7 +162,5 @@ var result = [
 ### Result
 The output line chart will be
 
-![AQI](images/SBS_LINE.png) 
+![LINE](images/SBS_LINE.png) 
 
-
-## Events

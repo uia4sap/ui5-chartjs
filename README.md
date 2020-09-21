@@ -66,25 +66,29 @@ The resources of Chart.js
       {
         "name": "name1",
         "points": [
-          { x: 1, y: 10.3 },
-          { x: 2, y: 10.9 },
-          { x: 3, y: 11.1 },
-          { x: 4, y: 10.7 }],
+          { "x": 1, "y": 10.3 },
+          { "x": 2, "y": 10.9 },
+          { "x": 3, "y": 11.1 },
+          { "x": 4, "y": 10.7 }],
         "color": "rgba(255, 255, 0, 0.6)"
       },
       {
         "name": "name2",
         "points": [
-          { x: 1, y: 32.9 },
-          { x: 2, y: 31.1 },
-          { x: 3, y: 30.8 },
-          { x: 4, y: 31.4 }],
+          { "x": 1, "y": 32.9 },
+          { "x": 2, "y": 31.1 },
+          { "x": 3, "y": 30.8 },
+          { "x": 4, "y": 31.4 }],
         "color": "rgba(255, 0, 255, 0.6)"
       }
     ]
     ```
 
-More detail, please reference [Step by Step](SBS.md).
+
+## Step By Step
+
+* [Line Chart](SBS_LINE.md)
+* [BAR Chart](SBS_BAR.md)
 
 ## Develop
 
