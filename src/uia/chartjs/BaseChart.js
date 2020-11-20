@@ -42,9 +42,9 @@ sap.ui.define([
 
                 key: { type: "string", group: "common", defaultValue: undefined },
 
-                height: { type: "int", group: "appearance", defaultValue: 400 },
+                height: { type: "string", group: "appearance", defaultValue: undefined },
 
-                width: { type: "int", group: "appearance", defaultValue: 300 },
+                width: { type: "string", group: "appearance", defaultValue: undefined },
 
                 labels: { type: "string[]", group: "appearance", defaultValue: [] },
 
@@ -59,21 +59,21 @@ sap.ui.define([
                 datasets: {
                     type: "uia.chartjs.data.Dataset",
                     multiple: true,
-                    singularName: "datasets",
+                    singularName: "dataset",
                     bindable: "bindable"
                 },
 
                 options: {
                     type: "uia.chartjs.options.BaseOption",
                     multiple: true,
-                    singularName: "options",
+                    singularName: "option",
                     bindable: "bindable"
                 },
 
                 plugins: {
                     type: "uia.chartjs.plugins.Plugin",
                     multiple: true,
-                    singularName: "plugins",
+                    singularName: "plugin",
                     bindable: "bindable"
                 }
             },
@@ -101,6 +101,21 @@ sap.ui.define([
 
         getChartJS: function() {
             return this.__chart;
+        },
+
+        hideDataset: function(index, hidden) {
+            if(!this.__chart) {
+                return ;
+            }
+            if(hidden === undefined) {
+                hidden = true;
+            }
+            
+            var meta = this.__chart.getDatasetMeta(index);
+            if(meta) {
+                meta.hidden = hidden;
+                this.__chart.update();
+            }
         },
 
         getOptions: function() {
@@ -392,7 +407,7 @@ sap.ui.define([
 
         __prepareDatasets: function() {
             var result = [];
-            var datasets = this.getAggregation("datasets");
+            var datasets = this.getAggregation("datasets") || [];
             for (var i = 0; i < datasets.length; i++) {
                 result.push(datasets[i].toDataset(this));
             }

@@ -21,7 +21,7 @@ The XML structure will likes
         <axes:LinearAxis />
     </chartjs:scales>
     <chartjs:plugins />
- </chartjs:LineChart>
+</chartjs:LineChart>
 ```
 
 

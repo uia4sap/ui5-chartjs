@@ -67,6 +67,11 @@
 						"id": "AQILineChart2",
 						"name": "AQI chart #2",
 						"description": "using data binding."
+					},
+					{
+						"id": "AQILineChart3",
+						"name": "AQI chart #3",
+						"description": "two charts."
 					}
 				]
 			},

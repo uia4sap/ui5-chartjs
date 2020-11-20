@@ -20,7 +20,7 @@ sap.ui.define([
                 specInfos: {
                     type: "uia.chartjs.plugins.specline.SpecInfo",
                     multiple: true,
-                    singularName: "specInfos",
+                    singularName: "specInfo",
                     bindable: "bindable",
                 }
             },

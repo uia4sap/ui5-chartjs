@@ -2,3 +2,6 @@ specVersion: '0.1'
 metadata:
   name: uia-chartjs
 type: library
+server:
+  settings:
+    httpPort: 9090
