@@ -75,10 +75,26 @@
 				}
 			});
 
-			var oTooltip = new uia.chartjs.options.Tooltips();
+			var oTooltip = new uia.chartjs.options.Tooltips({
+				"label": (tooltipItem, data, value) => {
+					return value.y + ", pass=" + value.pass;
+				},
+				"labelColor": (tooltipItem, chart, value) => {
+					return {
+						"borderColor": 'white',
+						"backgroundColor": value.pass == 'y' ? 'rgb(128, 128, 255)' : 'rgb(255, 0, 0)'
+					}
+				},
+				"labelTextColor": (tooltipItem, chart, value) => {
+					return value.pass == 'y' ? 'rgb(0, 0, 255)' : 'rgb(255, 0, 0)';
+				},
+			});
+			/**
 			oTooltip.attachLabel(function(oEvent) {
 				var chart = oEvent.getParameter("chart");
+				return "12345";
 			});
+			*/
 			oBarChart.addAggregation("options", oTooltip);
 
 			// options.scales

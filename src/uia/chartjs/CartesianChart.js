@@ -41,7 +41,7 @@ sap.ui.define([
 
             "aggregations": {
 
-                scales: { type: "uia.chartjs.axes.CartesianAxis", multiple: true, aggregation: "scales" }
+                scales: { type: "uia.chartjs.axes.CartesianAxis", multiple: true, aggregation: "scale" }
             }
         },
 
@@ -74,7 +74,7 @@ sap.ui.define([
             }
             if (result.yAxes.length == 0) {
                 if (this.getChartType() === ChartType.Line) {
-                        result.yAxes.push(new LinearAxis({
+                    result.yAxes.push(new LinearAxis({
                         axisID: "y"
                     }).toScale());
                 } else {

@@ -81,7 +81,7 @@
 					if (model.opacity === 0) {
 						return;
 					}
-					sap.m.MessageToast.show("ok", { at: "center center" });
+					sap.m.MessageToast.show(model.title + ": " + model.dataPoints[0].value, { at: "center center" });
 				}
 			});
 			oBarChart.addAggregation("options", oTooltip);

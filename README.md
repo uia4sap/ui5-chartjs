@@ -27,7 +27,7 @@ The resources of Chart.js
 
 ## How to Use
 
-1. Copy library to the a folder, for example: {WORK_DIR}/js/uia-chartjs.
+1. Copy library to the the `resources` folder. THe full path will be: `{WORK_DIR}/resources/uia/chartjs/`.
 
 2. setup __index.html__ where the library is.
    
@@ -35,7 +35,7 @@ The resources of Chart.js
     <script
       data-sap-ui-resourceroots='{
         ...,
-        "uia.chartjs": "./js/uia-chartjs/resource/uia/chartjs/"
+        "uia.chartjs": "./resource/uia/chartjs/"
       }'>
     </script>
     ```

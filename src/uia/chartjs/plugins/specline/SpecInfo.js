@@ -28,7 +28,25 @@ sap.ui.define([
 
         constructor: function(sId, mSettings) {
             Element.apply(this, arguments);
+        },
+
+        /**
+         * @override
+         * 
+         */
+        setValue: function(value) {
+            if (value) {
+                if(isNaN(value)) {
+                    this.setProperty("value", value, true);
+                } else {
+                    this.setProperty("value", parseFloat(value), true);
+                }
+            } else {
+                this.setProperty("value", null, true);
+            }
+            return this;
         }
+
     });
 
 

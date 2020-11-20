@@ -26,6 +26,7 @@
 
 			// chart
 			var oLineChart = new uia.chartjs.LineChart({
+				height: 100
 			});
 
 			var co = new uia.chartjs.data.Line({
@@ -68,7 +69,26 @@
 			});
 			oLineChart.addDataset(co2);
 
-			oLineChart.placeAt("content");
+			//
+			var oCheck1 = new sap.m.CheckBox({
+				"text": "Hide Line1"
+			});
+			oCheck1.attachSelect(oEvent => oLineChart.hideDataset(0, oCheck1.getSelected()));
+
+			//
+			var oCheck2 = new sap.m.CheckBox({
+				"text": "Hide Line2"
+			});
+			oCheck2.attachSelect(oEvent => oLineChart.hideDataset(1, oCheck2.getSelected()));
+
+			//
+			var oBox = new sap.m.VBox({});
+			oBox.addItem(oLineChart);
+			oBox.addItem(oCheck1);
+			oBox.addItem(oCheck2);
+
+
+			oBox.placeAt("content");
 		});
 	</script>
 </head>

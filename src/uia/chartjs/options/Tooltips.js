@@ -6,7 +6,7 @@ sap.ui.define([
     BaseOption
 ) {
     "use strict";
-        
+
     var Tooltips = BaseOption.extend("uia.chartjs.options.Tooltips", {
 
         metadata: {
@@ -16,8 +16,6 @@ sap.ui.define([
             properties: {
 
                 enabled: { type: "boolean", group: "tooltips", defaultValue: true },
-
-                custom: { type: "function", group: "tooltips" },
 
                 mode: { type: "string", group: "tooltips", defaultValue: "nearest" },
 
@@ -85,50 +83,38 @@ sap.ui.define([
 
                 borderWidth: { type: "boolean", group: "tooltips", defaultValue: 0 },
 
-                right2Left: { type: "boolean", group: "tooltips", defaultValue: false }
+                right2Left: { type: "boolean", group: "tooltips", defaultValue: false },
+
+                custom: { type: "function", group: "callback" },
+
+                beforeTitle: { type: "function", group: "callback" },
+
+                title: { type: "function", group: "callback" },
+
+                afterTitle: { type: "function", group: "callback" },
+
+                beforeBody: { type: "function", group: "callback" },
+
+                beforeLabel: { type: "function", group: "callback" },
+
+                label: { type: "function", group: "callback" },
+
+                labelColor: { type: "function", group: "callback" },
+
+                labelTextColor: { type: "function", group: "callback" },
+
+                afterLabel: { type: "function", group: "callback" },
+
+                afterBody: { type: "function", group: "callback" },
+
+                beforeFooter: { type: "function", group: "callback" },
+
+                footer: { type: "function", group: "callback" },
+
+                afterFooter: { type: "function", group: "callback" }
             },
 
             events: {
-
-                beforeTitle: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                title: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                afterTitle: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                beforeBody: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                beforeLabel: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                label: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                labelColor: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                labelTextColor: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                afterLabel: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                afterBody: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                beforeFooter: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                footer: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                },
-                afterFooter: {
-                    parameters: { chart: { type: "object" }, tooltipItem: { type: "object" } }
-                }
             }
         },
 
@@ -137,68 +123,82 @@ sap.ui.define([
         },
 
         _callbackFire: function(fire, tooltipItem, data) {
-            fire({ 
+            var dataset = data.datasets[tooltipItem.datasetIndex];
+            fire({
                 "tooltipItem": tooltipItem,
-                "chart": data 
+                "chart": data,
+                "point": dataset.data[item.index]
             });
         },
 
         _callbackDispatch: function(fireF) {
             var _fireF = fireF.bind(this);
             return function(tooltipItem, data) {
-                _fireF({
-                    "tooltipItem": tooltipItem,
-                    "chart": data 
-                });
+                var dataset = data.datasets[tooltipItem.datasetIndex];
+                var value = dataset.data[tooltipItem.index];
+                return _fireF(tooltipItem, data, value);
+            }
+        },
+
+        _callbackDispatch2: function(fireF) {
+            var _fireF = fireF.bind(this);
+            return function(tooltipItem, chart) {
+                var dataset = chart.data.datasets[tooltipItem.datasetIndex];
+                var value = dataset.data[tooltipItem.index];
+                return _fireF(tooltipItem, chart, value);
             }
         },
 
         toOption: function() {
+            var customFunc = this.getCustom() ? this.getCustom().bind(this) : undefined;
             var _callback = {};
+            /**
             if (this.hasListeners("beforeTitle")) {
                 _callback["beforeTitle"] = this._callbackDispatch(this.fireBeforeTitle);
             }
-            if (this.hasListeners("title")) {
-                _callback["title"] = this._callbackDispatch(this.fireTitle);
+             */
+            if (this.getBeforeTitle()) {
+                _callback["beforeTitle"] = this.getBeforeTitle().bind(this);
             }
-            if (this.hasListeners("afterTitle")) {
-                _callback["afterTitle"] = this._callbackDispatch(this.fireAfterTitle);
+            if (this.getTitle()) {
+                _callback["title"] = this.getTitle().bind(this);
             }
-            if (this.hasListeners("beforeBody")) {
-                _callback["beforeBody"] = this._callbackDispatch(this.fireBeforeBody);
+            if (this.getAfterTitle()) {
+                _callback["afterTitle"] = this.getAfterTitle().bind(this);
             }
-            if (this.hasListeners("beforeLabel")) {
-                _callback["beforeLabel"] = this._callbackDispatch(this.fireBeforeLabel);
+            if (this.getBeforeBody()) {
+                _callback["beforeBody"] = this.getBeforeBody().bind(this);
             }
-            if (this.hasListeners("label")) {
-                _callback["label"] = this._callbackDispatch(this.fireLabel);
+            if (this.getBeforeLabel()) {
+                _callback["beforeLabel"] = this._callbackDispatch2(this.getBeforeLabel());
             }
-            if (this.hasListeners("labelColor")) {
-                _callback["labelColor"] = this._callbackDispatch(this.fireLabelColor);
+            if (this.getLabel()) {
+                _callback["label"] = this._callbackDispatch(this.getLabel());
             }
-            if (this.hasListeners("labelTextColor")) {
-                _callback["labelTextColor"] = this._callbackDispatch(this.fireLabelTextColor);
+            if (this.getLabelColor()) {
+                _callback["labelColor"] = this._callbackDispatch2(this.getLabelColor());
             }
-            if (this.hasListeners("afterLabel")) {
-                _callback["afterLabel"] = this._callbackDispatch(this.fireAfterLabel);
+            if (this.getLabelTextColor()) {
+                _callback["labelTextColor"] = this._callbackDispatch2(this.getLabelTextColor());
             }
-            if (this.hasListeners("afterBody")) {
-                _callback["afterBody"] = this._callbackDispatch(this.fireAfterBody);
+            if (this.getAfterLabel()) {
+                _callback["afterLabel"] = this._callbackDispatch2(this.getAfterLabel());
             }
-            if (this.hasListeners("beforeFooter")) {
-                _callback["beforeFooter"] = this._callbackDispatch(this.fireBeforeFooter);
+            if (this.getAfterBody()) {
+                _callback["afterBody"] = this.getAfterBody().bind(this);
             }
-            if (this.hasListeners("footer")) {
-                _callback["footer"] = this._callbackDispatch(this.fireFooter);
+            if (this.getBeforeFooter()) {
+                _callback["beforeFooter"] = this.getBeforeFooter().bind(this);
             }
-            if (this.hasListeners("afterFooter")) {
-                _callback["afterFooter"] = this._callbackDispatch(this.fireAfterFooter);
+            if (this.getFooter()) {
+                _callback["footer"] = this.getFooter().bind(this);
+            }
+            if (this.getAfterFooter()) {
+                _callback["afterFooter"] = this.getAfterFooter().bind(this);
             }
 
-            var customFunc = this.getCustom() ? this.getCustom().bind(this) : undefined;
             return {
                 enabled: customFunc ? false : this.getEnabled(),
-                custom: customFunc,
                 mode: this.getMode(),
                 intersect: this.getIntersect(),
                 position: this.getPosition(),
@@ -233,6 +233,7 @@ sap.ui.define([
                 borderColor: this.getBorderColor(),
                 borderWidth: this.getBorderWidth(),
                 rtl: this.getRight2Left(),
+                custom: customFunc,
                 callbacks: _callback
             }
         }

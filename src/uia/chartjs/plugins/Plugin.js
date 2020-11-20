@@ -17,7 +17,7 @@ sap.ui.define([
 
             "aggregations": {
 
-                attrs: { type: "uia.chartjs.plugins.PluginAttr", multiple: true, aggregation: "attrs" }
+                attrs: { type: "uia.chartjs.plugins.PluginAttr", multiple: true, aggregation: "attr" }
             },
 
         },
