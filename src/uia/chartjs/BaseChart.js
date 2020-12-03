@@ -32,6 +32,8 @@ sap.ui.define([
 
         __datasets: [],
 
+        __scales: {},
+
         metadata: {
 
             "abstract": true,
@@ -104,17 +106,45 @@ sap.ui.define([
         },
 
         hideDataset: function(index, hidden) {
-            if(!this.__chart) {
-                return ;
+            if (!this.__chart) {
+                return;
             }
-            if(hidden === undefined) {
+            if (hidden === undefined) {
                 hidden = true;
             }
-            
+
             var meta = this.__chart.getDatasetMeta(index);
-            if(meta) {
+            if (meta) {
                 meta.hidden = hidden;
                 this.__chart.update();
+            }
+        },
+
+        updateAxisRange: function(axisId, min, max) {
+            if (this.__chart) {
+             var axis = this.__chart.scales[axisId];
+                if (axis) {
+                    axis.options.ticks.min = min;
+                    axis.options.ticks.max = max;
+                    this.__chart.update();
+                }
+            }
+        },
+
+        resetScales: function() {
+            if (this.__chart) {
+                for (var axisId in this.__chart.scales) {
+                    var axis = this.__chart.scales[axisId];
+                    var __axis = this.__scales[axisId];
+                    if (axis && __axis) {
+                        axis.options.ticks.min = __axis.min;
+                        axis.options.ticks.max = __axis.max;
+                    }
+                }
+
+                if (this.__chart.resetZoom) {
+                    this.__chart.resetZoom();
+                }
             }
         },
 
@@ -238,13 +268,14 @@ sap.ui.define([
             //
             var plugins = [];
             (this.getAggregation("plugins") || []).forEach(function(p) {
-                var chartjsImpl = p.implement();
-                if (chartjsImpl) {
-                    plugins.push(chartjsImpl);
+                var pluginImpl = p.implement();
+                if (pluginImpl) {
+                    plugins.push(pluginImpl);
                 }
             });
             //
             var options = this.getOptions();
+            options["responsive"] = true;
             //
             this.__ctx = document.getElementById(this.getId()).getContext("2d");
             this.__chart = new Chart(this.__ctx, {
@@ -256,6 +287,15 @@ sap.ui.define([
                 plugins: plugins,
                 options: options
             });
+
+            // used to restore
+            for (var axisId in this.__chart.scales) {
+                var axis = this.__chart.scales[axisId];
+                this.__scales[axisId] = {
+                    min: axis.options.ticks.min,
+                    max: axis.options.ticks.max
+                };
+            }
         },
 
         /**

@@ -127,6 +127,10 @@ sap.ui.define([
                 var y1 = yScale.getPixelForValue(yScale.min);
                 var y2 = yScale.getPixelForValue(yScale.max);
                 var y = yScale.getPixelForValue(specInfo.getValue());
+                if(!y) {
+                    continue;
+                }
+                
                 if (y <= y1 && y >= y2) {
                     // draw
                     chart.ctx.beginPath();

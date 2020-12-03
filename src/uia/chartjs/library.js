@@ -12,7 +12,7 @@ sap.ui.define([
 ], function (
 	jQuery,
 	library,
-    ChartJS
+	ChartJS
 ) {
 	"use strict";
 
@@ -38,7 +38,8 @@ sap.ui.define([
 			"uia.chartjs.BarChart",
 			"uia.chartjs.LineChart",
 			"uia.chartjs.PieChart",
-			"uia.chartjs.PolarAreaChart"
+			"uia.chartjs.PolarAreaChart",
+			"uia.chartjs.ScatterChart"
 		],
 		elements: [
 			"uia.chartjs.options.Layout",
@@ -56,9 +57,13 @@ sap.ui.define([
 			"uia.chartjs.plugins.Plugin",
 			"uia.chartjs.plugins.PluginAttr",
 			"uia.chartjs.plugins.Crosshair",
-			"uia.chartjs.plugins.DataLabel",
+			"uia.chartjs.plugins.DataLabels",
+			"uia.chartjs.plugins.LineBarLabel",
 			"uia.chartjs.plugins.specline.SpecLine",
 			"uia.chartjs.plugins.specline.SpecInfo",
+			"uia.chartjs.plugins.Zoom",
+			"uia.chartjs.helpers.AxisToolBox",
+			"uia.chartjs.helpers.AxisConfig"
 		],
 		noLibraryCSS: false,
 		version: "${version}"
@@ -105,7 +110,9 @@ sap.ui.define([
 
 		PolarArea: "polarArea",
 
-		Radar: "radar"
+		Radar: "radar",
+
+		Scatter: "scatter"
 	};
 
 	

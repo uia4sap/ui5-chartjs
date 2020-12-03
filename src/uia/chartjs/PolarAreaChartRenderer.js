@@ -19,7 +19,7 @@ sap.ui.define([
      * @param {sap.ui.core.Control} oChart an object representation of the control that should be rendered
      */
     PolarAreaChartRenderer.addOuterClasses = function(oRm, oChart) {
-        oRm.addClass("openui5-bar-chartjs");
+        oRm.addClass("openui5-polar-area-chartjs");
     };
 
     return PolarAreaChartRenderer;

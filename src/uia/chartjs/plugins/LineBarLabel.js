@@ -7,7 +7,11 @@ sap.ui.define([
 ) {
     "use strict";
 
-    var DataLabel = Plugin.extend("uia.chartjs.plugins.DataLabel", {
+    /**
+     * just for practice
+     * 
+     */
+    var LineBarLabel = Plugin.extend("uia.chartjs.plugins.LineBarLabel", {
 
         metadata: {
 
@@ -126,6 +130,6 @@ sap.ui.define([
         }
     });
 
-    return DataLabel;
+    return LineBarLabel;
 
 }, /* bExport= */ true);

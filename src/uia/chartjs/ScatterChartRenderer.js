@@ -10,7 +10,7 @@ sap.ui.define([
 
     "use strict";
 
-    var PieChartRenderer = Renderer.extend(BaseChartRenderer);
+    var ScatterChartRenderer = Renderer.extend(BaseChartRenderer);
 
     /**
      * Adds control specific class
@@ -18,10 +18,10 @@ sap.ui.define([
      * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
      * @param {sap.ui.core.Control} oChart an object representation of the control that should be rendered
      */
-    PieChartRenderer.addOuterClasses = function(oRm, oChart) {
-        oRm.addClass("openui5-pie-chartjs");
+    ScatterChartRenderer.addOuterClasses = function(oRm, oChart) {
+        oRm.addClass("opeui5-scatter-chartjs");
     };
 
-    return PieChartRenderer;
+    return ScatterChartRenderer;
 
 }, /* bExport= */ true);

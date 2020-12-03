@@ -13,17 +13,28 @@ sap.ui.define([
             properties: {
             },
 
-            "defaultAggregation": "attrs",
+            defaultAggregation: "attrs",
 
-            "aggregations": {
+            aggregations: {
 
-                attrs: { type: "uia.chartjs.plugins.PluginAttr", multiple: true, aggregation: "attr" }
+                attrs: { 
+                    type: "uia.chartjs.plugins.PluginAttr", 
+                    multiple: true, 
+                    singularName: "attr" 
+                }
             },
 
         },
 
         constructor: function(sId, mSettings) {
             Element.apply(this, arguments);
+        },
+
+        addAttrValue: function(key, value) {
+            this.addAttr(new uia.chartjs.plugins.PluginAttr({
+                "key": key,
+                "value": value
+            }));
         },
 
         getName: function() {

@@ -24,6 +24,15 @@ sap.ui.define([
                 xAxisID: { type: "string", group: "data", defaultValue: undefined },
 
                 yAxisID: { type: "string", group: "data", defaultValue: undefined },
+            },
+
+            "aggregations": {
+
+                plugins: {
+                    type: "uia.chartjs.plugins.Plugin",
+                    multiple: true,
+                    singularName: "plugin"
+                }
             }
         },
 
@@ -43,6 +52,11 @@ sap.ui.define([
                 "xAxisID": this.getXAxisID(),
                 "yAxisID": this.getYAxisID()
             };
+
+            //  plugin options only for this dataset
+            var plugins = this.getAggregation("plugins") || [];
+            plugins.forEach(p => oDataset[p.getName()] = p.toOption());
+
             return this.applyDatasetEx(oChart, oDataset);
         },
 

@@ -46,6 +46,8 @@ sap.ui.define([
                 maxTicksLimit: this.getMaxTicksLimit(),
                 precision: this.getPrecision(),
                 stepSize: this.getStepSize(),
+                max: this.getMax(),
+                min: this.getMin(),
                 suggestedMax: this.getSuggestedMax(),
                 suggestedMin: this.getSuggestedMin()
             }
