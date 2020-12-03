@@ -27,7 +27,10 @@
     "@openui5/sap.ui.layout": "^1.58.4",
     "@openui5/themelib_sap_belize": "^1.58.4",
     "chart.js": "^2.9.4",
-    "chartjs-plugin-crosshair": "1.1.4"
+    "chartjs-plugin-crosshair": "1.1.4",
+    "chartjs-plugin-zoom": "0.7.7",
+    "chartjs-plugin-datalabels": "0.7.0",
+    "hammerjs": "2.0.8"
   },
   "devDependencies": {
     "@ui5/cli": "^1.14.0",

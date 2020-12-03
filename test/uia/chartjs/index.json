@@ -126,7 +126,7 @@
 			},
 			"Plugins": {
 				"id": "Plugins",
-				"name": "Plugins",
+				"name": "Plugins", 
 				"type": "control",
 				"description": "Samples of plugins",
 				"samples": [
@@ -141,9 +141,14 @@
 						"description": "draw crosshair"
 					},
 					{
-						"id": "PluginDataLabel1",
-						"name": "Data Label #1",
+						"id": "PluginDataLabel",
+						"name": "Data Label",
 						"description": "draw data label"
+					},
+					{
+						"id": "PluginZoom",
+						"name": "Zoom",
+						"description": "zoom and pan"
 					}
 				]
 			}

@@ -33,8 +33,8 @@
 			});
 
 			// plugin: data label
-			var oDataLabel = new uia.chartjs.plugins.DataLabel();
-			oBarChart.addAggregation("plugins", oDataLabel);
+			var oLabel = new uia.chartjs.plugins.LineBarLabel();
+			oBarChart.addAggregation("plugins", oLabel);
 
 			// options.scales: x
 			var xAxis = new uia.chartjs.axes.CategoryAxis({

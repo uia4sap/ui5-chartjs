@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TestPage - LineChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-async="true"
+		data-sap-ui-libs="sap.m,sap.ui.layout,uia.chartjs"
+        data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+			// chart1
+			var oLineChart1 = new uia.chartjs.ScatterChart();
+			// chart1.title
+			var oTitle1 = new uia.chartjs.options.Title({
+				"text": "humidity",
+				"fontSize": 16
+			});
+			oLineChart1.addOption(oTitle1);
+			// chart1.data
+			var humidity = new uia.chartjs.data.Line({
+				label: "Humidity",
+				data: [
+					{ x: 0, y: 30},
+					{ x: 1, y: 31, key: 'NG'},
+					{ x: 2, y: 40, key: 'OK'},
+					{ x: 3, y: 42, key: 'OK'},
+					{ x: 4, y: 37, key: 'OK'},
+					{ x: 5, y: 50, key: 'OK'},
+					{ x: 6, y: 67, key: 'OK'},
+					{ x: 7, y: 68, key: 'OK'},
+					{ x: 8, y: 64, key: 'OK'},
+					{ x: 9, y: 51, key: 'NG'},
+					{ x: 10, y: 49, key: 'OK'},
+					{ x: 11, y: 54, key: 'OK'},
+					{ x: 12, y: 53, key: 'OK'}],
+				borderColor: uia.chartjs.Palette.pick(0),
+				pointStyle: "rect",
+				pointRadius: 10
+			});
+			oLineChart1.addDataset(humidity);
+			// chart1.tooltips
+			var oTooltips1 = new uia.chartjs.options.Tooltips({
+				mode: 'interpolate',
+				intersect: false,
+				backgroundColor: "rgba(128,128,255,0.8)"
+			});
+			oLineChart1.addOption(oTooltips1);
+
+			// chart2
+			var oLineChart2 = new uia.chartjs.ScatterChart();
+			// chart2.title
+			var oTitle2 = new uia.chartjs.options.Title({
+				"text": "CO2",
+				"fontSize": 16
+			});
+			oLineChart2.addOption(oTitle2);
+			// chart2:data
+			var co2 = new uia.chartjs.data.Line({
+				label: "CO2",
+				data: [
+					{ x: 0, y: 96, key: 'OK'},
+					{ x: 1, y: 87, key: 'OK'},
+					{ x: 2, y: 70, key: 'NG'},
+					{ x: 3, y: 71, key: 'OK'},
+					{ x: 4, y: 65, key: 'NG'},
+					{ x: 5, y: 72, key: 'OK'},
+					{ x: 6, y: 80, key: 'OK'},
+					{ x: 7, y: 99, key: 'OK'},
+					{ x: 8, y: 101, key: 'OK'},
+					{ x: 9, y: 146, key: 'OK'},
+					{ x: 10, y: 185, key: 'NG'},
+					{ x: 11, y: 183, key: 'OK'},
+					{ x: 12, y: 195, key: 'NG'}], 
+				borderColor: uia.chartjs.Palette.pick(1),
+			});
+			oLineChart2.addDataset(co2);
+			// chart2.tooltips
+			var oTooltips2 = new uia.chartjs.options.Tooltips({
+				mode: 'interpolate',
+				intersect: false,
+				backgroundColor: "rgba(128,128,255,0.8)"
+			});
+			oLineChart2.addOption(oTooltips2);
+
+			// chart3
+			var oLineChart3 = new uia.chartjs.ScatterChart();
+			// chart3.title
+			var oTitle3 = new uia.chartjs.options.Title({
+				"text": "CO",
+				"fontSize": 16
+			});
+			oLineChart3.addOption(oTitle3);
+			// chart3:data
+			var co = new uia.chartjs.data.Line({
+				label: "CO",
+				data: [
+					{ x: 0, y: 98, key: 'OK'},
+					{ x: 1, y: 95, key: 'OK'},
+					{ x: 2, y: 81, key: 'NG'},
+					{ x: 3, y: 70, key: 'OK'},
+					{ x: 4, y: 75, key: 'NG'},
+					{ x: 5, y: 79, key: 'OK'},
+					{ x: 6, y: 78, key: 'OK'},
+					{ x: 7, y: 89, key: 'OK'},
+					{ x: 8, y: 133, key: 'OK'},
+					{ x: 9, y: 131, key: 'OK'},
+					{ x: 10, y: 148, key: 'NG'},
+					{ x: 11, y: 145, key: 'OK'},
+					{ x: 12, y: 121, key: 'NG'}], 
+				borderColor: uia.chartjs.Palette.pick(8),
+			});
+			oLineChart3.addDataset(co);
+			// chart3.tooltips
+			var oTooltips3 = new uia.chartjs.options.Tooltips({
+				mode: 'interpolate',
+				intersect: false,
+				backgroundColor: "rgba(128,128,255,0.8)"
+			});
+			oLineChart3.addOption(oTooltips3);
+
+			// plugin: crosshair1
+			var oCrosshair1 = new uia.chartjs.plugins.Crosshair();
+			oCrosshair1.addAttrValue("sync", {
+				enabled: true,
+				group: 1
+			}); 
+			oCrosshair1.addAttrValue("line", {
+				color: "black",
+				width: 1
+			}); 
+			// oLineChart1.addPlugin(oCrosshair1);
+			
+			// plugin: crosshair2
+			var oCrosshair2 = new uia.chartjs.plugins.Crosshair();
+			oCrosshair2.addAttrValue("sync", {
+				enabled: true,
+				group: 2
+			}); 
+			oCrosshair2.addAttrValue("line", {
+				color: "black",
+				width: 1
+			}); 
+			oLineChart2.addPlugin(oCrosshair2);
+
+			// plugin: crosshair3
+			var oCrosshair3 = new uia.chartjs.plugins.Crosshair();
+			oCrosshair3.addAttrValue("sync", {
+				enabled: true,
+				group: 2
+			}); 
+			oCrosshair3.addAttrValue("line", {
+				color: "black",
+				width: 1
+			}); 
+			oLineChart3.addPlugin(oCrosshair3);
+
+			var oGrid = new sap.ui.layout.Grid({
+				defaultSpan: "XL4 L4 M6 S12"
+			});
+			oGrid.addContent(oLineChart1);
+			oGrid.addContent(oLineChart2);
+			oGrid.addContent(oLineChart3);
+
+			oGrid.placeAt("content");
+
+			var panZoom = function(e) {
+				if (e.keyCode === 37) {
+					oLineChart2.getChartJS().panZoom(-4);
+					oLineChart3.getChartJS().panZoom(-4);
+				} else if (e.keyCode === 39) {
+					oLineChart2.getChartJS().panZoom(4);
+					oLineChart3.getChartJS().panZoom(4);
+				}
+			};		
+			window.addEventListener("keydown", panZoom);	
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

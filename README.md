@@ -18,16 +18,18 @@ The resources of Chart.js
 
 
 ## How to Build
-1. __npm install__
+1. __npm install__ - install dependency packages.
 
-2. __npm start__ - demo the samples.
+2. __npm prepare__ - prepare dev environment.
 
-3. __npm run build__ - build and output to `dist` folder.
+3. __npm start__ - demo the samples.
+
+4. __npm run build__ - build and output to `dist` folder.
 
 
 ## How to Use
 
-1. Copy library to the the `resources` folder. THe full path will be: `{WORK_DIR}/resources/uia/chartjs/`.
+1. Copy library to the the `resources` folder. THe full path will like: `{WORK_DIR}/resources/uia/chartjs/`.
 
 2. setup __index.html__ where the library is.
    
@@ -89,6 +91,8 @@ The resources of Chart.js
 
 * [Line Chart](SBS_LINE.md)
 * [BAR Chart](SBS_BAR.md)
+* [Events](SBS_EVENTS.md)
+* [Plugins](SBS_PLUGINS.md)
 
 ## Develop
 

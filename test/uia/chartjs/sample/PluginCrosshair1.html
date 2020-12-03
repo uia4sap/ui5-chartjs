@@ -26,6 +26,7 @@
 
 			// chart
 			var oLineChart = new uia.chartjs.LineChart({
+				"height": 100
 			});
 
 			// options.title
@@ -33,14 +34,15 @@
 				"text": "Air Quality Index",
 				"fontSize": 16
 			});
-			oLineChart.addAggregation("options", oTitle);
+			oLineChart.addOption(oTitle);
 
 			// options.tooltips
 			var oTooltips = new uia.chartjs.options.Tooltips({
-				"intersect": false,
-				"backgroundColor": "rgba(128,128,255,0.8)"
+				mode: 'interpolate',
+				intersect: false,
+				backgroundColor: "rgba(128,128,255,0.8)"
 			});
-			oLineChart.addAggregation("options", oTooltips);
+			oLineChart.addOption(oTooltips);
 
 			// options.scales: y1
 			var oPpmAxis = new uia.chartjs.axes.LinearAxis({
@@ -49,7 +51,7 @@
 				title: "ppm",
 				titleDisplay: true
 			});
-			oLineChart.addAggregation("scales", oPpmAxis);
+			oLineChart.addScale(oPpmAxis);
 
 			// options.scales: y2
 			var oPctAxis = new uia.chartjs.axes.LinearAxis({
@@ -60,22 +62,22 @@
 				suggestedMax: 100.0,
 				beginAtZero: true
 			});
-			oLineChart.addAggregation("scales", oPctAxis);
+			oLineChart.addScale(oPctAxis);
 
 			// plugin: crosshair
 			var oCrosshair = new uia.chartjs.plugins.Crosshair();
-			oCrosshair.addAggregation("attrs", new uia.chartjs.plugins.PluginAttr({
-				key: "sync",
-				value: true
-			}));
-			oCrosshair.addAggregation("attrs", new uia.chartjs.plugins.PluginAttr({
-				key: "line",
-				value: {
-					color: "rgba(0,0,255,0.6)",
-					width: 1
-				}
-			}));
-			oLineChart.addAggregation("plugins", oCrosshair);
+			oCrosshair.addAttrValue("sync", {
+				enabled: true,
+				suppressTooltips: true
+			});
+			oCrosshair.addAttrValue("line", {
+				color: "rgba(0,0,255,0.6)",
+				width: 5
+			}); 
+			oCrosshair.addAttrValue("zoom", {
+				enabled: true,
+			}); 
+			oLineChart.addPlugin(oCrosshair);
 
 			// data 1
 			var toColor = function() {
