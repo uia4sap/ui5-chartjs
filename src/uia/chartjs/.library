@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <library xmlns="http://www.sap.com/sap.ui.library.xsd">
-
 	<name>uia.chartjs</name>
 	<version>${version}</version>
-
-	<documentation>UI5 library: uia.chartjs</documentation>
-
+	<documentation>UI5 uia.chartjs</documentation>
 	<dependencies>
 		<dependency>
 			<libraryName>sap.ui.core</libraryName>
 		</dependency>
 	</dependencies>
-
 	<appData>
 		<!-- excludes for the JSDoc -->
 		<jsdoc xmlns="http://www.sap.com/ui5/buildext/jsdoc">
@@ -22,5 +18,4 @@
 			<exclude name="uia.chartjs.js."/>
 		</jscoverage>
 	</appData>
-
 </library>

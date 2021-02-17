@@ -62,8 +62,10 @@ sap.ui.define([
             var size = this.getSize();
             var max = Math.min(current + size, this.getMax());
             var min = max - size;
-
-            charts.forEach(chart => chart.updateAxisRange(this.getAxisID(), min, max));
+            var axisID = this.getAxisID();
+            charts.forEach(function(chart) {
+                chart.updateAxisRange(axisID, min, max);
+            });
             this.setCurrent(min);            
         }
    });

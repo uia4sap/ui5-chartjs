@@ -36,7 +36,7 @@ sap.ui.define([
          */
         setValue: function(value) {
             if (value) {
-                if(isNaN(value)) {
+                if (isNaN(value)) {
                     this.setProperty("value", value, true);
                 } else {
                     this.setProperty("value", parseFloat(value), true);

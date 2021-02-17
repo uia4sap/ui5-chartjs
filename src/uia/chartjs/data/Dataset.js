@@ -55,7 +55,9 @@ sap.ui.define([
 
             //  plugin options only for this dataset
             var plugins = this.getAggregation("plugins") || [];
-            plugins.forEach(p => oDataset[p.getName()] = p.toOption());
+            plugins.forEach(function(p) {
+                oDataset[p.getName()] = p.toOption();
+            });
 
             return this.applyDatasetEx(oChart, oDataset);
         },

@@ -1,7 +1,12 @@
-specVersion: '0.1'
+specVersion: '1.0'
 metadata:
   name: uia-chartjs
 type: library
 server:
   settings:
     httpPort: 9090
+framework:
+  name: OpenUI5
+  version: "1.58.4"
+  libraries:
+    - name: sap.ui.core
