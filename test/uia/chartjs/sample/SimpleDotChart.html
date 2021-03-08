@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TestPage - LineChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-async="true"
+		data-sap-ui-libs="sap.m,uia.chartjs"
+        data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+
+			// chart
+			var oLineChart = new uia.chartjs.LineChart({
+				height: 100
+			});
+
+			var co = new uia.chartjs.data.Line({
+				label: "CO",
+				data: [
+					{ x: 0, y: 2 },
+					{ x: 1, y: 10 },
+					{ x: 1, y: 12 },
+					{ x: 1, y: 13 },
+					{ x: 2, y: 20 },
+					{ x: 2, y: 44 },
+					{ x: 3, y: 56 },
+					{ x: 4, y: 72 },
+					{ x: 5, y: 78 },
+					{ x: 5, y: 87 },
+					{ x: 6, y: 91 },
+					{ x: 7, y: 93 },
+					{ x: 8, y: 100 }], 
+				borderColor: "rgba(255, 0, 0, 0.6)",
+				showLine: false
+			});
+			oLineChart.addDataset(co);
+			
+			//
+			var oBox = new sap.m.VBox({});
+			oBox.addItem(oLineChart);
+
+			oBox.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>
