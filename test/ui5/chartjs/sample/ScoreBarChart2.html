@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Test Page - BarChart mix Line</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-libs="sap.m,ui5.chartjs"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+			// chart
+			var oBarChart = new ui5.chartjs.BarChart({
+				labels: [ "Chinese", "Math", "English", "Science", "Society"],
+				pointClick: function(oEvent) {
+					var points = oEvent.getParameter("points");
+					sap.m.MessageToast.show(
+						"points count:" + points.length, 
+						{ at: "center center" });
+				}
+			});
+
+			// options.scales: x
+			var xAxis = new ui5.chartjs.axes.CategoryAxis({
+				axisID: "subject",
+				position: "bottom",
+				title: "Subject"
+			});
+			oBarChart.addAggregation("scales", xAxis);
+
+			// options.scales: y
+			var yAxis = new ui5.chartjs.axes.LinearAxis({
+				axisID: "score",
+				position: "left",
+				title: "Score",
+				suggestedMax: 100.0,
+				suggestedMin: 60.0
+			});
+			oBarChart.addAggregation("scales", yAxis);
+
+			// data 1
+			var data1 = new ui5.chartjs.data.Bar({
+				label: "Male",
+				data:  [81, 76, 83, 85, 90],
+				xAxisID: "subject",
+				yAxisID: "score",
+				order: 1,
+				backgroundColor:  ui5.chartjs.Palette.pick(6, 168)
+			});
+			oBarChart.addDataset(data1);
+
+			// data 2
+			var data2 = new ui5.chartjs.data.Bar({
+				label: "Female",
+				data:  [82, 73, 88, 83, 91],
+				xAxisID: "subject",
+				yAxisID: "score",
+				order: 1,
+				backgroundColor:  ui5.chartjs.Palette.pick(7, 96)
+			});
+			oBarChart.addDataset(data2);
+
+			// data 3: average line
+			var data3 = new ui5.chartjs.data.Line({
+				label: "Average",
+				data:  [81.5, 74.5, 85.5, 84, 90.5],
+				yAxisID: "score",
+				borderColor:  ui5.chartjs.Palette.pick(1)
+			});
+			oBarChart.addDataset(data3);
+
+			oBarChart.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

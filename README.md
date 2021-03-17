@@ -29,7 +29,7 @@ The resources of Chart.js
 
 ## How to Use
 
-1. Copy library to the the `resources` folder. THe full path will like: `{WORK_DIR}/resources/uia/chartjs/`.
+1. Copy library to the the `resources` folder. THe full path will like: `{WORK_DIR}/resources/ui5/chartjs/`.
 
 2. setup __index.html__ where the library is.
    
@@ -37,7 +37,7 @@ The resources of Chart.js
     <script
       data-sap-ui-resourceroots='{
         ...,
-        "uia.chartjs": "./resource/uia/chartjs/"
+        "ui5.chartjs": "./resource/ui5/chartjs/"
       }'>
     </script>
     ```
@@ -49,8 +49,8 @@ The resources of Chart.js
             xmlns:m="sap.m"
             xmlns:mvc="sap.ui.core.mvc"
             xmlns:l="sap.ui.layout"
-            xmlns:chartjs="uia.chartjs"
-            xmlns:data="uia.chartjs.data">
+            xmlns:chartjs="ui5.chartjs"
+            xmlns:data="ui5.chartjs.data">
         <m:Page showHeader="false">
             <chartjs:LineChart datasets="{/result}">
                 <data:Line

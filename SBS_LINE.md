@@ -96,11 +96,11 @@ Full XML
         controllerName="my.SampleChart"
         xmlns:m="sap.m"
         xmlns:mvc="sap.ui.core.mvc"
-        xmlns:chartjs="uia.chartjs"
-        xmlns:data="uia.chartjs.data"
-        xmlns:opts="uia.chartjs.options"
-        xmlns:specline="uia.chartjs.plugins.specline"
-        xmlns:axes="uia.chartjs.axes">
+        xmlns:chartjs="ui5.chartjs"
+        xmlns:data="ui5.chartjs.data"
+        xmlns:opts="ui5.chartjs.options"
+        xmlns:specline="ui5.chartjs.plugins.specline"
+        xmlns:axes="ui5.chartjs.axes">
     <m:Page showHeader="false">
         <chartjs:LineChart datasets="{/result}">
             <chartjs:options>

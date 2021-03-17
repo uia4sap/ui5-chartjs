@@ -54,8 +54,8 @@ Full XML
         controllerName="my.SampleChart"
         xmlns:m="sap.m"
         xmlns:mvc="sap.ui.core.mvc"
-        xmlns:chartjs="uia.chartjs"
-        xmlns:data="uia.chartjs.data">
+        xmlns:chartjs="ui5.chartjs"
+        xmlns:data="ui5.chartjs.data">
     <m:Page showHeader="false">
         <chartjs:BarChart
                 labels="{/subjects}">
@@ -81,11 +81,11 @@ var result = {
     "subjects": [ "Chinese", "Math", "English", "Science", "Society" ],
     "male": {
         "score": [ 81, 76, 83, 85, 90 ],
-        "color": uia.chartjs.Palette.pick(0, 192)
+        "color": ui5.chartjs.Palette.pick(0, 192)
     },
     "female": {
         "score": [ 82, 73, 88, 83, 91 ],
-        "color": uia.chartjs.Palette.pick(2, 192)
+        "color": ui5.chartjs.Palette.pick(2, 192)
     }
 ]
 ```

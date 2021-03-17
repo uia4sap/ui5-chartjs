@@ -27,38 +27,38 @@ The below structure is core model of Chart.js
   plugins: []
 }
 ```
-1. The `type` of attribute maps to `uia.chartjs` namespace.
+1. The `type` of attribute maps to `ui5.chartjs` namespace.
 
-    * __line__ - uia.chartjs.LineChart
-    * __bar__ - uia.chartjs.BarChart
-
-
-2. The values of `data.datasets` are objects of dataset which maps to `uia.chartjs.data` namespace.
-
-    * __line__ - uia.chartjs.data.Line
-    * __bar__ - uia.chartjs.data.Bar
+    * __line__ - ui5.chartjs.LineChart
+    * __bar__ - ui5.chartjs.BarChart
 
 
-3. The `options` of attribute maps to `uia.chartjs.options` namespace.
+2. The values of `data.datasets` are objects of dataset which maps to `ui5.chartjs.data` namespace.
 
-    * __animation__ - uia.chartjs.options.Animation
-    * __layout__ - uia.chartjs.options.Layout
-    * __legend__ - uia.chartjs.options.Legend
-    * __plugins__ - _uia.chartjs.plugins.*_
-    * __title__ - uia.chartjs.options.Title
-    * __tooltips__ - uia.chartjs.options.Tooltips
-    * __scales__ - _uia.chartjs.axes.*_
+    * __line__ - ui5.chartjs.data.Line
+    * __bar__ - ui5.chartjs.data.Bar
 
 
-4. The values of `options.scales` are objects of axis which map to `uia.chartjs.axes` namespace.
+3. The `options` of attribute maps to `ui5.chartjs.options` namespace.
 
-    * __Category__ - uia.chartjs.axes.CategoryAxis
-    * __Linear__ - uia.chartjs.axes.LinearAxis
+    * __animation__ - ui5.chartjs.options.Animation
+    * __layout__ - ui5.chartjs.options.Layout
+    * __legend__ - ui5.chartjs.options.Legend
+    * __plugins__ - _ui5.chartjs.plugins.*_
+    * __title__ - ui5.chartjs.options.Title
+    * __tooltips__ - ui5.chartjs.options.Tooltips
+    * __scales__ - _ui5.chartjs.axes.*_
+
+
+4. The values of `options.scales` are objects of axis which map to `ui5.chartjs.axes` namespace.
+
+    * __Category__ - ui5.chartjs.axes.CategoryAxis
+    * __Linear__ - ui5.chartjs.axes.LinearAxis
     * Logarithmic - TBD
-    * __Time__ - uia.chartjs.axes.TimeAxis
+    * __Time__ - ui5.chartjs.axes.TimeAxis
 
 
-5. The values of `options.plugins` are configuration of plugins which map to `uia.chartjs.plugins` namespace.
+5. The values of `options.plugins` are configuration of plugins which map to `ui5.chartjs.plugins` namespace.
 
     * __Crosshair__ - [chartjs-plugin-crosshair](https://www.npmjs.com/package/chartjs-plugin-crosshair) UI5 version
 
@@ -86,7 +86,7 @@ All datasets have following common attributes:
 ```
 The configuration of chart.js is `type='bar'`
 
-The implementation is `uia.chartjs.data.Bar`
+The implementation is `ui5.chartjs.data.Bar`
 
 ### Line
 ```xml
@@ -98,9 +98,9 @@ The implementation is `uia.chartjs.data.Bar`
 ```
 The configuration of chart.js is `type='line'`
 
-The implementation is `uia.chartjs.data.Line`
+The implementation is `ui5.chartjs.data.Line`
 
-## uia.chartjs.options
+## ui5.chartjs.options
 
 ```xml
 <chartjs:options>
@@ -117,12 +117,12 @@ All implementations map to the `options` of chart.js.
 ### Animation
 The configuration of chart.js is `options.animation`
 
-The implementation is `uia.chartjs.options.Animation`
+The implementation is `ui5.chartjs.options.Animation`
 
 ### Layout
 The configuration of chart.js is `options.layout`
 
-The implementation is `uia.chartjs.options.Layout`
+The implementation is `ui5.chartjs.options.Layout`
 
 * paddingLeft
 * paddingRight
@@ -132,7 +132,7 @@ The implementation is `uia.chartjs.options.Layout`
 ### Legend
 The configuration of chart.js is `options.legend`
 
-The implementation is `uia.chartjs.options.Legend`.
+The implementation is `ui5.chartjs.options.Legend`.
 
 * display
 * position
@@ -144,7 +144,7 @@ The implementation is `uia.chartjs.options.Legend`.
 ### Title
 The configuration of chart.js is `options.title`
 
-The implementation is `uia.chartjs.options.Title`.
+The implementation is `ui5.chartjs.options.Title`.
 
 * display
 * position
@@ -159,9 +159,9 @@ The implementation is `uia.chartjs.options.Title`.
 ### Tooltips
 The configuration of chart.js is `options.tooltips`
 
-The implementation is `uia.chartjs.options.Tooltips`.
+The implementation is `ui5.chartjs.options.Tooltips`.
 
-## uia.chartjs.axes
+## ui5.chartjs.axes
 ```xml
 <chartjs:scales>
     <axes:CategoryAxis />
@@ -186,13 +186,13 @@ There are 4 types of axis implementation for `options.scales` of chart.js. All a
 * titleFontStyle
 
 ### CategoryAxis
-The implementation is `uia.chartjs.axes.CategoryAxis`.
+The implementation is `ui5.chartjs.axes.CategoryAxis`.
 
 * max
 * min
 
 ### LinearAxis
-The implementation is `uia.chartjs.axes.LinearAxis`.
+The implementation is `ui5.chartjs.axes.LinearAxis`.
 
 * beginAtZero
 * maxTicksLimit
@@ -207,7 +207,7 @@ The implementation is `uia.chartjs.axes.LinearAxis`.
 TBD
 
 ### TimeAxis
-The implementation is `uia.chartjs.axes.TimeAxis`.
+The implementation is `ui5.chartjs.axes.TimeAxis`.
 
 * displayFormat
 * isoWeekday
@@ -229,7 +229,7 @@ All are implemented for `plugins` of chart.js.
     </plugins:Crosshair>
 </chartjs:options>
 ```
-The implementation is `uia.chartjs.plugins.Crosshair` which wraps the [chartjs-plugin-crosshair](https://www.npmjs.com/package/chartjs-plugin-crosshair).
+The implementation is `ui5.chartjs.plugins.Crosshair` which wraps the [chartjs-plugin-crosshair](https://www.npmjs.com/package/chartjs-plugin-crosshair).
 
 Known issue:
 1. The x-axis must be __LinearAxis__ or  __TimeAxis__, or the chart will throw the exception.
@@ -246,7 +246,7 @@ Known issue:
 </chartjs:options>
 ```
 
-The implementation is `uia.chartjs.plugins.stepline.StepLine`.
+The implementation is `ui5.chartjs.plugins.stepline.StepLine`.
 
 
 ## Remark
@@ -255,11 +255,11 @@ Namespace References
 <mvc:View
         controllerName="..."
         ...
-        xmlns:chartjs="uia.chartjs"
-        xmlns:data="uia.chartjs.data"
-        xmlns:opts="uia.chartjs.options"
-        xmlns:plugins="uia.chartjs.plugins"
-        xmlns:specline="uia.chartjs.plugins.specline"
-        xmlns:axes="uia.chartjs.axes">
+        xmlns:chartjs="ui5.chartjs"
+        xmlns:data="ui5.chartjs.data"
+        xmlns:opts="ui5.chartjs.options"
+        xmlns:plugins="ui5.chartjs.plugins"
+        xmlns:specline="ui5.chartjs.plugins.specline"
+        xmlns:axes="ui5.chartjs.axes">
 </mvc:View>
 ```

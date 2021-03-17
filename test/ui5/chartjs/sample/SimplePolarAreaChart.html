@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Test Page - BarChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-libs="sap.m,ui5.chartjs"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+			// chart
+			var oPolarAreaChart = new ui5.chartjs.PolarAreaChart({
+				labels: [ "A", "B", "C", "D", "E", "F", "G"]
+			});
+
+			// data 1
+			var data1 = new ui5.chartjs.data.PolarArea({
+				label: "C201",
+				data: [20, 3, 20, 10, 34, 5, 12],
+				backgroundColor:  [
+					ui5.chartjs.Palette.pick(0),
+					ui5.chartjs.Palette.pick(1),
+					ui5.chartjs.Palette.pick(2),
+					ui5.chartjs.Palette.pick(3),
+					ui5.chartjs.Palette.pick(4),
+					ui5.chartjs.Palette.pick(5),
+					ui5.chartjs.Palette.pick(6)]
+			});
+			oPolarAreaChart.addDataset(data1);
+
+			oPolarAreaChart.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

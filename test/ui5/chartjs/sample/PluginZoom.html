@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TestPage - LineChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-async="true"
+		data-sap-ui-libs="sap.m,ui5.chartjs"
+        data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+
+			// chart
+			var oLineChart = new ui5.chartjs.LineChart({
+				height: 100
+			});
+
+			var co = new ui5.chartjs.data.Line({
+				label: "CO",
+				data: [
+					{ x: 0, y: 76 },
+					{ x: 1, y: 85 },
+					{ x: 2, y: 78 },
+					{ x: 3, y: 85 },
+					{ x: 4, y: 75 },
+					{ x: 5, y: 73 },
+					{ x: 6, y: 85 },
+					{ x: 7, y: 104 },
+					{ x: 8, y: 102 },
+					{ x: 9, y: 139 },
+					{ x: 10, y: 175 },
+					{ x: 11, y: 185 },
+					{ x: 12, y: 178 },
+					{ x: 13, y: 185 },
+					{ x: 14, y: 175 },
+					{ x: 15, y: 173 },
+					{ x: 16, y: 185 },
+					{ x: 17, y: 174 },
+					{ x: 18, y: 170 },
+					{ x: 19, y: 166 },
+					{ x: 20, y: 130 }, 
+					{ x: 21, y: 122 },
+					{ x: 22, y: 119 },
+					{ x: 23, y: 97 }],
+				borderColor: "rgba(255, 0, 0, 0.6)"
+			});
+			oLineChart.addDataset(co);
+			
+			var co2 = new ui5.chartjs.data.Line({
+				label: "CO2",
+				data: [
+					{ x: 0, y: 96},
+					{ x: 1, y: 87 },
+					{ x: 2, y: 70 },
+					{ x: 3, y: 71 },
+					{ x: 4, y: 65 },
+					{ x: 5, y: 72 },
+					{ x: 6, y: 80 },
+					{ x: 7, y: 99 },
+					{ x: 8, y: 101 },
+					{ x: 9, y: 146 },
+					{ x: 10, y: 185 },
+					{ x: 11, y: 187 },
+					{ x: 12, y: 196 },
+					{ x: 13, y: 192 },
+					{ x: 14, y: 189 },
+					{ x: 15, y: 192 },
+					{ x: 16, y: 181 },
+					{ x: 17, y: 188 },
+					{ x: 18, y: 181 },
+					{ x: 19, y: 171 },
+					{ x: 20, y: 158 },
+					{ x: 21, y: 138 },
+					{ x: 22, y: 111 },
+					{ x: 23, y: 99 }], 
+				borderColor: "rgba(0, 255, 0, 0.6)"
+			});
+			oLineChart.addDataset(co2);
+
+			// plugin: zoom
+			var oZoom = new ui5.chartjs.plugins.Zoom({
+				panEnabled: true,
+				panMode: "xy",
+				panRangeMin: { x: 0, y: 60 },
+				panRangeMax: { x: 23, y: 240 },
+				zoomEnabled: true,
+				zoomMode: "x",
+				zoomRangeMin: { x: 0 },
+				zoomRangeMax: { x: 12 }
+			});
+			oLineChart.addPlugin(oZoom);
+
+			// scale
+			var oAxis1 = new ui5.chartjs.axes.LinearAxis({
+				"axisID": "x",
+				"position": "bottom",
+				"max": 12
+			});
+			var oAxis2 = new ui5.chartjs.axes.LinearAxis({
+				"axisID": "y",
+				"position": "left",
+				"min": 60
+			});
+			oLineChart.addScale(oAxis1);
+			oLineChart.addScale(oAxis2);
+
+			//
+			var oButton1 = new sap.m.Button({
+				"text": "Move to 10 ~ 18",
+				"width": "200px"
+			});
+			oButton1.attachPress(oEvent => oLineChart.updateAxisRange("x", 10, 18));
+
+			//
+			var oButton2 = new sap.m.Button({
+				"text": "Reset Scales",
+				"width": "200px"
+			});
+			oButton2.attachPress(oEvent => oLineChart.resetScales());
+
+			//
+			var oBox = new sap.m.VBox({});
+			oBox.addItem(oLineChart);
+			oBox.addItem(oButton1);
+			oBox.addItem(oButton2);
+
+			oBox.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

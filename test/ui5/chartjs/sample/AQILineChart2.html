@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TestPage - LineChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-async="true"
+		data-sap-ui-libs="sap.m,ui5.chartjs"
+        data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+			var oModel = new sap.ui.model.json.JSONModel({
+				title: "Air Quality Index",
+				x: "ppm",
+				no: {
+					data: [
+						{ x: 0, y: 96, key: 10},
+						{ x: 1, y: 87, key: 10},
+						{ x: 2, y: 70, key: 4},
+						{ x: 3, y: 71, key: 10},
+						{ x: 4, y: 65, key: 10},
+						{ x: 5, y: 72, key: 10},
+						{ x: 6, y: 80, key: 10},
+						{ x: 7, y: 99, key: 10},
+						{ x: 8, y: 101, key: 10},
+						{ x: 9, y: 146, key: 10},
+						{ x: 10, y: 185, key: 10},
+						{ x: 11, y: 183, key: 4},
+						{ x: 12, y: 195, key: 10}
+					]
+				},
+				no2: {
+					data: [
+						{ x: 0, y: 34, key: 10},
+						{ x: 1, y: 35, key: 10},
+						{ x: 2, y: 39, key: 4},
+						{ x: 3, y: 52, key: 10},
+						{ x: 4, y: 65, key: 10},
+						{ x: 5, y: 61, key: 10},
+						{ x: 6, y: 71, key: 10},
+						{ x: 7, y: 66, key: 10},
+						{ x: 8, y: 61, key: 10},
+						{ x: 9, y: 67, key: 10},
+						{ x: 10, y: 83, key: 10},
+						{ x: 11, y: 81, key: 4},
+						{ x: 12, y: 85, key: 10}
+					]
+				}
+			});
+			sap.ui.getCore().setModel(oModel);
+
+			// chart
+			var oLineChart = new ui5.chartjs.LineChart({
+			});
+
+			// options.title
+			var oTitle = new ui5.chartjs.options.Title({
+				"text": "{/title}",
+				"fontSize": 16
+			});
+			oLineChart.addAggregation("options", oTitle);
+
+			// options.scales: x
+			var oPpmAxis = new ui5.chartjs.axes.LinearAxis({
+				axisID: "hour",
+				position: "bottom",
+				title: "time",
+				titleDisplay: true,
+			});
+			oLineChart.addAggregation("scales", oPpmAxis);
+
+			// options.scales: y
+			var oPpmAxis = new ui5.chartjs.axes.LinearAxis({
+				axisID: "ppm",
+				position: "left",
+				title: "ppm",
+				titleDisplay: true,
+				stacked: true
+			});
+			oLineChart.addAggregation("scales", oPpmAxis);
+
+			// data 1
+			var no = new ui5.chartjs.data.Line({
+				label: "NO",
+				data: "{/no/data}", 
+				yAxisID: "{/x}",
+				borderColor: ui5.chartjs.Palette.pick(13),
+			});
+			oLineChart.addDataset(no);
+
+			// data 2
+			var no2 = new ui5.chartjs.data.Line({
+				label: "NO2",
+				data: "{/no2/data}", 
+				yAxisID: "{/x}",
+				borderColor: ui5.chartjs.Palette.pick(16),
+			});
+			oLineChart.addDataset(no2);
+
+			// plugin: data label
+			var oDataLabel = new ui5.chartjs.plugins.LineBarLabel();
+			oLineChart.addAggregation("plugins", oDataLabel);
+
+			oLineChart.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

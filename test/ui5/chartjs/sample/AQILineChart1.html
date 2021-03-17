@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TestPage - LineChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-async="true"
+		data-sap-ui-libs="sap.m,ui5.chartjs"
+        data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+
+			// chart
+			var oLineChart = new ui5.chartjs.LineChart({
+
+				pointClick: function(oEvent) {
+					var points = oEvent.getParameter("points");
+					sap.m.MessageToast.show(
+						"points count:" + points.length, 
+						{ at: "center center" });
+				}
+			});
+
+			// options.title
+			var oTitle = new ui5.chartjs.options.Title({
+				"text": "Air Quality Index",
+				"fontSize": 16
+			});
+			oLineChart.addAggregation("options", oTitle);
+
+			// options.tooltips
+			var oTooltips = new ui5.chartjs.options.Tooltips({
+				"intersect": false,
+				"backgroundColor": ui5.chartjs.Palette.pick(0)
+			});
+			oLineChart.addAggregation("options", oTooltips);
+
+			// options.scales: y1
+			var oPpmAxis = new ui5.chartjs.axes.LinearAxis({
+				axisID: "ppm",
+				position: "left",
+				title: "ppm",
+				titleDisplay: true
+			});
+			oLineChart.addAggregation("scales", oPpmAxis);
+
+			// options.scales: y2
+			var oPctAxis = new ui5.chartjs.axes.LinearAxis({
+				axisID: "percent",
+				position: "right",
+				title: "Percent (%)",
+				titleDisplay: true,
+				suggestedMax: 100.0,
+				beginAtZero: true
+			});
+			oLineChart.addAggregation("scales", oPctAxis);
+
+			// data 1
+			var humidity = new ui5.chartjs.data.Line({
+				label: "Humidity",
+				data: [
+					{ x: 0, y: 30},
+					{ x: 1, y: 31, key: 'NG'},
+					{ x: 2, y: 40, key: 'OK'},
+					{ x: 3, y: 42, key: 'OK'},
+					{ x: 4, y: 37, key: 'OK'},
+					{ x: 5, y: 50, key: 'OK'},
+					{ x: 6, y: 67, key: 'OK'},
+					{ x: 7, y: 68, key: 'OK'},
+					{ x: 8, y: 64, key: 'OK'},
+					{ x: 9, y: 51, key: 'NG'},
+					{ x: 10, y: 49, key: 'OK'},
+					{ x: 11, y: 54, key: 'OK'},
+					{ x: 12, y: 53, key: 'OK'}],
+				yAxisID: "percent",
+				borderColor: ui5.chartjs.Palette.pick(0),
+				pointStyle: "rect",
+				pointRadius: 10
+			});
+			oLineChart.addDataset(humidity);
+
+			// data 2
+			var co2 = new ui5.chartjs.data.Line({
+				label: "CO2",
+				data: [
+					{ x: 0, y: 96, key: 'OK'},
+					{ x: 1, y: 87, key: 'OK'},
+					{ x: 2, y: 70, key: 'NG'},
+					{ x: 3, y: 71, key: 'OK'},
+					{ x: 4, y: 65, key: 'NG'},
+					{ x: 5, y: 72, key: 'OK'},
+					{ x: 6, y: 80, key: 'OK'},
+					{ x: 7, y: 99, key: 'OK'},
+					{ x: 8, y: 101, key: 'OK'},
+					{ x: 9, y: 146, key: 'OK'},
+					{ x: 10, y: 185, key: 'NG'},
+					{ x: 11, y: 183, key: 'OK'},
+					{ x: 12, y: 195, key: 'NG'}], 
+				yAxisID: "ppm",
+				borderColor: ui5.chartjs.Palette.pick(1),
+				pointBackgroundColor: function(oChart) {
+					var point = oChart.dataset.data[oChart.dataIndex];
+	                return point.key === 'NG' ? 'yellow' : ui5.chartjs.Palette.pick(1);
+				},
+				pointHoverBackgroundColor: function(oChart) {
+					var point = oChart.dataset.data[oChart.dataIndex];
+	                return point.key === 'NG' ? 'yellow' : ui5.chartjs.Palette.pick(1);
+				}
+			});
+			oLineChart.addDataset(co2);
+
+			// data 3
+			var no = new ui5.chartjs.data.Line({
+				label: "NO",
+				data: [
+					{ x: 0, y: 76, key: 'OK'},
+					{ x: 1, y: 72, key: 'OK'},
+					{ x: 2, y: 63, key: 'NG'},
+					{ x: 3, y: 75, key: 'OK'},
+					{ x: 4, y: 68, key: 'OK'},
+					{ x: 5, y: 66, key: 'OK'},
+					{ x: 6, y: 73, key: 'OK'},
+					{ x: 7, y: 89, key: 'OK'},
+					{ x: 8, y: 93, key: 'OK'},
+					{ x: 9, y: 126, key: 'OK'},
+					{ x: 10, y: 133, key: 'OK'},
+					{ x: 11, y: 154, key: 'NG'},
+					{ x: 12, y: 156, key: 'OK'}], 
+				yAxisID: "ppm",
+				borderColor: ui5.chartjs.Palette.pick(2)
+			});
+			oLineChart.addDataset(no);
+
+			// data 4
+			var no2 = new ui5.chartjs.data.Line({
+				label: "NO2",
+				data: [
+					{ x: 0, y: 73, key: 'OK'},
+					{ x: 1, y: 71, key: 'OK'},
+					{ x: 2, y: 71, key: 'NG'},
+					{ x: 3, y: 72, key: 'OK'},
+					{ x: 4, y: 63, key: 'OK'},
+					{ x: 5, y: 61, key: 'OK'},
+					{ x: 6, y: 71, key: 'OK'},
+					{ x: 7, y: 83, key: 'OK'},
+					{ x: 8, y: 95, key: 'OK'},
+					{ x: 9, y: 116, key: 'OK'},
+					{ x: 10, y: 124, key: 'OK'},
+					{ x: 11, y: 144, key: 'NG'},
+					{ x: 12, y: 142, key: 'OK'}], 
+				yAxisID: "ppm",
+				borderColor: ui5.chartjs.Palette.pick(3)
+			});
+			oLineChart.addDataset(no2);
+
+			// data 5
+			var nox = new ui5.chartjs.data.Line({
+				label: "NOx",
+				data: [
+					{ x: 0, y: 79, key: 'OK'},
+					{ x: 1, y: 76, key: 'OK'},
+					{ x: 2, y: 62, key: 'NG'},
+					{ x: 3, y: 71, key: 'OK'},
+					{ x: 4, y: 62, key: 'OK'},
+					{ x: 5, y: 73, key: 'OK'},
+					{ x: 6, y: 74, key: 'OK'},
+					{ x: 7, y: 82, key: 'OK'},
+					{ x: 8, y: 103, key: 'OK'},
+					{ x: 9, y: 136, key: 'OK'},
+					{ x: 10, y: 123, key: 'OK'},
+					{ x: 11, y: 122, key: 'NG'},
+					{ x: 12, y: 133, key: 'OK'}], 
+				yAxisID: "ppm",
+				borderColor: ui5.chartjs.Palette.pick(4)
+			});
+			oLineChart.addDataset(nox);
+
+			oLineChart.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

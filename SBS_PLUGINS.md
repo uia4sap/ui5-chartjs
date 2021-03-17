@@ -7,8 +7,8 @@ Plugins
 
 ![Crosshair](images/SBS_PLUGINS_CROSSHAIR1.png)
 
-* UI5 namespace: `xmlns:plugins="uia.chartjs.plugins"`
-* Class: `uia.chartjs.plugins.Crosshair`
+* UI5 namespace: `xmlns:plugins="ui5.chartjs.plugins"`
+* Class: `ui5.chartjs.plugins.Crosshair`
 
 ### View
 ```xml
@@ -31,8 +31,8 @@ Plugins
 [official](https://chartjs-plugin-datalabels.netlify.app/), [github](https://github.com/chartjs/chartjs-plugin-datalabels)
 
 ![DataLabels](images/SBS_PLUGINS_DATALABELS1.png)
-* UI5 namespace: `xmlns:specline="uia.chartjs.plugins"`
-* Class: `uia.chartjs.plugins.specline.DataLabels`
+* UI5 namespace: `xmlns:specline="ui5.chartjs.plugins"`
+* Class: `ui5.chartjs.plugins.specline.DataLabels`
 
 ### View
 ```xml
@@ -49,8 +49,8 @@ Plugins
 
 ![SpecLine](images/SBS_PLUGINS_SPECLINE1.png)
 
-* UI5 namespace: `xmlns:specline="uia.chartjs.plugins.specline"`
-* Class: `uia.chartjs.plugins.specline.SpecLine`
+* UI5 namespace: `xmlns:specline="ui5.chartjs.plugins.specline"`
+* Class: `ui5.chartjs.plugins.specline.SpecLine`
 
 ### View
 ```xml
@@ -80,8 +80,8 @@ Plugins
 ## Zoom (Wrapper)
 [github](https://github.com/chartjs/chartjs-plugin-zoom)
 
-* UI5 namespace: `xmlns:specline="uia.chartjs.plugins"`
-* Class: `uia.chartjs.plugins.specline.Zoom`
+* UI5 namespace: `xmlns:specline="ui5.chartjs.plugins"`
+* Class: `ui5.chartjs.plugins.specline.Zoom`
 
 ### View
 ```xml
