@@ -17,7 +17,8 @@
   "scripts": {
     "prepare": "node prepare.js",
     "start": "ui5 serve --open ./test-resources/ui5lab/browser/index.html",
-    "build": "ui5 build",
+    "build": "rimraf dist && ui5 build",
+    "release": "rimraf dist && ui5 build --exclude-task=createDebugFiles",
     "eslint": "eslint src/ui5/chartjs"
   },
   "dependencies": {

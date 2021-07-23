@@ -20,16 +20,16 @@ The resources of Chart.js
 ## How to Build
 1. __npm install__ - install dependency packages.
 
-2. __npm prepare__ - prepare dev environment.
+2. __npm run prepare__ - prepare dev environment.
 
-3. __npm start__ - demo the samples.
+3. __npm run start__ - demo the samples.
 
 4. __npm run build__ - build and output to `dist` folder.
 
 
 ## How to Use
 
-1. Copy library to the the `resources` folder. THe full path will like: `{WORK_DIR}/resources/ui5/chartjs/`.
+1. Copy library to the `resources` folder of your project. THe full path will be like: `{WORK_DIR}/resources/ui5/chartjs/`.
 
 2. setup __index.html__ where the library is.
    
@@ -37,7 +37,7 @@ The resources of Chart.js
     <script
       data-sap-ui-resourceroots='{
         ...,
-        "ui5.chartjs": "./resource/ui5/chartjs/"
+        "ui5.chartjs": "./resources/ui5/chartjs/"
       }'>
     </script>
     ```

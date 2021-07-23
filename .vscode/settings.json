@@ -1,4 +1,10 @@
 {
+    "editor.formatOnSave": true,
+    "ui5.plugin.ui5version": "1.76.0",
+    "ui5.plugin.jsDiagnostics": true,
+    "ui5.plugin.useUnusedMemberLinter": true,
+    "ui5.plugin.usePublicMemberLinter": true,
+    "ui5.plugin.useWrongParametersLinter": false,
     "cSpell.words": [
         "3rdparty",
         "Arial",
