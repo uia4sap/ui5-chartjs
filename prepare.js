@@ -8,6 +8,7 @@ fs.copySync('./node_modules/chartjs-plugin-datalabels/dist', './src/ui5/chartjs/
 fs.copySync('./node_modules/chartjs-plugin-zoom/dist', './src/ui5/chartjs/3rdparty/chartjs-plugin-zoom');
 fs.copySync('./node_modules/hammerjs/hammer.js', './src/ui5/chartjs/3rdparty/hammerjs/hammer.js');
 fs.copySync('./node_modules/hammerjs/hammer.min.js', './src/ui5/chartjs/3rdparty/hammerjs/hammer.min.js');
+fs.copySync('./node_modules/moment/min/moment.min.js', './src/ui5/chartjs/3rdparty/moment/moment.min.js');
 
 // read library namespace from package.json
 var oPackage = require('./package.json');
@@ -15,14 +16,14 @@ var sNamespace = oPackage.ui5lab.namespace || "ui5lab.library";
 
 // add library namespace to browser library list
 var sBrowserLibraryFile = './test/ui5lab/browser/libraries.json';
-fs.readFile(sBrowserLibraryFile, 'utf8', function (err, data) {
-	if (err) {
-		return console.log(err);
-	}
+fs.readFile(sBrowserLibraryFile, 'utf8', function(err, data) {
+    if (err) {
+        return console.log(err);
+    }
 
-	var result = data.replace(/\[((\r)?\n\t)*\]/m, '[\r\n\t\t"' + sNamespace + '"\r\n\t]');
+    var result = data.replace(/\[((\r)?\n\t)*\]/m, '[\r\n\t\t"' + sNamespace + '"\r\n\t]');
 
-	fs.writeFile(sBrowserLibraryFile, result, 'utf8', function (err) {
-		if (err) return console.log(err);
-	});
+    fs.writeFile(sBrowserLibraryFile, result, 'utf8', function(err) {
+        if (err) return console.log(err);
+    });
 });

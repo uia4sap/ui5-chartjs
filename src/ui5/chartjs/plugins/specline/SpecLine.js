@@ -114,7 +114,7 @@ sap.ui.define([
 
             var dashPattern = [];
             var specInfos = this.getAggregation("specInfos") || [];
-            for (var i in specInfos) {
+            for (var i = 0; i < specInfos.length; i++) {
                 var specInfo = specInfos[i];
                 if (!specInfo.getDisplay()) {
                     continue;
@@ -130,7 +130,7 @@ sap.ui.define([
                 if (!y) {
                     continue;
                 }
-                
+
                 if (y <= y1 && y >= y2) {
                     // draw
                     chart.ctx.beginPath();

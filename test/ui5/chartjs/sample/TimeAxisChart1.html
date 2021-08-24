@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TestPage - LineChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-async="true"
+		data-sap-ui-libs="sap.m,ui5.chartjs"
+        data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+
+			// chart
+			var oLineChart = new ui5.chartjs.LineChart({
+
+				pointClick: function(oEvent) {
+					var points = oEvent.getParameter("points");
+					sap.m.MessageToast.show(
+						"points count:" + points.length, 
+						{ at: "center center" });
+				}
+			});
+
+			// options.title
+			var oTitle = new ui5.chartjs.options.Title({
+				"text": "Air Quality Index",
+				"fontSize": 16
+			});
+			oLineChart.addAggregation("options", oTitle);
+
+			// options.tooltips
+			var oTooltips = new ui5.chartjs.options.Tooltips({
+				"intersect": false,
+				"backgroundColor": ui5.chartjs.Palette.pick(0)
+			});
+			oLineChart.addAggregation("options", oTooltips);
+
+			// options.scales: time
+			var oTimeAxis = new ui5.chartjs.axes.TimeAxis({
+				axisID: "time",
+				position: "bottom",
+				title: "Hours",
+				titleDisplay: true,
+				parser: "MM-DD hh:mm:ss.SSS",
+				unit: "hour",
+				minUnit: "minute"
+			});
+			oLineChart.addAggregation("scales", oTimeAxis);
+
+			// options.scales: y2
+			var oPctAxis = new ui5.chartjs.axes.LinearAxis({
+				axisID: "percent",
+				position: "left",
+				title: "Percent (%)",
+				titleDisplay: true,
+				suggestedMax: 100.0,
+				beginAtZero: true
+			});
+			oLineChart.addAggregation("scales", oPctAxis);
+
+			// data 1
+			var data1 = new ui5.chartjs.data.Line({
+				label: "Humidity",
+				data: [
+					{ x: "01-01 00:00:32.000", y: 30},
+					{ x: "01-01 01:01:54.000", y: 31, key: 'NG'},
+					{ x: "01-01 02:00:08.000", y: 40, key: 'OK'},
+					{ x: "01-01 03:01:09.000", y: 42, key: 'OK'},
+					{ x: "01-01 04:02:14.000", y: 37, key: 'OK'},
+					{ x: "01-01 05:02:39.000", y: 50, key: 'OK'},
+					{ x: "01-01 06:01:41.000", y: 67, key: 'OK'},
+					{ x: "01-01 07:01:09.000", y: 68, key: 'OK'},
+					{ x: "01-01 08:00:26.000", y: 64, key: 'OK'},
+					{ x: "01-01 09:00:17.000", y: 51, key: 'NG'},
+					{ x: "01-01 10:00:11.000", y: 49, key: 'OK'},
+					{ x: "01-01 11:00:32.000", y: 54, key: 'OK'},
+					{ x: "01-01 12:00:59.000", y: 53, key: 'OK'},
+					{ x: "01-01 13:01:04.000", y: 59, key: 'OK'},
+					{ x: "01-01 14:01:11.000", y: 58, key: 'OK'}
+				],
+				xAxisID: "time",
+				yAxisID: "percent"
+			});
+			oLineChart.addDataset(data1);
+
+			oLineChart.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

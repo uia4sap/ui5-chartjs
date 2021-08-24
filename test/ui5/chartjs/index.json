@@ -161,6 +161,19 @@
 						"description": "zoom and pan"
 					}
 				]
+			},
+			"TimeAxis": {
+				"id": "TimeAxis",
+				"name": "TimeAxis",
+				"type": "control",
+				"description": "Samples of time axis",
+				"samples": [
+					{
+						"id": "TimeAxisChart1",
+						"name": "Time Axis",
+						"description": "time base axis"
+					}
+				]
 			}
 		}
 	}

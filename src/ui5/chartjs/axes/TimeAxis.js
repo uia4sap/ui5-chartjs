@@ -8,39 +8,34 @@ sap.ui.define([
     "use strict";
 
     var TimeAxis = CartesianAxis.extend("ui5.chartjs.axes.TimeAxis", {
-        
+
         metadata: {
 
             library: "ui5.chartjs.axes",
 
             properties: {
 
-                source: { type: "string", group: "tick", defaultValue: "auto" },
+                bounds: { type: "string", group: "scale", defaultValue: "data" },
 
-                /**
-                 * Moment.js
-                 */
-                displayFormat: { type: "object", group: "tick", defaultValue: undefined },
+                distribution: { type: "string", group: "scale", defaultValue: "linear" },
+
+                source: { type: "string", group: "ticks", defaultValue: "auto" },
+
+                displayFormats: { type: "string", group: "time", defaultValue: "MMM D H:mm" },
 
                 isoWeekday: { type: "boolean", group: "time", defaultValue: false },
 
-                /**
-                 * Moment.js
-                 */
-                parser: { type: "string", group: "time", defaultValue: undefined },
+                parser: { type: "string", group: "time", defaultValue: "YYYY-MM-DD hh:mm:ss.SSS" },
 
                 round: { type: "string", group: "time", defaultValue: false },
 
-                /**
-                 * Moment.js
-                 */
                 tooltipFormat: { type: "string", group: "time", defaultValue: undefined },
 
-                unit: { type: "string", group: "time", defaultValue: undefined },
+                unit: { type: "string", group: "time", defaultValue: "minute" },
 
-                stepSize: { type: "int", group: "time", defaultValue: undefined },
+                stepSize: { type: "int", group: "time", defaultValue: 1 },
 
-                minUnit: { type: "string", group: "time", defaultValue: "millisecond" }
+                minUnit: { type: "string", group: "time", defaultValue: undefined }
             }
         },
 
@@ -49,11 +44,20 @@ sap.ui.define([
         },
 
         applyScaleEx: function(oAxis) {
+            oAxis["adapters"] = {
+                date: {}
+            };
+            oAxis["distribution"] = this.getDistribution();
+            oAxis["bounds"] = this.getBounds();
             oAxis["ticks"] = {
                 source: this.getSource(),
             };
             oAxis["time"] = {
-                displayFormat: this.getDisplayFormat(),
+                displayFormats: {
+                    hour: "H:mm",
+                    minute: "H:mm",
+                    second: "H:mm.ss"
+                },
                 isoWeekday: this.getIsoWeekday(),
                 parser: this.getParser(),
                 round: this.getRound(),
