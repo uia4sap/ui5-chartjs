@@ -65,7 +65,14 @@
 					{ x: 10, y: 185 },
 					{ x: 11, y: 183 },
 					{ x: 12, y: 195 }], 
-				borderColor: "rgba(0, 255, 0, 0.6)"
+				borderColor: function(a) {
+					if(a.dataIndex) {
+						var p = a.dataset.data[a.dataIndex];
+						return ui5.chartjs.Palette.pick(p.x + 1);
+					} else {
+						return ui5.chartjs.Palette.pick(1);
+					}
+				}
 			});
 			oLineChart.addDataset(co2);
 
