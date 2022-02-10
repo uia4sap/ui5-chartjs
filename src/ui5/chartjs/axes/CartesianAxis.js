@@ -12,42 +12,44 @@ sap.ui.define([
 
             properties: {
 
-                axisID: { type: "string", group: "gridLines", defaultValue: undefined },
+                axisID: { type: "string", group: "scale", defaultValue: undefined },
 
-                display: { type: "boolean", group: "gridLines", defaultValue: true },
+                display: { type: "boolean", group: "scale", defaultValue: true },
 
                 /**
                  * Position of the axis in the chart. Possible values are: 'top', 'left', 'bottom', 'right'
                  */
-                position: { type: "string", group: "gridLines", defaultValue: 'left' },
+                position: { type: "string", group: "scale", defaultValue: 'left' },
 
                 /**
                  * If true, extra space is added to the both edges and the axis is scaled to fit into the chart area. 
                  */
-                offset: { type: "boolean", group: "gridLines", defaultValue: false },
+                offset: { type: "boolean", group: "scale", defaultValue: false },
 
-                weight: { type: "int", group: "gridLines", defaultValue: 0 },
+                weight: { type: "int", group: "scale", defaultValue: 0 },
 
-                title: { type: "string", group: "gridLines", defaultValue: "" },
+                title: { type: "string", group: "scale", defaultValue: "" },
 
-                titleDisplay: { type: "boolean", group: "gridLines", defaultValue: true },
+                titleDisplay: { type: "boolean", group: "scale", defaultValue: true },
 
-                titleLineHeight: { type: "string", group: "gridLines", defaultValue: "1.2" },
+                titleLineHeight: { type: "string", group: "scale", defaultValue: "1.2" },
 
-                titleFontColor: { type: "string", group: "gridLines", defaultValue: "rgba(0,0,0,1.0)" },
+                titleFontColor: { type: "string", group: "scale", defaultValue: "rgba(0,0,0,1.0)" },
 
-                titleFontFamily: { type: "string", group: "gridLines", defaultValue: "Helvetica Neue,Helvetica,Arial,sans-serif" },
+                titleFontFamily: { type: "string", group: "scale", defaultValue: "Helvetica Neue,Helvetica,Arial,sans-serif" },
 
-                titleFontSize: { type: "int", group: "gridLines", defaultValue: 14 },
+                titleFontSize: { type: "int", group: "scale", defaultValue: 14 },
 
-                titleFontStyle: { type: "string", group: "gridLines", defaultValue: "normal" }
+                titleFontStyle: { type: "string", group: "scale", defaultValue: "normal" }
             },
 
             defaultAggregation: "gridLines",
 
             aggregations: {
 
-                gridLines: { type: "ui5.chartjs.axes.GridLines", multiple: false, aggregation: "gridLines" }
+                gridLines: { type: "ui5.chartjs.axes.GridLines", multiple: false, aggregation: "gridLines" },
+
+                ticks: { type: "ui5.chartjs.axes.Ticks", multiple: false, aggregation: "ticks" }
             },
 
             event: {
@@ -164,10 +166,14 @@ sap.ui.define([
             if (gridLines) {
                 result["gridLines"] = gridLines.toOption();
             }
+            var ticks = this.getAggregation("ticks");
+            if (ticks) {
+                result["ticks"] = ticks.toOption();
+            }
 
             return this.applyScaleEx(result);
         },
-        
+
         applyScaleEx: function(oAxis) {
             return oAxis;
         },

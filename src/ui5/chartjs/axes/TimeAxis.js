@@ -21,7 +21,7 @@ sap.ui.define([
 
                 source: { type: "string", group: "ticks", defaultValue: "auto" },
 
-                displayFormats: { type: "string", group: "time", defaultValue: "MMM D H:mm" },
+                displayFormats: { type: "object", group: "time" },
 
                 isoWeekday: { type: "boolean", group: "time", defaultValue: false },
 

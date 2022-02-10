@@ -122,7 +122,7 @@ sap.ui.define([
 
         updateAxisRange: function(axisId, min, max) {
             if (this.__chart) {
-             var axis = this.__chart.scales[axisId];
+                var axis = this.__chart.scales[axisId];
                 if (axis) {
                     axis.options.ticks.min = min;
                     axis.options.ticks.max = max;

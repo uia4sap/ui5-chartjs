@@ -5,8 +5,8 @@ sap.ui.define([
 ) {
     "use strict";
 
-    var GridLines = Element.extend("ui5.chartjs.options.GridLines", {
-        
+    var GridLines = Element.extend("ui5.chartjs.axes.GridLines", {
+
         metadata: {
 
             library: "ui5.chartjs.axes",
@@ -41,7 +41,7 @@ sap.ui.define([
 
                 zeroLineBorderDashOffset: { type: "boolean", group: "gridlines", defaultValue: 0.0 },
 
-                offsetGridLines: { type: "boolean", group: "gridlines", defaultValue: false },
+                offsetGridLines: { type: "boolean", group: "gridlines", defaultValue: true },
 
                 z: { type: "int", group: "gridlines", defaultValue: 0 }
             },

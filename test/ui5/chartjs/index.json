@@ -1,180 +1,176 @@
 {
-	"ui5.chartjs": {
-		"icon": "sap-icon://chart",
-		"name": "Chart.js for UI5",
-		"description": "Chart.js for UI5",
-		"source" : "https://github.com/uia4sap/ui5-chartjs",
-		"documentation": "https://github.com/uia4sap/ui5-chartjs/blob/master/README.md",
-		"demo" : "https://github.com/uia4sap/ui5-chartjs/index.html",
-		"license": "Apache 2.0",
-		"version": "1.0.0",
-		"content": {
-			"BarChart": {
-				"id": "BarChart",
-				"name": "BarChart",
-				"type": "control",
-				"description": "Samples of the BarChart",
-				"samples": [
-					{
-						"id": "SimpleBarChart",
-						"name": "The simplest",
-						"description": "the simplest bar chart"
-					},
-					{
-						"id": "ScoreBarChart1",
-						"name": "Score Report #1",
-						"description": "vertical with label"
-					},
-					{
-						"id": "ScoreBarChart2",
-						"name": "Score Report #2",
-						"description": "with average line."
-					},
-					{
-						"id": "ScoreBarChart3",
-						"name": "Score Report #3",
-						"description": "using data binding."
-					},
-					{
-						"id": "ScoreBarChart4",
-						"name": "Score Report #4",
-						"description": "stacked"
-					},
-					{
-						"id": "ScoreBarChart5",
-						"name": "Score Report #5",
-						"description": "horizontal with label"
-					}
-				]
-			},
-			"LineChart": {
-				"id": "LineChart",
-				"name": "LineChart",
-				"type": "control",
-				"description": "Samples of the LineChart",
-				"samples": [
-					{
-						"id": "SimpleLineChart",
-						"name": "The simplest",
-						"description": "the simplest line chart"
-					},
-					{
-						"id": "AQILineChart1",
-						"name": "AQI chart #1",
-						"description": "custom color style"
-					},
-					{
-						"id": "AQILineChart2",
-						"name": "AQI chart #2",
-						"description": "using data binding."
-					},
-					{
-						"id": "AQILineChart3",
-						"name": "AQI chart #3",
-						"description": "two charts."
-					}
-				]
-			},
-			"PieChart": {
-				"id": "PieChart",
-				"name": "PieChart",
-				"type": "control",
-				"description": "Samples of the PieChart",
-				"samples": [
-					{
-						"id": "SimplePieChart",
-						"name": "The simplest",
-						"description": "the simplest pie chart"
-					},
-					{
-						"id": "PieChart1",
-						"name": "donut",
-						"description": "eat the donut"
-					}
-				]
-			},
-			"PolarAreaChart": {
-				"id": "PolarAreaChart",
-				"name": "PolarAreaChart",
-				"type": "control",
-				"description": "Samples of the PolarAreaChart",
-				"samples": [
-					{
-						"id": "SimplePolarAreaChart",
-						"name": "The simplest",
-						"description": "the simplest polar area chart"
-					}
-				]
-			},
-			"Tooltip": {
-				"id": "Tooltip",
-				"name": "Tooltip",
-				"type": "control",
-				"description": "Samples of custom tooltip",
-				"samples": [
-					{
-						"id": "Tooltip1",
-						"name": "Custom",
-						"description": "tooltip call custom function"
-					},
-					{
-						"id": "Tooltip2",
-						"name": "Callbacks",
-						"description": "tooltip with callback"
-					}
-				]
-			},
-			"Plugins": {
-				"id": "Plugins",
-				"name": "Plugins", 
-				"type": "control",
-				"description": "Samples of plugins",
-				"samples": [
-					{
-						"id": "PluginCrosshair1",
-						"name": "Crosshair",
-						"description": "zoom and suppress tooltips"
-					},
-					{
-						"id": "PluginCrosshair2",
-						"name": "Crosshair",
-						"description": "sync group"
-					},
-					{
-						"id": "PluginDataLabels",
-						"name": "Data Labels",
-						"description": "chartjs-plugin-datalabels"
-					},
-					{
-						"id": "PluginLineBarLabel",
-						"name": "Line Label",
-						"description": "customize"
-					},
-					{
-						"id": "PluginSpecLine",
-						"name": "Spec Lines",
-						"description": "draw spec lines"
-					},
-					{
-						"id": "PluginZoom",
-						"name": "Zoom",
-						"description": "zoom and pan"
-					}
-				]
-			},
-			"TimeAxis": {
-				"id": "TimeAxis",
-				"name": "TimeAxis",
-				"type": "control",
-				"description": "Samples of time axis",
-				"samples": [
-					{
-						"id": "TimeAxisChart1",
-						"name": "Time Axis",
-						"description": "time base axis"
-					}
-				]
-			}
-		}
-	}
+    "ui5.chartjs": {
+        "icon": "sap-icon://chart",
+        "name": "Chart.js for UI5",
+        "description": "Chart.js for UI5",
+        "source": "https://github.com/uia4sap/ui5-chartjs",
+        "documentation": "https://github.com/uia4sap/ui5-chartjs/blob/master/README.md",
+        "demo": "https://github.com/uia4sap/ui5-chartjs/index.html",
+        "license": "Apache 2.0",
+        "version": "1.0.0",
+        "content": {
+            "BarChart": {
+                "id": "BarChart",
+                "name": "BarChart",
+                "type": "control",
+                "description": "Samples of the BarChart",
+                "samples": [{
+                        "id": "SimpleBarChart",
+                        "name": "The simplest",
+                        "description": "the simplest bar chart"
+                    },
+                    {
+                        "id": "ScoreBarChart1",
+                        "name": "Score Report #1",
+                        "description": "vertical with label"
+                    },
+                    {
+                        "id": "ScoreBarChart2",
+                        "name": "Score Report #2",
+                        "description": "with average line."
+                    },
+                    {
+                        "id": "ScoreBarChart3",
+                        "name": "Score Report #3",
+                        "description": "using data binding."
+                    },
+                    {
+                        "id": "ScoreBarChart4",
+                        "name": "Score Report #4",
+                        "description": "stacked"
+                    },
+                    {
+                        "id": "ScoreBarChart5",
+                        "name": "Score Report #5",
+                        "description": "horizontal with label"
+                    },
+                    {
+                        "id": "ScoreBarChart6",
+                        "name": "Score Report #6",
+                        "description": "histogram"
+                    }
+                ]
+            },
+            "LineChart": {
+                "id": "LineChart",
+                "name": "LineChart",
+                "type": "control",
+                "description": "Samples of the LineChart",
+                "samples": [{
+                        "id": "SimpleLineChart",
+                        "name": "The simplest",
+                        "description": "the simplest line chart"
+                    },
+                    {
+                        "id": "AQILineChart1",
+                        "name": "AQI chart #1",
+                        "description": "custom color style"
+                    },
+                    {
+                        "id": "AQILineChart2",
+                        "name": "AQI chart #2",
+                        "description": "using data binding."
+                    },
+                    {
+                        "id": "AQILineChart3",
+                        "name": "AQI chart #3",
+                        "description": "two charts."
+                    }
+                ]
+            },
+            "PieChart": {
+                "id": "PieChart",
+                "name": "PieChart",
+                "type": "control",
+                "description": "Samples of the PieChart",
+                "samples": [{
+                        "id": "SimplePieChart",
+                        "name": "The simplest",
+                        "description": "the simplest pie chart"
+                    },
+                    {
+                        "id": "PieChart1",
+                        "name": "donut",
+                        "description": "eat the donut"
+                    }
+                ]
+            },
+            "PolarAreaChart": {
+                "id": "PolarAreaChart",
+                "name": "PolarAreaChart",
+                "type": "control",
+                "description": "Samples of the PolarAreaChart",
+                "samples": [{
+                    "id": "SimplePolarAreaChart",
+                    "name": "The simplest",
+                    "description": "the simplest polar area chart"
+                }]
+            },
+            "Tooltip": {
+                "id": "Tooltip",
+                "name": "Tooltip",
+                "type": "control",
+                "description": "Samples of custom tooltip",
+                "samples": [{
+                        "id": "Tooltip1",
+                        "name": "Custom",
+                        "description": "tooltip call custom function"
+                    },
+                    {
+                        "id": "Tooltip2",
+                        "name": "Callbacks",
+                        "description": "tooltip with callback"
+                    }
+                ]
+            },
+            "Plugins": {
+                "id": "Plugins",
+                "name": "Plugins",
+                "type": "control",
+                "description": "Samples of plugins",
+                "samples": [{
+                        "id": "PluginCrosshair1",
+                        "name": "Crosshair",
+                        "description": "zoom and suppress tooltips"
+                    },
+                    {
+                        "id": "PluginCrosshair2",
+                        "name": "Crosshair",
+                        "description": "sync group"
+                    },
+                    {
+                        "id": "PluginDataLabels",
+                        "name": "Data Labels",
+                        "description": "chartjs-plugin-datalabels"
+                    },
+                    {
+                        "id": "PluginLineBarLabel",
+                        "name": "Line Label",
+                        "description": "customize"
+                    },
+                    {
+                        "id": "PluginSpecLine",
+                        "name": "Spec Lines",
+                        "description": "draw spec lines"
+                    },
+                    {
+                        "id": "PluginZoom",
+                        "name": "Zoom",
+                        "description": "zoom and pan"
+                    }
+                ]
+            },
+            "TimeAxis": {
+                "id": "TimeAxis",
+                "name": "TimeAxis",
+                "type": "control",
+                "description": "Samples of time axis",
+                "samples": [{
+                    "id": "TimeAxisChart1",
+                    "name": "Time Axis",
+                    "description": "time base axis"
+                }]
+            }
+        }
+    }
 }

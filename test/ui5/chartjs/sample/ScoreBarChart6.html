@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Test Page - BarChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-libs="sap.m,ui5.chartjs"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+			// chart
+			var oBarChart = new ui5.chartjs.BarChart({
+				labels: [ 50, 60, 70, 80, 90, 100]
+			});
+
+			var x1 = new ui5.chartjs.axes.CategoryAxis({
+				display: false,
+				max: 90,
+				position: "bottom"
+			});
+			oBarChart.addAggregation("scales", x1);
+
+			var x2 = new ui5.chartjs.axes.CategoryAxis({
+				display: true,
+				max: 100,
+				offset: false,
+				position: "bottom"
+			});
+			oBarChart.addAggregation("scales", x2);
+
+			// data 1
+			var data1 = new ui5.chartjs.data.Bar({
+				label: "Male",
+				data: [ 2, 10, 23, 85, 4 ],
+				backgroundColor: ui5.chartjs.Palette.pick(0, 192),
+				barPercentage: 1
+			});
+			oBarChart.addDataset(data1);
+
+			oBarChart.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

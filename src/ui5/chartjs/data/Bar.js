@@ -8,9 +8,9 @@ sap.ui.define([
     "use strict";
 
     var Bar = Dataset.extend("ui5.chartjs.data.Bar", {
-        
+
         metadata: {
-            
+
             library: "ui5.chartjs.data",
 
             properties: {
@@ -20,7 +20,7 @@ sap.ui.define([
                 borderColor: { type: "any", group: "data", defaultValue: undefined },
 
                 borderSkip: { type: "any", group: "data", defaultValue: "bottom" },
-                
+
                 borderWidth: { type: "any", group: "data", defaultValue: 1 },
 
                 hoverBackgroundColor: { type: "any", group: "data", defaultValue: "rgba(0,0,255,0.1)" },
@@ -28,6 +28,8 @@ sap.ui.define([
                 hoverBorderColor: { type: "any", group: "data", defaultValue: undefined },
 
                 hoverBorderWidth: { type: "any", group: "data", defaultValue: 1 },
+
+                barPercentage: { type: "float", group: "data", defaultValue: 1.0 }
 
             },
         },
@@ -41,6 +43,7 @@ sap.ui.define([
             oDataset.hoverBackgroundColor = this.getHoverBackgroundColor();
             oDataset.hoverBorderColor = this.getHoverBorderColor();
             oDataset.hoverBorderWidth = this.getHoverBorderWidth();
+            oDataset.barPercentage = this.getBarPercentage();
             return oDataset;
         }
     });

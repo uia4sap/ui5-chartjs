@@ -109,10 +109,10 @@ sap.ui.define([
             var fontH = mt.actualBoundingBoxAscent - mt.actualBoundingBoxDescent;
 
             for (var y = 0; y < dataset.data.length; y++) {
-                var value = dataset.data[y] || "";
+                var value = dataset.data[y] || { y: undefined };
                 var model = meta.data[y]._model;
                 ctx.fillText(
-                    value.y ? value.y : value,
+                    value.y != undefined ? value.y : "",
                     model.x + 10,
                     model.y + (model.height - fontH) / 2);
             }
@@ -123,7 +123,7 @@ sap.ui.define([
                 var value = dataset.data[y] || "";
                 var model = meta.data[y]._model;
                 ctx.fillText(
-                    value.y ? value.y : value,
+                    value.y != undefined ? value.y : value,
                     model.x,
                     model.y - 2);
             }

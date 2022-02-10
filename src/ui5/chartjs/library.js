@@ -51,6 +51,7 @@ sap.ui.define([
             "ui5.chartjs.axes.LinearAxis",
             "ui5.chartjs.axes.TimeAxis",
             "ui5.chartjs.axes.GridLines",
+            "ui5.chartjs.axes.Ticks",
             "ui5.chartjs.data.Bar",
             "ui5.chartjs.data.Line",
             "ui5.chartjs.data.Pie",
