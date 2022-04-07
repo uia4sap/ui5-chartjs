@@ -13,7 +13,10 @@ sap.ui.define([
 
             "library": "ui5.chartjs.plugins",
 
-            "properties": {},
+            "properties": {
+
+                direction: { type: "string", group: "spec", defaultValue: "H" }
+            },
 
             "aggregations": {
 
@@ -90,8 +93,12 @@ sap.ui.define([
             return "specline";
         },
 
-        getXScale: function(chart) {
-            return chart.data.datasets.length ? chart.scales[chart.getDatasetMeta(0).xAxisID] : null;
+        getXScale: function(chart, xAxisID) {
+            if (xAxisID) {
+                return chart.scales[xAxisID];
+            } else {
+                return chart.data.datasets.length ? chart.scales[chart.getDatasetMeta(0).xAxisID] : null;
+            }
         },
 
         getYScale: function(chart, yAxisID) {
@@ -104,7 +111,14 @@ sap.ui.define([
 
         drawSpecLine: function(chart) {
             // var optSpecline = chart.options.plugins["specline"] || {};
+            if (this.getDirection() == "V") {
+                this.__drawV(chart);
+            } else {
+                this.__drawH(chart);
+            }
+        },
 
+        __drawH: function(chart) {
             var xScale = this.getXScale(chart);
             if (!xScale) {
                 return;
@@ -124,10 +138,16 @@ sap.ui.define([
                     continue;
                 }
 
+                var value = specInfo.getValue();
+                if (typeof yScale.min !== "number") {
+                    value = "" + value;
+                } else if (typeof value !== "number") {
+                    value = parseFloat(value);
+                }
                 var y1 = yScale.getPixelForValue(yScale.min);
                 var y2 = yScale.getPixelForValue(yScale.max);
-                var y = yScale.getPixelForValue(specInfo.getValue());
-                if (!y) {
+                var y = yScale.getPixelForValue(value);
+                if (y == undefined) {
                     continue;
                 }
 
@@ -144,6 +164,53 @@ sap.ui.define([
                 }
             };
         },
+
+        __drawV: function(chart) {
+            var yScale = this.getYScale(chart);
+            if (!yScale) {
+                return;
+            }
+            var y1 = yScale.getPixelForValue(yScale.min);
+            var y2 = yScale.getPixelForValue(yScale.max);
+
+            var dashPattern = [];
+            var specInfos = this.getAggregation("specInfos") || [];
+            for (var i = 0; i < specInfos.length; i++) {
+                var specInfo = specInfos[i];
+                if (!specInfo.getDisplay()) {
+                    continue;
+                }
+                var xScale = this.getXScale(chart, specInfo.getXAxisID());
+                if (!xScale) {
+                    continue;
+                }
+
+                var value = specInfo.getValue();
+                if (typeof xScale.min !== "number") {
+                    value = "" + value;
+                } else if (typeof value !== "number") {
+                    value = parseFloat(value);
+                }
+                var x1 = xScale.getPixelForValue(xScale.min);
+                var x2 = xScale.getPixelForValue(xScale.max);
+                var x = xScale.getPixelForValue(value);
+                if (x == undefined) {
+                    continue;
+                }
+
+                if (x >= x1 && x <= x2) {
+                    // draw
+                    chart.ctx.beginPath();
+                    chart.ctx.setLineDash(dashPattern);
+                    chart.ctx.moveTo(x, y1);
+                    chart.ctx.lineWidth = specInfo.getLineWidth();
+                    chart.ctx.strokeStyle = specInfo.getLineColor() || color;
+                    chart.ctx.lineTo(x, y2);
+                    chart.ctx.stroke();
+                    chart.ctx.setLineDash([]);
+                }
+            };
+        }
     });
 
     return SpecLine;

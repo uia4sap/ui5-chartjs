@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Test Page - BarChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-libs="sap.m,ui5.chartjs"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+			// chart
+			var oBarChart = new ui5.chartjs.BarChart({
+				labels: [ "-3.0", "-1.5", "0.0", "1.5", "3.0", "4.5", "6.0", "7.5"]
+			});
+
+			// x-axis 1
+			var xAxis1 = new ui5.chartjs.axes.CategoryAxis({
+				axisID: "result",
+				position: "bottom",
+				max: "6.0",
+				display: false
+			});
+			oBarChart.addAggregation("scales", xAxis1);
+
+			// x-axis 2
+			var xAxis2 = new ui5.chartjs.axes.CategoryAxis({
+				axisID: "range",
+				position: "bottom",
+				title: "Range",
+				offset: false
+			});
+			oBarChart.addAggregation("scales", xAxis2);
+
+			// y-axis
+			var yAxis = new ui5.chartjs.axes.LinearAxis({
+				axisID: "count",
+				position: "left",
+				title: "Count"
+			});
+			oBarChart.addAggregation("scales", yAxis);
+
+			// plugin: specline
+			var oSpecLine = new ui5.chartjs.plugins.specline.SpecLine({
+				direction: "V"
+			});
+			var oSpecInfo1 = new ui5.chartjs.plugins.specline.SpecInfo({
+				name: "target",
+				display: true,
+				lineWidth: 1,
+				xAxisID: "range",
+				lineColor: ui5.chartjs.Palette.pick(0),
+				value: "-1.5"
+			});
+			var oSpecInfo2 = new ui5.chartjs.plugins.specline.SpecInfo({
+				name: "target",
+				display: true,
+				lineWidth: 1,
+				xAxisID: "range",
+				lineColor: ui5.chartjs.Palette.pick(0),
+				value: "4.5"
+			});
+			//
+			oSpecLine.addAggregation("specInfos", oSpecInfo1);
+			oSpecLine.addAggregation("specInfos", oSpecInfo2);
+			//
+			oBarChart.addAggregation("plugins", oSpecLine);
+
+			// data 1
+			var data1 = new ui5.chartjs.data.Bar({
+				label: "Male",
+				data: [10, 2, 65, 54, 43, 32, 1, 2],
+				xAxisID: "result",
+				yAxisID: "count",
+				backgroundColor:  "rgba(255, 0, 0, 0.3)"
+			});
+			oBarChart.addDataset(data1);
+
+			// data 2
+			var data2 = new ui5.chartjs.data.Bar({
+				label: "Female",
+				data: [9, 12, 45, 68, 3, 32, 23, 29],
+				xAxisID: "result",
+				yAxisID: "count",
+				backgroundColor: "rgba(0, 255, 0, 0.3)"
+			});
+			oBarChart.addDataset(data2);
+
+			oBarChart.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

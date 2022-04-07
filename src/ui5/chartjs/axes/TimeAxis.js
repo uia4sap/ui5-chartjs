@@ -35,7 +35,12 @@ sap.ui.define([
 
                 stepSize: { type: "int", group: "time", defaultValue: 1 },
 
-                minUnit: { type: "string", group: "time", defaultValue: undefined }
+                minUnit: { type: "string", group: "time", defaultValue: undefined },
+
+                max: { type: "float", group: "scale", defaultValue: undefined },
+
+                min: { type: "float", group: "scale", defaultValue: undefined }
+
             }
         },
 

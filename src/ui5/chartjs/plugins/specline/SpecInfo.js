@@ -7,7 +7,7 @@ sap.ui.define([
 
     var SpecInfo = Element.extend("ui5.chartjs.plugins.specline.SpecInfo", {
         metadata: {
-            
+
             library: "ui5.chartjs.plugins.specline",
 
             properties: {
@@ -16,11 +16,13 @@ sap.ui.define([
 
                 display: { type: "boolean", group: "spec", defaultValue: true },
 
-                value: { type: "float", group: "spec", defaultValue: 0 },
+                value: { type: "any", group: "spec" },
 
                 lineColor: { type: "string", group: "spec", defaultValue: "#F66" },
 
                 lineWidth: { type: "int", group: "spec", defaultValue: 1 },
+
+                xAxisID: { type: "string", group: "spec", defaultValue: undefined },
 
                 yAxisID: { type: "string", group: "spec", defaultValue: undefined }
             }
@@ -29,24 +31,6 @@ sap.ui.define([
         constructor: function(sId, mSettings) {
             Element.apply(this, arguments);
         },
-
-        /**
-         * @override
-         * 
-         */
-        setValue: function(value) {
-            if (value) {
-                if (isNaN(value)) {
-                    this.setProperty("value", value, true);
-                } else {
-                    this.setProperty("value", parseFloat(value), true);
-                }
-            } else {
-                this.setProperty("value", null, true);
-            }
-            return this;
-        }
-
     });
 
 

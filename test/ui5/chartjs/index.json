@@ -149,9 +149,19 @@
                         "description": "customize"
                     },
                     {
-                        "id": "PluginSpecLine",
-                        "name": "Spec Lines",
-                        "description": "draw spec lines"
+                        "id": "PluginSpecLineH",
+                        "name": "Horizontal Spec",
+                        "description": "draw horizontal spec lines"
+                    },
+                    {
+                        "id": "PluginSpecLineV1",
+                        "name": "Vertical Spec",
+                        "description": "draw vertical spec lines"
+                    },
+                    {
+                        "id": "PluginSpecLineV2",
+                        "name": "Vertical Spec",
+                        "description": "draw vertical spec lines"
                     },
                     {
                         "id": "PluginZoom",
