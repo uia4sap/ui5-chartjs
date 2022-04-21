@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TestPage - LineChart</title>
+	<base href="../../../../">
+	<!--[if lte IE 9]><script>
+	(function() {
+		var baseTag = document.getElementsByTagName('base')[0];
+		baseTag.href = baseTag.href;
+	})();
+	</script><![endif]-->
+
+	<script id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-async="true"
+		data-sap-ui-libs="sap.m,ui5.chartjs"
+        data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-theme="sap_belize">
+	</script>
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+
+			// chart
+			var oChart = new ui5.chartjs.ScatterChart({
+				height: 100
+			});
+
+			var oAxis = new ui5.chartjs.axes.LinearAxis({
+				axisID: "values",
+				position: "bottom",
+				title: "time",
+				titleDisplay: true,
+			});
+			oChart.addAggregation("scales", oAxis);
+
+			var co = new ui5.chartjs.data.Line({
+				label: "CO",
+				showLine: false,
+				data: [
+					{ x: 0, y: 76 },
+					{ x: 1, y: 85 },
+					{ x: 2, y: 78 },
+					{ x: 3, y: 85 },
+					{ x: 4, y: 75 },
+					{ x: 5, y: 73 },
+					{ x: 6, y: 85 },
+					{ x: 7, y: 104 },
+					{ x: 8, y: 102 },
+					{ x: 9, y: 139 },
+					{ x: 10, y: 175 },
+					{ x: 11, y: 181 },
+					{ x: 12, y: 203 }], 
+				borderColor: "rgba(255, 0, 0, 0.6)",
+				xAxisID: "values"
+			});
+			oChart.addDataset(co);
+			
+			var co2 = new ui5.chartjs.data.Line({
+				label: "CO2",
+				showLine: false,
+				data: [
+					{ x: 0, y: 96},
+					{ x: 1, y: 87 },
+					{ x: 2, y: 70 },
+					{ x: 3, y: 71 },
+					{ x: 4, y: 65 },
+					{ x: 5, y: 72 },
+					{ x: 6, y: 80 },
+					{ x: 7, y: 99 },
+					{ x: 8, y: 101 },
+					{ x: 9, y: 146 },
+					{ x: 10, y: 185 },
+					{ x: 11, y: 183 },
+					{ x: 12, y: 195 }], 
+				borderColor: function(a) {
+					if(a.dataIndex) {
+						var p = a.dataset.data[a.dataIndex];
+						return ui5.chartjs.Palette.pick(p.x + 1);
+					} else {
+						return ui5.chartjs.Palette.pick(1);
+					}
+				},
+				xAxisID: "values"
+			});
+			oChart.addDataset(co2);
+
+			//
+			var oCheck1 = new sap.m.CheckBox({
+				"text": "Hide1"
+			});
+			oCheck1.attachSelect(oEvent => oChart.hideDataset(0, oCheck1.getSelected()));
+
+			//
+			var oCheck2 = new sap.m.CheckBox({
+				"text": "Hide2"
+			});
+			oCheck2.attachSelect(oEvent => oChart.hideDataset(1, oCheck2.getSelected()));
+
+			//
+			var oBox = new sap.m.VBox({});
+			oBox.addItem(oChart);
+			oBox.addItem(oCheck1);
+			oBox.addItem(oCheck2);
+
+
+			oBox.placeAt("content");
+		});
+	</script>
+</head>
+<body id="content" class="sapUiBody">
+</body>
+</html>

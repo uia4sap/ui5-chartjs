@@ -8,7 +8,7 @@ sap.ui.define([
     "use strict";
 
     var Line = Dataset.extend("ui5.chartjs.data.Line", {
-        
+
         metadata: {
 
             library: "ui5.chartjs.data",
@@ -94,7 +94,9 @@ sap.ui.define([
         },
 
         applyDatasetEx: function(oChart, oDataset) {
-            oDataset.type = "line";
+            if (!(oChart instanceof ui5.chartjs.ScatterChart)) {
+                oDataset.type = "line";
+            }
             oDataset.backgroundColor = this.getBackgroundColor();
             oDataset.borderCatStyle = this.getBorderCatStyle();
             oDataset.borderColor = this.getBorderColor();

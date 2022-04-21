@@ -78,6 +78,17 @@
                     }
                 ]
             },
+            "ScatterChart": {
+                "id": "ScatterChart",
+                "name": "ScatterChart",
+                "type": "control",
+                "description": "Samples of the ScatterChart",
+                "samples": [{
+                    "id": "SimpleScatterChart",
+                    "name": "The simplest",
+                    "description": "the simplest line chart"
+                }]
+            },
             "PieChart": {
                 "id": "PieChart",
                 "name": "PieChart",
@@ -155,12 +166,12 @@
                     },
                     {
                         "id": "PluginSpecLineV1",
-                        "name": "Vertical Spec",
+                        "name": "Vertical Spec #1",
                         "description": "draw vertical spec lines"
                     },
                     {
                         "id": "PluginSpecLineV2",
-                        "name": "Vertical Spec",
+                        "name": "Vertical Spec #2",
                         "description": "draw vertical spec lines"
                     },
                     {

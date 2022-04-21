@@ -15,7 +15,7 @@ sap.ui.define([
 
             "properties": {
 
-                direction: { type: "string", group: "spec", defaultValue: "H" }
+                direction: { type: "string", group: "spec", defaultValue: "H" },
             },
 
             "aggregations": {
@@ -157,10 +157,20 @@ sap.ui.define([
                     chart.ctx.setLineDash(dashPattern);
                     chart.ctx.moveTo(x1, y);
                     chart.ctx.lineWidth = specInfo.getLineWidth();
-                    chart.ctx.strokeStyle = specInfo.getLineColor() || color;
+                    chart.ctx.strokeStyle = specInfo.getLineColor();
                     chart.ctx.lineTo(x2, y);
                     chart.ctx.stroke();
                     chart.ctx.setLineDash([]);
+
+                    var text = specInfo.getText();
+                    if (text != undefined) {
+                        chart.ctx.fillStyle = "#000"
+                        chart.ctx.textAlign = "left";
+                        chart.ctx.textBaseline = specInfo.getTextAlign() || "bottom";
+                        chart.ctx.font = "11px sans-serif";
+                        chart.ctx.fillText(" " + text + " ", x1 + 2 + specInfo.getTextOffset(), y);
+                    }
+
                 }
             };
         },
@@ -204,13 +214,26 @@ sap.ui.define([
                     chart.ctx.setLineDash(dashPattern);
                     chart.ctx.moveTo(x, y1);
                     chart.ctx.lineWidth = specInfo.getLineWidth();
-                    chart.ctx.strokeStyle = specInfo.getLineColor() || color;
+                    chart.ctx.strokeStyle = specInfo.getLineColor();
                     chart.ctx.lineTo(x, y2);
                     chart.ctx.stroke();
                     chart.ctx.setLineDash([]);
+
+                    var text = specInfo.getText();
+                    if (text != undefined) {
+                        chart.ctx.fillStyle = "#000"
+                        chart.ctx.textAlign = specInfo.getTextAlign() || "left";
+                        chart.ctx.textBaseline = "bottom";
+                        chart.ctx.font = "11px sans-serif";
+
+                        var mt = chart.ctx.measureText(text);
+                        var fontH = mt.actualBoundingBoxAscent - mt.actualBoundingBoxDescent;
+                        chart.ctx.fillText(" " + text + " ", x, y2 + fontH * 1.3 + specInfo.getTextOffset());
+                    }
                 }
             };
         }
+
     });
 
     return SpecLine;
