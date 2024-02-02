@@ -1,6 +1,7 @@
 sap.ui.define([
     "sap/ui/core/Element",
-    "./CartesianAxis"
+    "./CartesianAxis",
+    "../3rdparty/moment/chartjs-adapter-moment"
 ], function(
     Element,
     CartesianAxis

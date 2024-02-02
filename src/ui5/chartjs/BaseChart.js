@@ -4,8 +4,7 @@ sap.ui.define([
     "sap/ui/core/Element"
 ], function(
     Control,
-    Element,
-    BaseOption
+    Element
 ) {
     "use strict";
 

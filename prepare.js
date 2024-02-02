@@ -9,7 +9,7 @@ fs.copySync('./node_modules/chartjs-plugin-zoom/dist', './src/ui5/chartjs/3rdpar
 fs.copySync('./node_modules/hammerjs/hammer.js', './src/ui5/chartjs/3rdparty/hammerjs/hammer.js');
 fs.copySync('./node_modules/hammerjs/hammer.min.js', './src/ui5/chartjs/3rdparty/hammerjs/hammer.min.js');
 fs.copySync('./node_modules/moment/min/moment.min.js', './src/ui5/chartjs/3rdparty/moment/moment.min.js');
-
+fs.copySync('./node_modules/chartjs-adapter-moment/dist/chartjs-adapter-moment.js', './src/ui5/chartjs/3rdparty/moment/chartjs-adapter-moment.js');
 // read library namespace from package.json
 var oPackage = require('./package.json');
 var sNamespace = oPackage.ui5lab.namespace || "ui5lab.library";
